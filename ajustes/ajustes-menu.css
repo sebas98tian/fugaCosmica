@@ -1,94 +1,67 @@
-body {
-    background-color: #0b1220;
-    color: white;
-    font-family: 'Poppins', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Cinzel+Decorative:wght@700&display=swap');
+*{
+    margin: 0;
+    padding: 0%;
+    box-sizing: border-box;
+}
+body{
+    background-image: url(../assets/img/wireSettings.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white
+}
+.content-padre{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.content-hijo{
+    height: 40vh;
+    width: 500px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-    padding-top: 3rem;
-  }
-
-  /* --- SWITCH ON/OFF --- */
-  .switch {
-    position: relative;
-    display: inline-block;
-    width: 50px;
-    height: 26px;
-  }
-
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-
-  .slider-round {
-    position: absolute;
-    cursor: pointer;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background-color: #555;
-    border-radius: 34px;
-    transition: .4s;
-  }
-
-  .slider-round:before {
-    position: absolute;
-    content: "";
-    height: 20px; width: 20px;
-    left: 3px; bottom: 3px;
-    background-color: white;
-    border-radius: 50%;
-    transition: .4s;
-  }
-
-  input:checked + .slider-round {
-    background-color: #a34efb;
-  }
-
-  input:checked + .slider-round:before {
-    transform: translateX(24px);
-  }
-
-  .switch-container {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  /* --- SLIDER DE PORCENTAJE --- */
-  .slider-box {
-    border: 1px solid white;
-    padding: 10px 15px;
-    width: 250px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .slider-box input[type=range] {
-    flex: 1;
-    -webkit-appearance: none;
-    appearance: none;
-    height: 4px;
-    background: linear-gradient(to right, #a34efb 50%, #444 50%);
-    border-radius: 2px;
-    outline: none;
-    transition: background 0.3s;
-  }
-
-  .slider-box input[type=range]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background: white;
-    cursor: pointer;
-    border: 2px solid #a34efb;
-  }
-
-  .percent {
-    width: 40px;
+    justify-content: space-around;
+}
+.item{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.item img{
+  width: 2rem;
+  margin-left: 10px;
+}
+.title{
+    font-family: 'Cinzel Decorative', serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: left;
+    color: #FFD700;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.5),
+                0 0 40px rgba(255, 255, 255, 0.3);
+    font-size: 4rem;
+    line-height: 1.1;
+    margin: 40px 0;
+    padding-left: 15px;
     text-align: center;
-  }
+}
+.text{
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 4px; /* separa las letras horizontalmente */
+    text-transform: uppercase;
+    color: white;
+    text-decoration: none;
+    display: block;
+    margin: 20px 0;
+    transition: color 0.3s ease;
+    font-size: 1.5rem;
+}
+a{
+    color: white;
+    text-decoration: none; 
+}
+a:hover {
+  color: #9d6bff; 
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="ajustes-sonido.css">
+    <title>Fuga Comsica</title>
+</head>
+<body>
+    <section class="content-padre">
+        <div class="content-hijo">
+           <p class="title">Game Settings</p>
+           <div class="item">
+                <div class="setting-row">
+                    <span class="label text">MUSIC</span>
+                    <div class="toggle-switch">
+                        <span class="toggle-label text">ON</span>
+                        <input type="checkbox" id="music-toggle" checked>
+                        <label for="music-toggle" class="slider"></label>
+                    </div>
+                </div>
+                <div class="setting-row slider-row">
+                    <span class="label text">MUSIC VOL</span>
+                    <div class="slider-container">
+                        <span class="percentage text" id="span-music-vol">50%</span>
+                        <input type="range" min="0" max="100" value="50" class="vol-slider" id="music-vol">
+                    </div>
+                </div>
+                <div class="setting-row">
+                    <span class="label text">SOUND</span>
+                    <div class="toggle-switch">
+                        <span class="toggle-label text">ON</span>
+                        <input type="checkbox" id="sound-toggle" checked>
+                        <label for="sound-toggle" class="slider"></label>
+                    </div>
+                </div>
+                <div class="setting-row slider-row">
+                    <span class="label text">SOUND VOL</span>
+                    <div class="slider-container">
+                        <span class="percentage text" id="span-vol">50%</span>
+                        <input type="range" min="0" max="100" value="50" class="vol-slider" id="sound-vol">
+                    </div>
+                </div>
+           </div>
+        </div>
+    </section>
+    <script src="ajustes-sonido.js"></script>
+</body>
+</html>

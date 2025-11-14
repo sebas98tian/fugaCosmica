@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Cinzel+Decorative:wght@700&display=swap');
+*{
+    margin: 0;
+    padding: 0%;
+    box-sizing: border-box;
+}
+body{
+    background-image: url(../../assets/img/wireSettings.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white
+}
+.content-padre{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh
+}
+.content-hijo{
+    height: 90vh;
+    width: 500px;
+}
+.title{
+    font-family: 'Cinzel Decorative', serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: left;
+    color: #FFD700;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.5),
+                0 0 40px rgba(255, 255, 255, 0.3);
+    font-size: 3rem;
+    line-height: 1.1;
+    margin: 40px 0;
+    padding-left: 15px;
+}
+.text{
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 4px; /* separa las letras horizontalmente */
+    text-transform: uppercase;
+    color: white;
+    text-decoration: none;
+    display: block;
+    margin: 20px 0;
+    transition: color 0.3s ease;
+}
+
+
+
+/* Estilo para cada fila/opción (el 'div' separado) */
+.setting-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.setting-row:last-child {
+    border-bottom: none;
+}
+
+.label {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+/* --- ESTILOS DEL SLIDER (MUSIC VOL / SOUND VOL) --- */
+.slider-row {
+    flex-direction: column; /* Colocar el label arriba y el slider/porcentaje abajo */
+    align-items: flex-start;
+    padding-top: 10px;
+}
+
+.slider-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+    background-color: rgba(255, 255, 255, 0.1); /* Fondo del área del slider */
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.percentage {
+    margin-right: 15px;
+    min-width: 40px; /* Para alinear mejor */
+    font-weight: bold;
+}
+
+.vol-slider {
+    flex-grow: 1; /* Ocupa el espacio restante */
+    -webkit-appearance: none; /* Eliminar estilo predeterminado en Chrome/Safari */
+    appearance: none;
+    height: 8px;
+    background: #444; /* Barra no llenada */
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+}
+
+/* Relleno del slider (solo ejemplo, puede requerir JS para el relleno dinámico) */
+.vol-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background: #9b59b6; /* Morado del pulgar */
+    border: 2px solid white;
+    border-radius: 50%;
+}
+
+/* --- ESTILOS DEL TOGGLE (MUSIC / SOUND / FULL SCREEN) --- */
+.toggle-switch {
+    display: flex;
+    align-items: center;
+}
+
+.toggle-label {
+    margin-right: 10px;
+    font-size: 1em;
+    font-weight: bold;
+    color: #9b59b6; /* Color morado */
+}
+
+/* Ocultar el checkbox nativo */
+.toggle-switch input[type="checkbox"] {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* Estilo del "rail" del interruptor */
+.slider {
+    position: relative;
+    cursor: pointer;
+    width: 45px; /* Ancho */
+    height: 20px; /* Alto */
+    background-color: #ccc;
+    border-radius: 10px;
+    transition: 0.4s;
+}
+
+/* Estilo del "pulgar" del interruptor */
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.4s;
+}
+
+/* Color cuando está "checked" (ON) */
+input:checked + .slider {
+    background-color: #9b59b6; /* Morado */
+}
+
+/* Mover el pulgar cuando está "checked" (ON) */
+input:checked + .slider:before {
+    transform: translateX(25px);
+}
