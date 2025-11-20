@@ -65,3 +65,42 @@ a{
 a:hover {
   color: #9d6bff; 
 }
+
+a.level-button {
+    position: relative;
+    font-size: 3vw;
+    color: var(--text-color);
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.3s ease;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    display: inline-block;
+    margin: 10px;
+}
+
+a.level-button:hover {
+    transform: scale(1.1);
+    color: var(--hover-color); /* Color violeta en hover */
+}
+
+.back-button {
+    position: absolute;
+    top: 3vh;
+    left: 3vw;
+    font-size: 3vw; 
+    color: var(--text-color);
+    text-decoration: none;
+    z-index: 20;
+    cursor: pointer;
+    background-color: #6b4f3f; /* Fondo café */
+    padding: 10px;
+    border-radius: 8px;
+    transition: transform 0.2s ease, color 0.3s ease, background-color 0.3s ease;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.back-button:hover {
+    transform: scale(1.1);
+    color: var(--hover-color); /* Color violeta en hover */
+    background-color: #8d6b5b; /* Fondo café más claro en hover */
+}

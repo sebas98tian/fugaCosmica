@@ -12,16 +12,22 @@
     ↩
 </a>
 
-<h1 class="level-title">Tauro: Ordena el Rompecabezas</h1>
+<img class="player-avatar" src="/assets/img/av1.png" alt="Avatar" style="position:absolute; top:1rem; right:1rem; width:72px; height:72px; border-radius:50%; border:2px solid #FFD700; box-shadow:0 0 6px rgba(0,0,0,0.5); z-index:25; background:#ffffff; object-fit:cover; display:block;">
 
-<div id="score-container" class="score-container">
-    Puntos: <span id="score">0</span>
-    <span id="artifact-message" class="artifact-message" aria-live="polite"></span>
+<div class="main-content">
+
+    <h1 class="level-title">Tauro: Ordena el Rompecabezas</h1>
+
+    <div id="score-container" class="score-container">
+        Puntos: <span id="score">0</span>
+        <span id="artifact-message" class="artifact-message" aria-live="polite"></span>
+    </div>
+
+    <div id="board" class="board" role="application" aria-label="Tablero del rompecabezas"></div>
+    <button id="reiniciar" class="btn-primary">REINICIAR</button>
+
 </div>
-
-<div id="board" class="board" role="application" aria-label="Tablero del rompecabezas"></div>
-<button id="reiniciar" class="btn-primary">REINICIAR</button>
-
+<script src="../avatar.js"></script>
 <script src="ScriptTauro.js"></script>
 </body>
 </html>

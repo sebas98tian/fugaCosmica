@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Mapa de emojis para los artefactos.
     const ARTEFACT_EMOJI_MAP = {
         'aries': '🔱',      // Yelmo de Bronce
-        'tauro': '♉',      
+        'tauro': '🐮',      
         'geminis': '♊',    
         'cancer': '♋',     
         // Añade el resto de los signos aquí.
@@ -55,23 +55,27 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Mostrar la modal al hacer clic en Tauro (misma UX que Aries)
+    // Mostrar la modal al hacer clic en Tauro
     if (taurusButton && taurusModal) {
         taurusButton.addEventListener('click', (event) => {
-            event.preventDefault(); // evita navegación inmediata
-            taurusModal.classList.remove('hidden');
+            event.preventDefault(); 
+            taurusModal.classList.remove('hidden'); // Asegúrate de que el ID del modal sea correcto
         });
     }
 
+    // Ocultar la modal al hacer clic en 'Salir'
     if (taurusExitButton && taurusModal) {
         taurusExitButton.addEventListener('click', () => {
             taurusModal.classList.add('hidden');
         });
     }
 
+    // Ocultar la modal al hacer clic fuera del contenido
     if (taurusModal) {
         taurusModal.addEventListener('click', (event) => {
-            if (event.target === taurusModal) taurusModal.classList.add('hidden');
+            if (event.target === taurusModal) {
+                taurusModal.classList.add('hidden');
+            }
         });
     }
 

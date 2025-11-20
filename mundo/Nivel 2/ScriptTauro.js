@@ -4,7 +4,7 @@ const scoreDisplay = document.getElementById("score");
 const artifactMessage = document.getElementById("artifact-message");
 let tiles = [];
 let score = 0;
-const ARTIFACT_THRESHOLD = 4;
+const ARTIFACT_THRESHOLD = 2; // Cambiado de 4 a 2
 
 function generarTablero() {
     do {
