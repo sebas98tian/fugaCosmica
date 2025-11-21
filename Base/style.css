@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap');
+
+html,
+body {
+  margin: 0;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  font-family: 'Orbitron', sans-serif;
+}
+
+:root{
+  --accent-blue: #2b4fff;
+  --accent-purple: #8a2be2;
+  --text-dark: rgba(12,14,35,0.9);
+}
+
+/* contenedor principal */
+#container {
+  width: 100%;
+  height: 100%;
+}
+#container #score {
+  position: absolute;
+  top: 16vh;                          /* bajado para no tapar el título */
+  left: 50%;
+  transform: translateX(-50%) translateY(0) scale(1);
+  z-index: 150;
+  font-size: clamp(3rem, 9vw, 6rem);  /* tamaño responsivo */
+  margin: 0;
+  color: var(--accent-blue);
+  text-shadow: 0 6px 20px rgba(138,43,226,0.25), 0 2px 6px rgba(43,79,255,0.15);
+  pointer-events: none;
+  width: auto;
+  text-align: center;
+}
+#container #game {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+#container .game-over {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 85%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#container .game-over * {
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  opacity: 0;
+  transform: translatey(-50px);
+  color: var(--text-dark);
+}
+#container .game-over h2 {
+  margin: 0;
+  padding: 0;
+  font-size: 40px;
+  color: var(--accent-purple);
+  text-shadow: 0 0 18px rgba(138,43,226,0.35);
+}
+#container .game-ready {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+#container .game-ready #start-button {
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  opacity: 0;
+  transform: translatey(-50px);
+  border: 3px solid var(--accent-blue);
+  padding: 10px 20px;
+  background: linear-gradient(135deg,var(--accent-blue),var(--accent-purple));
+  color: rgb(45, 48, 192);
+  font-size: 30px;
+  cursor: pointer;
+  box-shadow: 0 8px 30px rgba(43,79,255,0.15), inset 0 -4px 10px rgba(0,0,0,0.12);
+}
+#container #instructions {
+  position: absolute;
+  width: 100%;
+  top: 16vh;
+  left: 0;
+  text-align: center;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  opacity: 0;
+  color: var(--text-dark);
+}
+#container #instructions.hide {
+  opacity: 0 !important;
+}
+#container.playing #score,
+#container.resetting #score {
+  transform: translatey(0px) scale(1);
+}
+#container.playing #instructions {
+  opacity: 1;
+}
+#container.ready .game-ready #start-button {
+  opacity: 1;
+  transform: translatey(0);
+}
+#container.ended #score {
+  transform: translatey(6vh) scale(1.5);
+}
+#container.ended .game-over * {
+  opacity: 1;
+  transform: translatey(0);
+}
+#container.ended .game-over p {
+  transition-delay: 0.3s;
+}
+
+/* Estilos de la interfaz de Mundo (Título, Botón, Mensaje de Artefacto) */
+.level-title {
+    position: absolute;
+    top: 5vh;
+    width: 100%;
+    text-align: center;
+    z-index: 100;
+    
+    font-family: 'Cinzel Decorative', serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #FFD700;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.5),
+                 0 0 40px rgba(255, 255, 255, 0.3);
+    font-size: 2.5rem;
+}
+
+/* Si quieres aplicar la fuente Cinzel solo a la letra 't' envuélvela en .letter-t */
+.letter-t {
+  font-family: 'Cinzel Decorative', serif;
+  font-weight: 700;
+  color: var(--accent-purple);
+  text-shadow: 0 0 10px rgba(138,43,226,0.3);
+}

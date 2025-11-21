@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,user-scalable=no" />
+    
+    <script src="https://codepen.io/steveg3003/pen/zBVakw"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r83/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+    
+    <title>Géminis - La Torre Dual</title>
+    <link rel="stylesheet" href="StylesGeminis.css" />
+  </head>
+  
+  <body>
+    <a href="../MundoIndex.html" class="back-button" aria-label="Volver al mundo">
+        ↩
+    </a>
+
+    <h1 class="level-title">Géminis: La Torre Dual</h1> 
+    <div id="artifact-status">
+        Puntuación de Artefacto: <span id="artifact-score">0</span>
+        <span id="artifact-message" class="artifact-message" aria-live="polite"></span>
+    </div>
+
+
+    <div id="container">
+      <div id="game"></div>
+      <div id="score">0</div>
+      
+      <div class="game-over">
+        <h2>FIN DEL JUEGO</h2>
+        <p>¡Toca o pulsa ESPACIO para reiniciar!</p>
+        <p>PUNTUACIÓN FINAL: <span id="final-score">0</span></p>
+      </div>
+      
+      <div class="game-ready">
+        <div id="instructions">Pulsa ESPACIO o haz click para dejar caer el bloque.</div>
+        <button id="start-button">Comenzar</button>
+      </div>
+    </div>
+    
+    <script src="ScriptGeminis.js"></script>
+  </body>
+</html>
