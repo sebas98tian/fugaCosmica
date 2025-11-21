@@ -9,6 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const taurusButton = document.querySelector('.level-emoji.taurus');
     const taurusModal = document.getElementById('modal-container-tauro');
     const taurusExitButton = document.getElementById('modal-exit-tauro');
+
+    const geminisButton = document.querySelector('.level-emoji.gemini');
+    const geminisModal = document.getElementById('modal-container-geminis');
+    const geminisExitButton = document.getElementById('modal-exit-geminis');
     
     // ELIMINADO: const aresEventButton = document.getElementById('ares-event-button'); 
 
@@ -20,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const ARTEFACT_EMOJI_MAP = {
         'aries': '🔱',      // Yelmo de Bronce
         'tauro': '🐮',      
-        'geminis': '♊',    
+        'geminis': '🎻',    
         'cancer': '♋',     
         // Añade el resto de los signos aquí.
     };
@@ -79,6 +83,30 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Mostrar la modal al hacer clic en Géminis
+    if (geminisButton && geminisModal) {
+        geminisButton.addEventListener('click', (event) => {
+            event.preventDefault(); 
+            geminisModal.classList.remove('hidden');
+        });
+    }
+
+    // Ocultar la modal al hacer clic en 'Salir'
+    if (geminisExitButton && geminisModal) {
+        geminisExitButton.addEventListener('click', () => {
+            geminisModal.classList.add('hidden');
+        });
+    }
+
+    // Ocultar la modal al hacer clic fuera del contenido
+    if (geminisModal) {
+        geminisModal.addEventListener('click', (event) => {
+            if (event.target === geminisModal) {
+                geminisModal.classList.add('hidden');
+            }
+        });
+    }
+
     // ===========================================
     // *** LÓGICA DEL INVENTARIO Y ARTEFACTOS ***
     // ===========================================
@@ -95,6 +123,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 slot.classList.add('unlocked');
                 slot.textContent = ARTEFACT_EMOJI_MAP[artefactKey] || '✨';
                 slot.setAttribute('title', `Artefacto Ganado: ${slot.dataset.artefact}`);
+                
+                // Mostrar el artefacto de Géminis en el mundo si ya ha sido ganado
+                if (artefactKey === 'geminis') {
+                    const geminisArtefact = document.getElementById('geminis-artefact-world');
+                    if (geminisArtefact) {
+                        geminisArtefact.classList.remove('hidden');
+                    }
+                }
             } else {
                 slot.classList.remove('unlocked');
                 slot.textContent = '';

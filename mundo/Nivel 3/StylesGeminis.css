@@ -8,89 +8,31 @@ body {
   height: 100%;
   width: 100%;
   position: relative;
-  font-family: 'Orbitron', sans-serif; 
-  background: url('../assets/img/WireMainMenu.png') no-repeat center center/cover;
+  font-family: 'Orbitron', sans-serif;
 }
 
-/* Estilos de la interfaz de Mundo (Título, Botón, Mensaje de Artefacto) */
-.level-title {
-    position: absolute;
-    top: 5vh;
-    width: 100%;
-    text-align: center;
-    z-index: 100;
-    
-    font-family: 'Cinzel Decorative', serif;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: #FFD700; 
-    text-shadow: 0 0 15px rgba(255, 215, 0, 0.5),
-                 0 0 40px rgba(255, 255, 255, 0.3);
-    font-size: 2.5rem; 
+:root{
+  --accent-blue: #2b4fff;
+  --accent-purple: #8a2be2;
+  --text-dark: rgba(12,14,35,0.9);
 }
 
-/* Estilo para el botón de regreso */
-.back-button {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    font-size: 24px;
-    color: #4DB8FF; 
-    text-decoration: none;
-    padding: 10px;
-    border: 2px solid #4DB8FF;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-    z-index: 100;
-    background-color: rgba(0, 0, 0, 0.5); 
-}
-
-.back-button:hover {
-    background-color: rgba(77, 184, 255, 0.4); 
-    color: #fff;
-}
-
-/* Contenedor de Puntuación de Artefacto (sobre el juego) */
-#artifact-status {
-    position: absolute;
-    top: 15vh;
-    width: 100%;
-    text-align: center;
-    z-index: 100;
-    color: white;
-    font-size: 1.5rem;
-    font-weight: bold;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
-}
-
-.artifact-message {
-    color: #FFD700; 
-    font-size: 1.2rem;
-    font-style: italic;
-    text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
-}
-
-
-/* --- Estilos del Juego 'Tower Blocks' adaptados --- */
-
+/* contenedor principal */
 #container {
   width: 100%;
   height: 100%;
+  position: relative;
+  z-index: 5; /* Asegura que el contenedor esté por encima de elementos de fondo */
 }
 #container #score {
-  position: absolute;
-  top: 20px;
-  width: 100%;
-  text-align: center;
-  font-size: 10vh;
-  transition: transform 0.5s ease;
-  color: #4DB8FF; 
-  transform: translatey(-200px) scale(1);
-  font-family: 'Cinzel Decorative', serif; 
-  text-shadow: 0 0 10px #4DB8FF;
+  position: relative; /* Mantener relativo para respetar el flujo del documento */
+  margin-top: 1.5rem; /* Incrementado para mover el puntaje más abajo */
+  font-size: clamp(2rem, 5vw, 4rem);
+  color: var(--accent-blue);
+  text-shadow: 0 6px 20px rgba(138,43,226,0.25), 0 2px 6px rgba(43,79,255,0.15);
+  text-align: center; /* Centrado debajo del título */
+  z-index: 90; /* Asegura que esté debajo del título */
+  display: block; /* Asegura que no esté oculto */
 }
 #container #game {
   position: absolute;
@@ -114,19 +56,19 @@ body {
   transition: opacity 0.5s ease, transform 0.5s ease;
   opacity: 0;
   transform: translatey(-50px);
-  color: white; 
-  font-family: 'Orbitron', sans-serif;
-  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  color: var(--text-dark);
 }
 #container .game-over h2 {
   margin: 0;
   padding: 0;
   font-size: 40px;
-  color: #FFD700; 
-  font-family: 'Cinzel Decorative', serif;
+  color: var(--accent-purple);
+  text-shadow: 0 0 18px rgba(138,43,226,0.35);
 }
-
-/* Pantalla de inicio (Game Ready) */
+#container .game-over p {
+  color: #0011ff; /* Cambiado a un color naranja (#FF4500) */
+  font-size: 1.2rem; /* Ajusta el tamaño si es necesario */
+}
 #container .game-ready {
   position: absolute;
   top: 0;
@@ -137,70 +79,113 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  background-color: rgba(0, 0, 0, 0.5); 
 }
-
-/* Botón de inicio: AHORA VISIBLE (opacity: 1 y transform: translatey(0)) */
 #container .game-ready #start-button {
   transition: opacity 0.5s ease, transform 0.5s ease;
-  opacity: 1; /* <-- CORRECCIÓN: VISIBLE */
-  transform: translatey(0); /* <-- CORRECCIÓN: POSICIÓN NORMAL */
-  border: 3px solid #4DB8FF; 
+  opacity: 0;
+  transform: translatey(-50px);
+  border: 3px solid var(--accent-blue);
   padding: 10px 20px;
-  background-color: rgba(77, 184, 255, 0.2); 
-  color: white; 
+  background: linear-gradient(135deg,var(--accent-blue),var(--accent-purple));
+  color: rgb(45, 48, 192);
   font-size: 30px;
-  font-family: 'Orbitron', sans-serif;
   cursor: pointer;
-  border-radius: 8px;
+  box-shadow: 0 8px 30px rgba(43,79,255,0.15), inset 0 -4px 10px rgba(0,0,0,0.12);
+  margin-top: 2rem; /* Añadido para bajar el botón */
 }
-
-#container .game-ready #start-button:hover {
-    background-color: #4DB8FF;
-    color: black;
-}
-
-/* Instrucciones: AHORA VISIBLE (opacity: 1) */
 #container #instructions {
   position: absolute;
   width: 100%;
   top: 16vh;
   left: 0;
   text-align: center;
-  font-size: 1.5rem;
-  font-weight: bold;
-  opacity: 1; /* <-- CORRECCIÓN: VISIBLE */
-  color: #e0e0e0;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  opacity: 0;
+  color: var(--text-dark);
+}
+#container #instructions.hide {
+  opacity: 0 !important;
+}
+#container.playing #score,
+#container.resetting #score {
+  transform: translatey(0px) scale(1);
+}
+#container.playing #instructions {
+  opacity: 1;
+}
+#container.ready .game-ready #start-button {
+  opacity: 1;
+  transform: translatey(0);
+}
+#container.ended #score {
+  transform: translatey(6vh); /* Eliminada la escala */
+}
+#container.ended .game-over * {
+  opacity: 1;
+  transform: translatey(0);
+}
+#container.ended .game-over p {
+  transition-delay: 0.3s;
 }
 
-/* Evitar que #artifact-status y mensajes queden encima del canvas */
-#artifact-status{
-  position: absolute;
-  top: 28px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 40;
-  pointer-events: none;
+/* Estilos de la interfaz de Mundo (Título, Botón, Mensaje de Artefacto) */
+.level-title {
+  position: relative; /* Cambiado a relativo para respetar el flujo del documento */
+  top: 5vh; /* Mantener el título en la parte superior */
+  width: 100%;
   text-align: center;
+  z-index: 100;
+  font-family: 'Cinzel Decorative', serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #FFD700;
+  text-shadow: 0 0 15px rgba(255, 215, 0, 0.5), 0 0 40px rgba(255, 255, 255, 0.3);
+  font-size: 2.5rem;
+  margin-bottom: 1rem; /* Espaciado para que el puntaje quede debajo */
 }
 
-/* Poner overlays por encima del canvas */
-.level-title,
-#artifact-status,
-.back-button,
-#container .game-ready,
-#container .game-over,
-#instructions,
-#start-button {
-  position: relative;
-  z-index: 45;
-  pointer-events: auto;
+/* Si quieres aplicar la fuente Cinzel solo a la letra 't' envuélvela en .letter-t */
+.letter-t {
+  font-family: 'Cinzel Decorative', serif;
+  font-weight: 700;
+  color: var(--accent-purple);
+  text-shadow: 0 0 10px rgba(138,43,226,0.3);
 }
 
-/* Canvas detrás y no captura puntero (listeners están en document) */
-#game canvas {
-  position: relative;
-  z-index: 10;
-  pointer-events: none;
-  display: block;
+/* Estilos para el botón de regreso al mundo */
+.back-button {
+  position: absolute;
+  top: 2vh; /* Ajustado para mayor precisión */
+  left: 2vw; /* Ajustado para mayor precisión */
+  font-size: 3vw;
+  color: #ffffff;
+  text-decoration: none;
+  z-index: 200; /* Asegura que esté por encima de otros elementos */
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px 20px; /* Aumentado para hacer el área de clic más grande */
+  border-radius: 8px;
+  transition: transform 0.2s ease, color 0.3s ease, background-color 0.3s ease;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.back-button:hover {
+  transform: scale(1.1);
+  color: #ffd700;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Ajustar el avatar para que no interfiera */
+.player-avatar {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 2px solid #FFD700;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+  z-index: 10; /* Asegura que el avatar esté por encima de otros elementos */
+  background: #ffffff;
+  object-fit: cover;
 }

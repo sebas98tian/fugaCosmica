@@ -92,8 +92,8 @@ a.level-button:hover {
     text-decoration: none;
     z-index: 20;
     cursor: pointer;
-    background-color: #6b4f3f; /* Fondo café */
-    padding: 10px;
+    background-color: #000000; /* Fondo café */
+    padding: 8px 20px;
     border-radius: 8px;
     transition: transform 0.2s ease, color 0.3s ease, background-color 0.3s ease;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
@@ -102,5 +102,5 @@ a.level-button:hover {
 .back-button:hover {
     transform: scale(1.1);
     color: var(--hover-color); /* Color violeta en hover */
-    background-color: #8d6b5b; /* Fondo café más claro en hover */
+    background-color: #5e00c9; /* Fondo café más claro en hover */
 }
