@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cancer: Tetris Cosmico</title>
+    <link rel="stylesheet" type="text/css" href="StylesCancer.css" />
+    <link rel="icon" href="https://i.ibb.co/M6KTWnf/pic.jpg" />
+  </head>
+  <body>
+    <a href="../MundoIndex.html" class="back-button">
+        ↩
+    </a>
+    <img class="player-avatar" src="/assets/img/av1.png" alt="Avatar" style="position:absolute; top:1rem; right:1rem; width:72px; height:72px; border-radius:50%; border:2px solid #FFD700; box-shadow:0 0 6px rgba(0,0,0,0.5); z-index:25; background:#ffffff; object-fit:cover; display:block;">
+    <div id="tetris">
+      <div id="info">
+        <div id="next_shape"></div>
+        <p id="level">Level: <span></span></p>
+        <p id="lines">Lines: <span></span></p>
+        <p id="score">Puntuación: <span></span></p>
+        <p id="time">Time: <span></span></p>
+        <button id="start">Start</button>
+        <p class="red">Press the Esc button to pause<span></span></p>
+      </div>
+      <div id="canvas"></div>
+    </div>
+    <script src="../avatar.js"></script>
+    <script type="text/javascript" src="ScriptCancer.js"></script>
+  </body>
+</html>

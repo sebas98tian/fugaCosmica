@@ -1,0 +1,162 @@
+/* Importar fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap');
+
+/* Variables para el nuevo tema */
+:root {
+    --font-title: 'Cinzel Decorative', serif;
+    --font-body: 'Orbitron', sans-serif;
+    --color-gold: #FFD700;
+    --color-violet: #9d6bff;
+    --color-aries: #ff4500; /* Rojo/Naranja de Aries (Mantenido para el juego) */
+}
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body); /* Usar Orbitron */
+    text-align: center;
+    background-color: #0d0d0d; /* Fondo oscuro */
+    color: white;
+    padding-top: 20px;
+    height: 100vh;
+}
+
+/* Título (H1) */
+h1 {
+    font-family: var(--font-title); /* Usar Cinzel Decorative */
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--color-gold); /* Dorado */
+    
+    /* Sombra del título como en el CSS de referencia */
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.5), 0 0 40px rgba(255, 255, 255, 0.3);
+    
+    font-size: clamp(2rem, 5vw, 3.5rem); /* Tamaño adaptativo */
+    line-height: 1.1;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+/* --- Botón de Regreso (Flecha) --- */
+.back-button {
+    position: absolute;
+    top: 3vh;
+    left: 3vw;
+    font-size: 3vw; 
+    color: white; /* Blanco Orbitron */
+    text-decoration: none;
+    z-index: 20;
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.3s ease;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    font-family: Arial, sans-serif; /* Mantener la flecha simple */
+}
+
+.back-button:hover {
+    transform: scale(1.1);
+    color: var(--color-violet); /* Violeta en hover */
+}
+
+
+/* --- Estadísticas y Mensajes --- */
+#stats-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 5px;
+    font-size: 1.5em;
+    color: white; /* Texto blanco (Orbitron) */
+    font-family: var(--font-body);
+    letter-spacing: 2px;
+}
+
+#stats-container span {
+    color: var(--color-gold); /* Números en Dorado */
+    font-weight: 700;
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
+
+#reward-message-container {
+    height: 30px; 
+    margin-bottom: 10px;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}
+
+#message {
+    font-family: var(--font-body);
+    font-size: 1.1em;
+    margin-bottom: 15px;
+    color: white;
+}
+
+/* --- Cuadrícula del juego (3x3) CLAVE --- */
+#game-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    grid-gap: 10px; 
+    width: 400px; 
+    height: 400px;
+    margin: 30px auto;
+    /* Borde temático */
+    border: 5px solid var(--color-violet); 
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(157, 107, 255, 0.5);
+}
+
+/* --- Casillas individuales CLAVE --- */
+.cell {
+    background-color: #1a1a1a; /* Fondo más oscuro */
+    border: 2px solid #333;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4em; 
+    cursor: pointer;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    user-select: none; 
+    color: white;
+}
+
+/* Clase de la casilla activa (donde está el símbolo) */
+.active-cell {
+    background-color: var(--color-aries); /* Fondo rojo/naranja de Aries */
+    box-shadow: 0 0 20px var(--color-aries); /* Resplandor rojo/naranja */
+    color: white;
+    /* Usar Cinzel Decorative para el símbolo (si es un glifo complejo) o Orbitron */
+    font-family: var(--font-title); 
+    font-weight: 700;
+}
+
+/* Estilo del botón de inicio */
+#start-button {
+    font-family: var(--font-body); /* Usar Orbitron */
+    font-size: 1.2em;
+    letter-spacing: 3px;
+    padding: 10px 20px;
+    margin-top: 20px;
+    cursor: pointer;
+    text-transform: uppercase;
+    
+    /* Estilo de botón temático */
+    background-color: var(--color-gold); /* Dorado para destacar */
+    color: #000;
+    border: 2px solid var(--color-gold);
+    border-radius: 50px;
+    font-weight: 700;
+    transition: background-color 0.2s, transform 0.2s, border-color 0.2s;
+}
+
+#start-button:hover {
+    background-color: #ffc107;
+    transform: scale(1.05);
+}

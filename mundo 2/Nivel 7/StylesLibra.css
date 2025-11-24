@@ -1,0 +1,160 @@
+/* Importar fuentes del CSS de referencia para un estilo "Mundo" más futurista/temático */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap');
+
+/* Estilos específicos de Tauro (no poner CSS en el HTML) */
+body {
+    /* Fondo y color de texto del CSS de referencia */
+    background-image: url(../assets/img/wireSettings.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white; /* Texto principal blanco */
+    margin: 0; 
+    font-family: 'Orbitron', sans-serif; /* Tipografía principal */
+    
+    /* Centrado Flexbox para el body */
+    display: flex;
+    justify-content: center; /* Centra horizontalmente el contenido principal */
+    align-items: center;    /* Centra verticalmente el contenido principal */
+    min-height: 100vh;      /* Ocupa toda la altura de la vista */
+    padding: 20px; /* Padding general para evitar que el contenido toque los bordes */
+}
+
+/* Contenedor principal para centrar todos los elementos del juego */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra horizontalmente todos los hijos (título, score, board, botón) */
+    padding: 30px 40px;
+    background: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente para agrupar */
+    border-radius: 15px;
+    border: 2px solid #a47b4e; /* Borde con color de Tauro */
+}
+
+h1.level-title {
+    margin-bottom: 20px;
+    /* Estilo del título del CSS de referencia */
+    font-family: 'Cinzel Decorative', serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #FFD700; /* Dorado brillante para el título */
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.5),
+                 0 0 40px rgba(255, 255, 255, 0.3);
+    font-size: 2.5rem; 
+    line-height: 1.1;
+    text-align: center;
+}
+/* Contenedor de score */
+.score-container {
+    background: rgba(0,0,0,0.6);
+    padding: 8px 12px;
+    border-radius: 8px;
+    display: inline-flex; /* Usar inline-flex para el contenedor interno */
+    margin-bottom: 12px;
+    border: 1px solid #a47b4e; /* Borde con color de Tauro */
+}
+
+/* Estilo para la caja de puntuación */
+#score-container {
+    margin-bottom: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #e6e6e6; /* Blanco suave */
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+#artifact-message {
+    color: #f5d782; /* Un color de "recompensa" (dorado) */
+    font-style: italic;
+    font-size: 18px;
+}
+
+.artifact-message {
+    margin-left: 12px;
+    font-weight: 600;
+    color: #f5d782; /* Dorado/recompensa */
+}
+
+/* Tablero y piezas */
+.board {
+    width: 360px; /* Tamaño más grande para el tablero */
+    height: 360px;
+    border-radius: 12px;
+    /* Fondo del tablero ajustado para el tema oscuro */
+    border: 2px solid #a47b4e;
+    background: rgba(0,0,0,0.7);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3x3 para 8-puzzle */
+    gap: 6px;
+    padding: 8px;
+}
+
+.tile {
+    /* Color de losa: Un tono de marrón o púrpura terroso (Tauro) */
+    background: #6b584d; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: transform .15s, background-color .15s;
+    color: #fff;
+    font-weight: 700;
+}
+
+.tile:hover {
+    transform: scale(1.08);
+    background: #7d6b5e;
+}
+
+.empty {
+    background: transparent;
+    border: 2px dashed #6b584d;
+    cursor: default;
+    transform: none; /* Desactiva el hover en el espacio vacío */
+}
+
+/* Estilo general de botón (para Reiniciar) */
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    /* Color de botón: Dorado/Tauro */
+    background: #a47b4e; 
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 6px;
+    color: #000;
+    font-weight: bold;
+    font-family: 'Orbitron', sans-serif;
+    transition: background-color 0.1s;
+}
+
+button:hover {
+    background: #8e6c43;
+}
+
+.back-button {
+    position: absolute;
+    top: 3vh;
+    left: 3vw;
+    font-size: 3vw; 
+    color: var(--text-color);
+    text-decoration: none;
+    z-index: 20;
+    cursor: pointer;
+    background-color: #6b4f3f; /* Fondo café */
+    padding: 8px 20px;
+    border-radius: 8px;
+    transition: transform 0.2s ease, color 0.3s ease, background-color 0.3s ease;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.back-button:hover {
+    transform: scale(1.1);
+    color: var(--hover-color); /* Color violeta en hover */
+    background-color: #8d6b5b; /* Fondo café más claro en hover */
+}

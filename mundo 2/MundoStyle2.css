@@ -23,7 +23,7 @@ body, html {
 /* --- CONTENEDOR PRINCIPAL (#mundo-container) --- */
 #mundo-container {
     background-color: black; 
-    background-image: url('../assets/img/Mundo.png');
+    background-image: url('assets\img\Mundo2.PNG');
     background-size: contain; 
     background-position: center;
     background-repeat: no-repeat;
@@ -414,3 +414,4 @@ a.cancer {
     opacity: 1;
     box-shadow: 0 0 10px var(--title-word-color);
 }
+/* ELIMINADO: Estilos para el botón de evento de Ares */
