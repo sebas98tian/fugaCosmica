@@ -151,6 +151,22 @@ a.escorpio {
     top: auto;
 }
 
+/* --- NUEVAS POSICIONES DE BOTONES DE MUNDO --- */
+a.world-3 { 
+    top: 46%;
+    right: -9vw; 
+    left: auto; 
+    font-size: 4vw; 
+    z-index: 1;
+}
+
+a.world-1 { 
+    top: 45%; 
+    left: -9vw;
+    font-size: 4vw; 
+    z-index: 1;
+}
+
 .hidden {
     display: none !important;
 }

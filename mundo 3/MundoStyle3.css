@@ -152,6 +152,22 @@ a.piscis {
     top: auto;
 }
 
+/* --- NUEVAS POSICIONES DE BOTONES DE MUNDO --- */
+a.world-1 { 
+    top: 46%;
+    right: -8vw; 
+    left: auto; 
+    font-size: 4vw; 
+    z-index: 1;
+}
+
+a.world-2 { 
+    top: 46.5%; 
+    left: -7.5vw;
+    font-size: 4vw; 
+    z-index: 1;
+}
+
 .hidden {
     display: none !important;
 }

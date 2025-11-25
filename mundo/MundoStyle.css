@@ -58,7 +58,6 @@ body, html {
     color: var(--title-word-color); /* Dorado */
     margin: 0;
     letter-spacing: 0.1em;
-    /* Sombra fuerte inspirada en el CSS de referencia */
     text-shadow: 0 0 15px rgba(255, 215, 0, 0.5), 0 0 40px rgba(255, 255, 255, 0.3);
 }
 
@@ -102,7 +101,7 @@ body, html {
     transform: translate(-50%, -50%);
     width: 50vw;
     height: 50vw;
-    display: block; 
+    display: block;
 }
 
 /* --- ESTILOS DE LOS SÍMBOLOS (EMOJIS) --- */
@@ -116,143 +115,82 @@ a.level-emoji {
     padding: 0;
     z-index: 10;
 
-    /* **TAMAÑO PEQUEÑO SOLICITADO** */
     font-size: 3vw; 
-    
     color: var(--icon-color); 
     text-shadow: 0 0 10px var(--icon-shadow-color), 0 0 20px var(--icon-shadow-color);
     transition: text-shadow 0.3s ease, transform 0.3s ease;
 }
 
+/* Mantener hover con escala pero sin mover los botones */
 a.level-emoji:hover {
     text-shadow: 0 0 15px var(--icon-shadow-color), 0 0 30px var(--icon-shadow-color), 0 0 40px var(--icon-shadow-color);
     transform: scale(1.1);
 }
 
-/* --- Posicionamiento Individual (Ajustado para el CENTRO del planeta) --- */
-
+/* --- POSICIONES DE LOS SIGNOS --- */
 a.aries {
-    top: 30%; 
-    left: 45%; 
+    top: 30%;
+    left: 45%;
 }
 
 a.taurus {
-    top: 45%; 
-    left: 30%; 
+    top: 45%;
+    left: 30%;
 }
 
 a.gemini {
-    top: 45%; 
-    right: 30%; 
+    top: 45%;
+    right: 30%;
     left: auto;
 }
 
 a.cancer {
-    bottom: 30%; 
+    bottom: 30%;
     left: 45%;
-    top: auto; 
-}
-
-/* --- ESTILOS DE LOS BOTONES DE AVANCE DE MUNDO (◎) - CORREGIDO --- */
-a.planet-next-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    cursor: pointer;
-    position: absolute;
-    padding: 0;
-    z-index: 15; /* Más alto que los emojis de nivel */
-
-    font-size: 3.5vw; 
-    
-    color: var(--title-word-color); 
-    text-shadow: 0 0 10px var(--title-word-color), 0 0 20px rgba(255, 255, 255, 0.5);
-    transition: text-shadow 0.3s ease, transform 0.3s ease, color 0.3s ease;
-}
-
-a.planet-next-button:hover {
-    color: var(--hover-color); 
-    text-shadow: 0 0 15px var(--hover-color), 0 0 30px rgba(157, 107, 255, 0.7);
-    transform: scale(1.2);
-}
-
-/* Posicionamiento Individual - POSICIONES AJUSTADAS */
-
-/* Botón para Mundo 2 (Planeta Morado - Inferior derecho) */
-a.planet-next-button.world-2 {
-    /* Mueve el botón más hacia la derecha y hacia abajo */
-    bottom: -10%; 
-    right: -30%; 
-    left: auto;
     top: auto;
 }
 
-/* Botón para Mundo 3 (Planeta Naranja - Izquierdo) */
-a.planet-next-button.world-3 {
-    top: 35%; 
-    left: -40%; 
-    bottom: -10%;; 
-    right: -35%;
+/* --- NUEVAS POSICIONES DE BOTONES DE MUNDO --- */
+a.world-2 { 
+    top: 46%;
+    right: -8vw; 
+    left: auto; 
+    font-size: 4vw; 
+    z-index: 1;
+}
+
+a.world-3 { 
+    top: 46%; 
+    left: -8vw;
+    font-size: 4vw; 
+    z-index: 1;
 }
 
 .hidden {
     display: none !important;
 }
 
-/* --- MODAL --- */
-#modal-container {
+/* --- MODAL CONTENEDOR (INCLUYE EL NUEVO ID PARA ARIES) --- */
+
+#modal-container-aries, 
+#modal-container-tauro, 
+#modal-container-geminis, 
+#modal-container-cancer { 
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); 
-    display: flex;
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro */
+    display: flex; /* Centrado */
     justify-content: center;
     align-items: center;
     z-index: 100; 
 }
+/* --- FIN DE MODALES DEL MUNDO 1 --- */
 
-#modal-container-tauro {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 100; 
-}
 
-#modal-container-geminis {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 100; 
-}
-
-#modal-container-cancer {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 100;
-}
-
+/* Estilos para el contenido del modal (unificado para evitar repetición) */
 #modal-content {
     background-color: #1a0f3d; /* Fondo oscuro morado */
     color: var(--text-color);
@@ -265,18 +203,6 @@ a.planet-next-button.world-3 {
     font-family: var(--font-body);
 }
 
-#modal-container-cancer #modal-content {
-    background-color: #1a0f3d;
-    color: white;
-    padding: 25px 35px;
-    border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
-    width: 350px;
-    text-align: left;
-    border: 2px solid #9d6bff;
-    font-family: 'Orbitron', sans-serif;
-}
-
 .modal-title {
     font-family: var(--font-title); /* Cinzel Decorative */
     font-size: 1.8em;
@@ -287,16 +213,6 @@ a.planet-next-button.world-3 {
     text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
 }
 
-#modal-container-cancer .modal-title {
-    font-family: 'Cinzel Decorative', serif;
-    font-size: 1.8em;
-    font-weight: 700;
-    margin-top: 0;
-    margin-bottom: 10px;
-    color: #FFD700;
-    text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
-}
-
 .modal-text {
     font-size: 1.1em;
     margin-bottom: 15px;
@@ -304,21 +220,7 @@ a.planet-next-button.world-3 {
     font-weight: 400;
 }
 
-#modal-container-cancer .modal-text {
-    font-size: 1.1em;
-    margin-bottom: 15px;
-    line-height: 1.4;
-    font-weight: 400;
-}
-
 .modal-actions {
-    display: flex;
-    justify-content: space-around;
-    padding-top: 15px;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-#modal-container-cancer .modal-actions {
     display: flex;
     justify-content: space-around;
     padding-top: 15px;
@@ -340,21 +242,6 @@ a.planet-next-button.world-3 {
     font-family: var(--font-body);
 }
 
-#modal-container-cancer .modal-button {
-    text-decoration: none;
-    padding: 8px 15px;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    font-size: 1.1em;
-    font-weight: 700;
-    transition: background-color 0.2s, transform 0.2s;
-    display: flex;
-    align-items: center;
-    color: white;
-    font-family: 'Orbitron', sans-serif;
-}
-
 .modal-button .icon {
     margin-right: 5px;
     font-size: 1.2em;
@@ -367,18 +254,7 @@ a.planet-next-button.world-3 {
     color: var(--text-color);
 }
 
-#modal-container-cancer .modal-button.exit {
-    background-color: transparent;
-    border: 2px solid white;
-    color: white;
-}
-
 .modal-button.exit:hover {
-    background-color: #4a3455;
-    transform: scale(1.05);
-}
-
-#modal-container-cancer .modal-button.exit:hover {
     background-color: #4a3455;
     transform: scale(1.05);
 }
@@ -389,21 +265,11 @@ a.planet-next-button.world-3 {
     border: 2px solid var(--title-word-color);
 }
 
-#modal-container-cancer .modal-button.continue {
-    background-color: #FFD700;
-    color: #000;
-    border: 2px solid #FFD700;
-}
-
 .modal-button.continue:hover {
     background-color: #ffc107;
     transform: scale(1.05);
 }
 
-#modal-container-cancer .modal-button.continue:hover {
-    background-color: #ffc107;
-    transform: scale(1.05);
-}
 /* --- ESTILOS PARA EL RECTÁNGULO DE ARTEFACTOS --- */
 #artefact-inventory {
     position: absolute;
