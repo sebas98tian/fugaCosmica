@@ -1,43 +1,41 @@
 document.addEventListener('DOMContentLoaded', () => {
     // ===========================================
-    // *** SELECTORES DOM (Mundo 1: niveles 1-4) ***
+    // *** SELECTORES DOM (Mundo 3: niveles 9-12) ***
     // ===========================================
-    const ariesButton = document.querySelector('.level-emoji.aries');
-    const ariesModal = document.getElementById('modal-container'); // Mismo ID que antes
-    const ariesExitButton = document.getElementById('modal-exit');
+    const sagitarioButton = document.querySelector('.level-emoji.sagitario');
+    const sagitarioModal = document.getElementById('modal-container-sagitario');
+    const sagitarioExitButton = document.getElementById('modal-exit-sagitario');
+    const sagitarioContinue = document.getElementById('modal-continue-sagitario');
 
-    const taurusButton = document.querySelector('.level-emoji.taurus');
-    const taurusModal = document.getElementById('modal-container-tauro');
-    const taurusExitButton = document.getElementById('modal-exit-tauro');
+    const capricornioButton = document.querySelector('.level-emoji.capricornio');
+    const capricornioModal = document.getElementById('modal-container-capricornio');
+    const capricornioExitButton = document.getElementById('modal-exit-capricornio');
+    const capricornioContinue = document.getElementById('modal-continue-capricornio');
 
-    const geminisButton = document.querySelector('.level-emoji.gemini');
-    const geminisModal = document.getElementById('modal-container-geminis');
-    const geminisExitButton = document.getElementById('modal-exit-geminis');
+    const acuarioButton = document.querySelector('.level-emoji.acuario');
+    const acuarioModal = document.getElementById('modal-container-acuario');
+    const acuarioExitButton = document.getElementById('modal-exit-acuario');
+    const acuarioContinue = document.getElementById('modal-continue-acuario');
 
-    const cancerButton = document.querySelector('.level-emoji.cancer');
-    const cancerModal = document.getElementById('modal-container-cancer');
-    const cancerExitButton = document.getElementById('modal-exit-cancer');
-    
-    // Selectores para botones de continuar (añadidos para comportamiento de MundoScript2)
-    const ariesContinue = document.getElementById('modal-continue-aries');
-    const taurusContinue = document.getElementById('modal-continue-tauro');
-    const geminisContinue = document.getElementById('modal-continue-geminis');
-    const cancerContinue = document.getElementById('modal-continue-cancer');
-    
+    const piscisButton = document.querySelector('.level-emoji.piscis');
+    const piscisModal = document.getElementById('modal-container-piscis');
+    const piscisExitButton = document.getElementById('modal-exit-piscis');
+    const piscisContinue = document.getElementById('modal-continue-piscis');
+
     // ===========================================
     // *** CONFIGURACIÓN DEL JUEGO Y ARTEFACTOS ***
     // ===========================================
 
-    // Mapa de emojis para los artefactos.
+    // Mapa de emojis para los artefactos de Mundo 3.
     const ARTEFACT_EMOJI_MAP = {
-        'aries': '🔱',      // Yelmo de Bronce
-        'tauro': '🐮',
-        'geminis': '🎻',
-        'cancer': '🐐',
+        'sagitario': '🏹',    // Arco de Sagitario
+        'capricornio': '🔱',  // Tridente de Capricornio
+        'acuario': '🏺',      // Jarra de Acuario
+        'piscis': '🐟'        // Peces de Piscis
     };
 
     // ===========================================
-    // *** UTILIDADES DE MODALES ***
+    // *** UTILIDADES DE MODALES (Mismas que Mundo 2) ***
     // ===========================================
 
     function openModal(modalEl) {
@@ -50,24 +48,30 @@ document.addEventListener('DOMContentLoaded', () => {
         modalEl.classList.add('hidden');
     }
 
+    /**
+     * Configura los eventos de click para abrir, cerrar y continuar un modal.
+     */
     function setupModal(button, modal, exitButton, continueButton) {
+        // 1. Abrir el modal
         if (button && modal) {
             button.addEventListener('click', (event) => {
                 event.preventDefault();
                 openModal(modal);
             });
         }
+        // 2. Cerrar con el botón de Salir
         if (exitButton && modal) {
             exitButton.addEventListener('click', () => {
                 closeModal(modal);
             });
         }
+        // 3. Cerrar al hacer click fuera
         if (modal) {
             modal.addEventListener('click', (event) => {
                 if (event.target === modal) closeModal(modal);
             });
         }
-        // Lógica para el botón 'Continuar' (similar a MundoScript2)
+        // 4. Cerrar con el botón de Continuar (antes de navegar)
         if (continueButton && modal) {
             continueButton.addEventListener('click', () => closeModal(modal));
         }
@@ -77,15 +81,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // *** LÓGICA DE VENTANA MODAL (Aplicación) ***
     // ===========================================
 
-    setupModal(ariesButton, ariesModal, ariesExitButton, ariesContinue);
-    setupModal(taurusButton, taurusModal, taurusExitButton, taurusContinue);
-    setupModal(geminisButton, geminisModal, geminisExitButton, geminisContinue);
-    setupModal(cancerButton, cancerModal, cancerExitButton, cancerContinue);
+    // Aplicar la lógica modular a cada nivel (9, 10, 11, 12)
+    setupModal(sagitarioButton, sagitarioModal, sagitarioExitButton, sagitarioContinue);
+    setupModal(capricornioButton, capricornioModal, capricornioExitButton, capricornioContinue);
+    setupModal(acuarioButton, acuarioModal, acuarioExitButton, acuarioContinue);
+    setupModal(piscisButton, piscisModal, piscisExitButton, piscisContinue);
+
 
     // Cerrar todos con Escape
     window.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
-            [ariesModal, taurusModal, geminisModal, cancerModal].forEach(m => {
+            [sagitarioModal, capricornioModal, acuarioModal, piscisModal].forEach(m => {
                 if (m) closeModal(m);
             });
         }

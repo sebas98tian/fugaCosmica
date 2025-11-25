@@ -1,146 +1,111 @@
 document.addEventListener('DOMContentLoaded', () => {
     // ===========================================
-    // *** SELECTORES DOM ***
+    // *** SELECTORES DOM (Mundo 2: niveles 5-8) ***
     // ===========================================
-    const ariesButton = document.querySelector('.level-emoji.aries');
-    const modalContainer = document.getElementById('modal-container');
-    const modalExitButton = document.getElementById('modal-exit');
-    
-    const taurusButton = document.querySelector('.level-emoji.taurus');
-    const taurusModal = document.getElementById('modal-container-tauro');
-    const taurusExitButton = document.getElementById('modal-exit-tauro');
+    const leoButton = document.querySelector('.level-emoji.leo');
+    const leoModal = document.getElementById('modal-container-leo');
+    const leoExitButton = document.getElementById('modal-exit-leo');
+    const leoContinue = document.getElementById('modal-continue-leo');
 
-    const geminisButton = document.querySelector('.level-emoji.gemini');
-    const geminisModal = document.getElementById('modal-container-geminis');
-    const geminisExitButton = document.getElementById('modal-exit-geminis');
-    
-    const cancerButton = document.querySelector('.level-emoji.cancer');
-    const cancerModal = document.getElementById('modal-container-cancer');
-    const cancerExitButton = document.getElementById('modal-exit-cancer');
+    const virgoButton = document.querySelector('.level-emoji.virgo');
+    const virgoModal = document.getElementById('modal-container-virgo');
+    const virgoExitButton = document.getElementById('modal-exit-virgo');
+    const virgoContinue = document.getElementById('modal-continue-virgo');
 
-    // ELIMINADO: const aresEventButton = document.getElementById('ares-event-button'); 
+    const libraButton = document.querySelector('.level-emoji.libra');
+    const libraModal = document.getElementById('modal-container-libra');
+    const libraExitButton = document.getElementById('modal-exit-libra');
+    const libraContinue = document.getElementById('modal-continue-libra');
+
+    const escorpioButton = document.querySelector('.level-emoji.escorpio');
+    const escorpioModal = document.getElementById('modal-container-escorpio');
+    const escorpioExitButton = document.getElementById('modal-exit-escorpio');
+    const escorpioContinue = document.getElementById('modal-continue-escorpio');
 
     // ===========================================
     // *** CONFIGURACIÓN DEL JUEGO Y ARTEFACTOS ***
     // ===========================================
-    
-    // Mapa de emojis para los artefactos.
+
+    // Mapa de emojis para los artefactos de Mundo 2.
     const ARTEFACT_EMOJI_MAP = {
-        'aries': '🔱',      // Yelmo de Bronce
-        'tauro': '🐮',      
-        'geminis': '🎻',    
-        'cancer': '🐐',     
-        // Añade el resto de los signos aquí.
+        'leo': '🦁',        // Usando un emoji más representativo para Leo
+        'virgo': '🌾',      // Usando un emoji más representativo para Virgo
+        'libra': '⚖️',      // Usando un emoji más representativo para Libra
+        'escorpio': '🦂'    // Usando un emoji más representativo para Escorpio
     };
 
-    // ELIMINADO: Variables de Lógica de Ares (SPAWN_INTERVAL, MOVE_INTERVAL, DECAY_TIME, aresSpawnTimer, etc.)
-
     // ===========================================
-    // *** LÓGICA DE VENTANA MODAL ***
+    // *** UTILIDADES DE MODALES ***
     // ===========================================
 
-    // 1. Mostrar la modal al hacer clic en Aries
-    if (ariesButton && modalContainer) {
-        ariesButton.addEventListener('click', (event) => {
-            event.preventDefault(); 
-            modalContainer.classList.remove('hidden');
-        });
+    function openModal(modalEl) {
+        if (!modalEl) return;
+        modalEl.classList.remove('hidden');
     }
 
-    // 2. Ocultar la modal al hacer clic en 'Salir'
-    if (modalExitButton && modalContainer) {
-        modalExitButton.addEventListener('click', () => {
-            modalContainer.classList.add('hidden');
-        });
-    }
-    
-    // 3. Opcional: Ocultar la modal al hacer clic fuera del contenido
-    if (modalContainer) {
-        modalContainer.addEventListener('click', (event) => {
-            if (event.target === modalContainer) {
-                modalContainer.classList.add('hidden');
-            }
-        });
+    function closeModal(modalEl) {
+        if (!modalEl) return;
+        modalEl.classList.add('hidden');
     }
 
-    // Mostrar la modal al hacer clic en Tauro
-    if (taurusButton && taurusModal) {
-        taurusButton.addEventListener('click', (event) => {
-            event.preventDefault(); 
-            taurusModal.classList.remove('hidden'); // Asegúrate de que el ID del modal sea correcto
-        });
+    /**
+     * Configura los eventos de click para abrir, cerrar y continuar un modal.
+     * @param {HTMLElement} button - Botón de nivel que abre el modal.
+     * @param {HTMLElement} modal - Elemento contenedor del modal.
+     * @param {HTMLElement} exitButton - Botón de 'Salir' o 'Cerrar' dentro del modal.
+     * @param {HTMLElement} continueButton - Botón de 'Seguir' o 'Continuar' (navegación).
+     */
+    function setupModal(button, modal, exitButton, continueButton) {
+        // 1. Abrir el modal
+        if (button && modal) {
+            button.addEventListener('click', (event) => {
+                event.preventDefault();
+                openModal(modal);
+            });
+        }
+        // 2. Cerrar con el botón de Salir
+        if (exitButton && modal) {
+            exitButton.addEventListener('click', () => {
+                closeModal(modal);
+            });
+        }
+        // 3. Cerrar al hacer click fuera
+        if (modal) {
+            modal.addEventListener('click', (event) => {
+                if (event.target === modal) closeModal(modal);
+            });
+        }
+        // 4. Cerrar con el botón de Continuar (antes de navegar)
+        if (continueButton && modal) {
+            continueButton.addEventListener('click', () => closeModal(modal));
+        }
     }
 
-    // Ocultar la modal al hacer clic en 'Salir'
-    if (taurusExitButton && taurusModal) {
-        taurusExitButton.addEventListener('click', () => {
-            taurusModal.classList.add('hidden');
-        });
-    }
+    // ===========================================
+    // *** LÓGICA DE VENTANA MODAL (Aplicación) ***
+    // ===========================================
 
-    // Ocultar la modal al hacer clic fuera del contenido
-    if (taurusModal) {
-        taurusModal.addEventListener('click', (event) => {
-            if (event.target === taurusModal) {
-                taurusModal.classList.add('hidden');
-            }
-        });
-    }
+    // Aplicar la lógica modular a cada nivel
+    setupModal(leoButton, leoModal, leoExitButton, leoContinue);
+    setupModal(virgoButton, virgoModal, virgoExitButton, virgoContinue);
+    setupModal(libraButton, libraModal, libraExitButton, libraContinue);
+    setupModal(escorpioButton, escorpioModal, escorpioExitButton, escorpioContinue);
 
-    // Mostrar la modal al hacer clic en Géminis
-    if (geminisButton && geminisModal) {
-        geminisButton.addEventListener('click', (event) => {
-            event.preventDefault(); 
-            geminisModal.classList.remove('hidden');
-        });
-    }
 
-    // Ocultar la modal al hacer clic en 'Salir'
-    if (geminisExitButton && geminisModal) {
-        geminisExitButton.addEventListener('click', () => {
-            geminisModal.classList.add('hidden');
-        });
-    }
-
-    // Ocultar la modal al hacer clic fuera del contenido
-    if (geminisModal) {
-        geminisModal.addEventListener('click', (event) => {
-            if (event.target === geminisModal) {
-                geminisModal.classList.add('hidden');
-            }
-        });
-    }
-
-    // Mostrar la modal al hacer clic en Cáncer
-    if (cancerButton && cancerModal) {
-        cancerButton.addEventListener('click', (event) => {
-            event.preventDefault(); 
-            cancerModal.classList.remove('hidden');
-        });
-    }
-
-    // Ocultar la modal al hacer clic en 'Salir'
-    if (cancerExitButton && cancerModal) {
-        cancerExitButton.addEventListener('click', () => {
-            cancerModal.classList.add('hidden');
-        });
-    }
-
-    // Ocultar la modal al hacer clic fuera del contenido
-    if (cancerModal) {
-        cancerModal.addEventListener('click', (event) => {
-            if (event.target === cancerModal) {
-                cancerModal.classList.add('hidden');
-            }
-        });
-    }
+    // Cerrar todos con Escape
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            [leoModal, virgoModal, libraModal, escorpioModal].forEach(m => {
+                if (m) closeModal(m);
+            });
+        }
+    });
 
     // ===========================================
     // *** LÓGICA DEL INVENTARIO Y ARTEFACTOS ***
     // ===========================================
-    
+
     function loadArtefacts() {
-        // Obtiene la lista de artefactos ganados desde localStorage
         const gainedArtefacts = JSON.parse(localStorage.getItem('gainedArtefacts')) || {};
         const slots = document.querySelectorAll('.artefact-slot');
 
@@ -151,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 slot.classList.add('unlocked');
                 slot.textContent = ARTEFACT_EMOJI_MAP[artefactKey] || '✨';
                 slot.setAttribute('title', `Artefacto Ganado: ${slot.dataset.artefact}`);
-                
+
                 // Mostrar el artefacto en el mundo si ya ha sido ganado
                 const artefactWorldElement = document.getElementById(`${artefactKey}-artefact-world`);
                 if (artefactWorldElement) {
@@ -164,6 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-    loadArtefacts(); 
 
+    // Inicializar
+    loadArtefacts();
 });
