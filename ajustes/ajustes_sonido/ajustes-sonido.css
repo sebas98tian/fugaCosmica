@@ -163,3 +163,27 @@ input:checked + .slider {
 input:checked + .slider:before {
     transform: translateX(25px);
 }
+
+
+/* --- Estilos del botón de regreso (Copiados de ajustes-menu.css) --- */
+.back-button {
+    position: absolute;
+    top: 3vh;
+    left: 3vw;
+    font-size: 3vw; 
+    color: white; /* Usé 'white' en lugar de var(--text-color) */
+    text-decoration: none;
+    z-index: 20;
+    cursor: pointer;
+    background-color: #000000; /* Fondo café */
+    padding: 8px 20px;
+    border-radius: 8px;
+    transition: transform 0.2s ease, color 0.3s ease, background-color 0.3s ease;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.back-button:hover {
+    transform: scale(1.1);
+    color: #9d6bff; /* Color violeta en hover, copiado de a:hover en ajustes-menu.css */
+    background-color: #5e00c9; /* Fondo café más claro en hover */
+}

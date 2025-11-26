@@ -286,6 +286,7 @@ a.world-1 {
     background-color: #ffc107;
     transform: scale(1.05);
 }
+
 /* --- ESTILOS PARA EL RECTÁNGULO DE ARTEFACTOS --- */
 #artefact-inventory {
     position: absolute;
@@ -338,4 +339,35 @@ a.world-1 {
     border: 2px solid var(--title-word-color); /* Borde de oro cuando está desbloqueado */
     opacity: 1;
     box-shadow: 0 0 10px var(--title-word-color);
+}
+
+/* --- ESTILOS PARA EL BOTÓN DE REINICIO DE ARTEFACTOS --- */
+/* Reemplazo: normalizar #reset-artefacts para que luzca como en mundo/MundoStyle.css */
+#reset-artefacts {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.45rem 0.75rem;
+    font-size: 0.9rem;
+    border-radius: 50px;
+    background-color: transparent;        /* igual que .modal-button.exit */
+    border: 2px solid var(--text-color);  /* borde claro como en Mundo */
+    color: var(--text-color);
+    cursor: pointer;
+    box-shadow: none;
+    transition: background-color 0.2s, transform 0.2s;
+    font-family: var(--font-body);
+}
+
+#reset-artefacts:hover {
+    background-color: #4a3455; /* mismo hover que .modal-button.exit */
+    transform: scale(1.05);
+}
+
+/* Mantener comportamiento para icon-only si existe */
+#reset-artefacts.icon-only {
+    padding: 0.35rem;
+    width: 36px;
+    height: 36px;
+    justify-content: center;
 }

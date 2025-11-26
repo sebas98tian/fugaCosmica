@@ -2,33 +2,25 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Aries: Nueve Impulsos (♈)</title>
-    <link rel="stylesheet" href="StylesAries.css"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Memoria - Sagitario</title>
+    <link rel="stylesheet" href="StylesSagitario.css">
 </head>
 <body>
-    <a href="../MundoIndex.html" class="back-button">
-        ↩
-    </a>
-    <img class="player-avatar" src="/assets/img/av1.png" alt="Avatar" style="position:absolute; top:1rem; right:1rem; width:72px; height:72px; border-radius:50%; border:2px solid #FFD700; box-shadow:0 0 6px rgba(0,0,0,0.5); z-index:25; background:#ffffff; object-fit:cover; display:block;">
-    
-    <h1>Aries: El Primer Impulso ♈</h1>
 
-    <div id="stats-container">
-        <p>Puntuación: <span id="score">0</span></p>
-        <p>Vidas: <span id="lives">3</span></p>
-    </div>
+<a href="../MundoIndex3.html" class="back-button">↩</a>
 
-    <div id="reward-message-container">
-        </div>
-    
-    <div id="message">Presiona **INICIAR JUEGO** para comenzar la carrera de impulsos.</div>
-    
-    <div id="game-grid">
-        </div>
-    
-    <button id="start-button">INICIAR JUEGO</button>
+<!-- Avatar del jugador (fijo, NO interfiere con el juego) -->
+<img id="player-avatar" class="player-avatar" src="../assets/img/av1.png" alt="Avatar">
 
-    <script src="../avatar.js"></script>
-    <script src="ScriptAries.js"></script>
+<h1>💀 Elude a los protectores del dios</h1>
+<h2>Adivina los pares</h2>
+<div id="lives">Vidas: 3</div>
+<div id="game"></div>
+<button id="restartBtn">Reiniciar</button>
+
+<!-- Cargar avatar.js antes del script del nivel -->
+<script src="../avatar.js"></script>
+<script src="ScriptSagitario.js"></script>
 </body>
 </html>

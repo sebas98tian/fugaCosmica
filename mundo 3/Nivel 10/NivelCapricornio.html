@@ -1,28 +1,31 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Cancer: Tetris Cosmico</title>
-    <link rel="stylesheet" type="text/css" href="StylesCancer.css" />
-    <link rel="icon" href="https://i.ibb.co/M6KTWnf/pic.jpg" />
-  </head>
-  <body>
-    <a href="../MundoIndex.html" class="back-button">
-        ↩
-    </a>
-    <img class="player-avatar" src="/assets/img/av1.png" alt="Avatar" style="position:absolute; top:1rem; right:1rem; width:72px; height:72px; border-radius:50%; border:2px solid #FFD700; box-shadow:0 0 6px rgba(0,0,0,0.5); z-index:25; background:#ffffff; object-fit:cover; display:block;">
-    <div id="tetris">
-      <div id="info">
-        <div id="next_shape"></div>
-        <p id="level">Level: <span></span></p>
-        <p id="lines">Lines: <span></span></p>
-        <p id="score">Puntuación: <span></span></p>
-        <p id="time">Time: <span></span></p>
-        <button id="start">Start</button>
-        <p class="red">Press the Esc button to pause<span></span></p>
-      </div>
-      <div id="canvas"></div>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caza de Demonios</title>
+<link rel="stylesheet" href="StylesCapricornio.css">
+</head>
+<body>
+    <a href="../MundoIndex3.html" class="back-button" aria-label="Volver al mundo">↩</a>
+
+    <!-- Avatar del jugador (fijo, fuera del contenedor del juego para no interferir) -->
+    <img class="player-avatar" id="player-avatar" src="/assets/img/av1.png" alt="Avatar" style="position:absolute; top:3vh; right:3vw; width:4.5rem; height:4.5rem; border-radius:50%; border:2px solid #FFD700; box-shadow:0 0 8px rgba(0,0,0,0.6); z-index:300; background:#ffffff; object-fit:cover;">
+
+    <div id="gameContainer">
+        <div id="titleContainer">
+            <h1>😈 Caza de Demonios</h1>
+            <button id="restartBtn">Reiniciar</button>
+        </div>
+
+        <h2>Atrapa a todos los demonios antes de que se acabe el tiempo</h2>
+        <div id="timer">Tiempo: 30</div>
+        <div id="lives">Vidas: 3</div>
+        <canvas id="game"></canvas>
     </div>
+
+    <!-- Cargar avatar.js antes del script del nivel -->
     <script src="../avatar.js"></script>
-    <script type="text/javascript" src="ScriptCancer.js"></script>
-  </body>
+    <script src="ScriptCapricornio.js"></script>
+</body>
 </html>

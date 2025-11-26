@@ -128,6 +128,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Inicializar
+    // Nuevo: borrar artefactos guardados y refrescar UI (mismo comportamiento que Mundo 2)
+    function clearArtefacts() {
+        if (!confirm('¿Seguro que quieres eliminar todos los artefactos guardados? Esto te obligará a volver a ganar cada uno.')) return;
+        localStorage.removeItem('gainedArtefacts');
+        loadArtefacts();
+        alert('Artefactos restablecidos. Debes volver a ganarlos.');
+    }
+
+    // Inicializar (ya estaba en el script — asegurarse que loadArtefacts se llame)
     loadArtefacts();
+
+    // Conectar el botón de restablecer si existe
+    const resetBtn = document.getElementById('reset-artefacts');
+    if (resetBtn) resetBtn.addEventListener('click', clearArtefacts);
 });

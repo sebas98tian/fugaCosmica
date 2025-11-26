@@ -1,191 +1,181 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap');
+/* ==========================
+   ESTILOS NIVEL ESCORPIO
+   ========================== */
 
-html,
 body {
-  margin: 0;
-  overflow: hidden;
-  height: 100%;
-  width: 100%;
-  position: relative;
-  font-family: 'Orbitron', sans-serif;
+    background: radial-gradient(circle at center, #1a0022, #000);
+    font-family: "Orbitron", sans-serif;
+    margin: 0;
+    
+    /* MODIFICACIÓN CLAVE: Usar flexbox para centrar y apilar */
+    display: flex;
+    flex-direction: column; /* Apila Título, Mensaje y Juego verticalmente */
+    align-items: center; /* Centra horizontalmente */
+    min-height: 100vh; /* Ocupa toda la altura de la ventana */
+    /* margin-top: 20px; se elimina al usar flexbox */
+    
+    color: white;
+    user-select: none;
 }
 
-:root{
-  --accent-blue: #2b4fff;
-  --accent-purple: #8a2be2;
-  --text-dark: rgba(12,14,35,0.9);
-}
-
-/* contenedor principal */
-#container {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  z-index: 5; /* Asegura que el contenedor esté por encima de elementos de fondo */
-}
-#container #score {
-  position: relative; /* Mantener relativo para respetar el flujo del documento */
-  margin-top: 1.5rem; /* Incrementado para mover el puntaje más abajo */
-  font-size: clamp(2rem, 5vw, 4rem);
-  color: var(--accent-blue);
-  text-shadow: 0 6px 20px rgba(138,43,226,0.25), 0 2px 6px rgba(43,79,255,0.15);
-  text-align: center; /* Centrado debajo del título */
-  z-index: 90; /* Asegura que esté debajo del título */
-  display: block; /* Asegura que no esté oculto */
-}
-#container #game {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-#container .game-over {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 85%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-#container .game-over * {
-  transition: opacity 0.5s ease, transform 0.5s ease;
-  opacity: 0;
-  transform: translatey(-50px);
-  color: var(--text-dark);
-}
-#container .game-over h2 {
-  margin: 0;
-  padding: 0;
-  font-size: 40px;
-  color: var(--accent-purple);
-  text-shadow: 0 0 18px rgba(138,43,226,0.35);
-}
-#container .game-over p {
-  color: #0011ff; /* Cambiado a un color naranja (#FF4500) */
-  font-size: 1.2rem; /* Ajusta el tamaño si es necesario */
-}
-#container .game-ready {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-}
-#container .game-ready #start-button {
-  transition: opacity 0.5s ease, transform 0.5s ease;
-  opacity: 0;
-  transform: translatey(-50px);
-  border: 3px solid var(--accent-blue);
-  padding: 10px 20px;
-  background: linear-gradient(135deg,var(--accent-blue),var(--accent-purple));
-  color: rgb(45, 48, 192);
-  font-size: 30px;
-  cursor: pointer;
-  box-shadow: 0 8px 30px rgba(43,79,255,0.15), inset 0 -4px 10px rgba(0,0,0,0.12);
-  margin-top: 2rem; /* Añadido para bajar el botón */
-}
-#container #instructions {
-  position: absolute;
-  width: 100%;
-  top: 16vh;
-  left: 0;
-  text-align: center;
-  transition: opacity 0.5s ease, transform 0.5s ease;
-  opacity: 0;
-  color: var(--text-dark);
-}
-#container #instructions.hide {
-  opacity: 0 !important;
-}
-#container.playing #score,
-#container.resetting #score {
-  transform: translatey(0px) scale(1);
-}
-#container.playing #instructions {
-  opacity: 1;
-}
-#container.ready .game-ready #start-button {
-  opacity: 1;
-  transform: translatey(0);
-}
-#container.ended #score {
-  transform: translatey(6vh); /* Eliminada la escala */
-}
-#container.ended .game-over * {
-  opacity: 1;
-  transform: translatey(0);
-}
-#container.ended .game-over p {
-  transition-delay: 0.3s;
-}
-
-/* Estilos de la interfaz de Mundo (Título, Botón, Mensaje de Artefacto) */
-.level-title {
-  position: relative; /* Cambiado a relativo para respetar el flujo del documento */
-  top: 5vh; /* Mantener el título en la parte superior */
-  width: 100%;
-  text-align: center;
-  z-index: 100;
-  font-family: 'Cinzel Decorative', serif;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #FFD700;
-  text-shadow: 0 0 15px rgba(255, 215, 0, 0.5), 0 0 40px rgba(255, 255, 255, 0.3);
-  font-size: 2.5rem;
-  margin-bottom: 1rem; /* Espaciado para que el puntaje quede debajo */
-}
-
-/* Si quieres aplicar la fuente Cinzel solo a la letra 't' envuélvela en .letter-t */
-.letter-t {
-  font-family: 'Cinzel Decorative', serif;
-  font-weight: 700;
-  color: var(--accent-purple);
-  text-shadow: 0 0 10px rgba(138,43,226,0.3);
-}
-
-/* Estilos para el botón de regreso al mundo */
+/* --------------------------
+   BOTÓN DE REGRESO ↩
+-------------------------- */
 .back-button {
-  position: absolute;
-  top: 2vh; /* Ajustado para mayor precisión */
-  left: 2vw; /* Ajustado para mayor precisión */
-  font-size: 3vw;
-  color: #ffffff;
-  text-decoration: none;
-  z-index: 200; /* Asegura que esté por encima de otros elementos */
-  cursor: pointer;
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 10px 20px; /* Aumentado para hacer el área de clic más grande */
-  border-radius: 8px;
-  transition: transform 0.2s ease, color 0.3s ease, background-color 0.3s ease;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    /* Mantiene position: fixed para que quede anclado a la esquina */
+    position: fixed; 
+    top: 3vh;
+    left: 3vw;
+    font-size: 3rem;
+    color: white;
+    text-decoration: none;
+    z-index: 999;
+    cursor: pointer;
+    transition: 0.25s ease;
+    text-shadow: 0 0 12px rgba(255, 0, 120, 0.9);
 }
 
 .back-button:hover {
-  transform: scale(1.1);
-  color: #ffd700;
-  background-color: rgba(0, 0, 0, 0.7);
+    transform: scale(1.15);
+    color: #d600ff;
 }
 
-/* Ajustar el avatar para que no interfiera */
-.player-avatar {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  border: 2px solid #FFD700;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
-  z-index: 10; /* Asegura que el avatar esté por encima de otros elementos */
-  background: #ffffff;
-  object-fit: cover;
+/* --------------------------
+   TÍTULO DEL NIVEL
+-------------------------- */
+.level-title {
+    /* MODIFICADO: Se elimina position: fixed para que siga el flujo */
+    font-family: "Cinzel Decorative", cursive;
+    color: #d600ff;
+    font-size: 3rem;
+    text-shadow: 0 0 20px rgba(255, 0, 255, .9);
+    z-index: 900;
+    margin-top: 20px; /* Espacio superior para que no se pegue al borde */
+    margin-bottom: 10px; /* Espacio para separarse del mensaje */
+}
+
+/* --------------------------
+   LABERINTO
+-------------------------- */
+
+#game {
+    position: relative;
+    /* El laberinto se centrará automáticamente gracias al `align-items: center` del body */
+}
+
+.cell {
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+    position: absolute;
+}
+
+.wall {
+    background: #2b0033;
+}
+
+.path {
+    background: #120015;
+}
+
+.hide {
+    background: #2a0030;
+}
+
+/* --------------------------
+   JUGADOR / DEMONIOS / ITEM
+-------------------------- */
+
+#player, .demon, #artifact {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    font-size: 28px;
+    text-align: center;
+}
+
+#artifact {
+    font-size: 26px;
+}
+
+/* --------------------------
+   MENSAJES
+-------------------------- */
+
+#msg {
+    /* MODIFICADO: Se elimina position: fixed para que siga el flujo */
+    background: rgba(0,0,0,0.6);
+    padding: 12px 18px;
+    border-radius: 8px;
+    max-width: 360px;
+    text-align: center;
+    font-size: 1.1rem;
+    text-shadow: 0 0 8px rgba(255,255,255,0.5);
+    margin-bottom: 15px; /* Espacio para separarse del laberinto */
+}
+
+/* ===========================
+   MODAL GAME OVER — Estilos
+   =========================== */
+#gameOverModal.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    color: white;
+    text-align: center;
+    font-family: "Orbitron", sans-serif;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#gameOverModal.hidden {
+    display: none;
+}
+
+#gameOverModal .modal-content {
+    max-width: 720px;
+    width: 100%;
+    background: linear-gradient(180deg, rgba(30,0,40,0.75), rgba(10,0,20,0.6));
+    border-radius: 12px;
+    padding: 32px;
+    box-shadow: 0 0 40px rgba(214,0,255,0.14);
+    backdrop-filter: blur(4px);
+}
+
+#gameOverModal h2 {
+    font-size: 4rem;
+    color: #ff0077;
+    margin-bottom: 20px;
+}
+
+#gameOverModal p {
+    font-size: 1.25rem;
+    margin-bottom: 30px;
+    color: #fff;
+    opacity: 0.95;
+}
+
+#gameOverModal .btn {
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    background-color: #ff0077;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    box-shadow: 0 0 15px rgba(255, 0, 119, 0.7);
+    transition: transform 0.12s ease, background-color 0.12s ease;
+}
+
+#gameOverModal .btn:hover {
+    background-color: #d60066;
+    transform: scale(1.05);
 }

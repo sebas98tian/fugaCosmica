@@ -1,154 +1,71 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Cinzel+Decorative:wght@700&display=swap');
 
-/* --- Estilos Globales y de Fondo (Basado en tu CSS) --- */
 body {
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  /* Simulo el fondo si tuvieras la imagen en la ruta. Si no tienes la imagen, usa un color sólido. */
-  /* background: url('../assets/img/WireMainMenu.png') no-repeat center center/cover; */
-  background-color: #202020; /* Color de fallback si la imagen no existe */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Orbitron', sans-serif; /* Aplico la fuente futurista */
-  color: white;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background: #222;
+    font-family: 'Cinzel Decorative', serif;
+    color: white;
+    height: 100vh;
 }
 
-#tetris {
-  width: 360px;
-  border: 4px solid #FFD700; /* Borde dorado/amarillo */
-  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5); /* Sombra de neón */
-  padding: 20px;
-  background-color: #000; /* Fondo oscuro para el contenedor principal */
+#titleContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0 5px 0;
+    gap: 20px;
 }
 
-/* --- Estilos del Área de Juego (Canvas) --- */
-#canvas {
-  width: 200px;
-  height: 440px;
-  background-color: #101010; /* Un poco más claro que el fondo de tetris */
-  position: relative;
-  border: 1px solid #9d6bff; /* Borde de color hover */
-}
-#canvas h1 {
-  /* Estilo Cinzel Decorative para el "GAME OVER" */
-  font-family: 'Cinzel Decorative', serif;
-  font-weight: 700;
-  text-align: center;
-  font-size: 30px;
-  padding-top: 200px;
-  color: #FFD700;
-  text-shadow: 0 0 10px #f00; /* Color de GAME OVER en rojo */
-  margin: 0;
-  padding: 0;
+h1 {
+    font-size: 36px;
+    margin: 0;
+    text-align: center;
 }
 
-/* --- Estilos de la Información Lateral (Score, Level, etc.) --- */
-#info {
-  background-color: #1a1a1a;
-  color: white;
-  float: right;
-  width: 110px;
-  height: 420px;
-  padding: 10px;
-  border: 1px solid #555;
-  font-family: 'Orbitron', sans-serif;
-  font-size: 14px;
-}
-#info p {
-    margin: 5px 0;
-}
-#info span {
-    font-weight: 700;
-    color: #00f0f0; /* Color para los valores */
+h2 {
+    font-size: 24px;
+    margin: 10px 0 5px 0;
+    text-align: center;
 }
 
-/* --- Estilo del Siguiente Bloque --- */
-#next_shape {
-  position: relative;
-  background-color: #000;
-  border: 1px solid #FFD700;
-  width: 110px;
-  height: 110px;
-  margin-bottom: 15px;
+#timer, #lives {
+    font-size: 24px;
+    margin-bottom: 10px;
 }
 
-/* --- Estilo del Botón de Inicio (Start) --- */
-#start {
-  animation: none; /* Desactivo la animación de blink original */
-  font-family: 'Orbitron', sans-serif;
-  font-size: 1.2rem;
-  letter-spacing: 2px;
-  background: #9d6bff; /* Color de hover que enviaste */
-  border: 2px solid #FFD700;
-  border-radius: 4px;
-  color: white;
-  cursor: pointer;
-  padding: 5px 10px;
-  margin-top: 15px;
-  transition: all 0.3s ease;
-}
-#start:hover {
-  background: #FFD700;
-  color: #202020;
-  box-shadow: 0 0 10px #FFD700;
+#game {
+    border: 4px solid #fff;
+    background: #333;
+    cursor: pointer;
+    display: block;
+    margin-bottom: 20px;
 }
 
-.red {
-  color: #f00000;
-  font-size: 10px; /* Hago más pequeño el texto de pausa */
-  margin-top: 10px;
+button {
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background: #ffcc00;
+    color: #000;
+    font-weight: bold;
 }
 
-/* --- Estilos de los Cuadrados de Tetris (Mismos colores) --- */
-.square {
-  position: absolute;
-  width: 19px;
-  height: 19px;
-  border: 1px solid #444; /* Borde más sutil */
+button:hover {
+    background: #ffaa00;
 }
-.type0 {
-  background-color: #a000f0;
-}
-.type1 {
-  background-color: #00f0f0;
-}
-.type2 {
-  background-color: #f0a000;
-}
-.type3 {
-  background-color: #0000f0;
-}
-.type4 {
-  background-color: #00f000;
-}
-.type5 {
-  background-color: #f00000;
-}
-.type6 {
-  background-color: #f0f000;
-}
+
 .back-button {
     position: absolute;
-    top: 3vh;
-    left: 3vw;
-    font-size: 3vw; 
-    color: white;
+    top: 10px;
+    left: 10px;
+    font-size: 2rem;
+    color: #ffcc00;
     text-decoration: none;
-    z-index: 20;
-    cursor: pointer;
-    background-color: #000000; /* Fondo negro */
-    padding: 8px 20px;
-    border-radius: 8px;
-    transition: transform 0.2s ease, color 0.3s ease, background-color 0.3s ease;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-}
-
-.back-button:hover {
-    transform: scale(1.1);
-    color: #FFD700; /* Color dorado en hover */
-    background-color: #5e00c9; /* Fondo violeta en hover */
 }

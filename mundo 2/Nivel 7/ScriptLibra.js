@@ -1,131 +1,207 @@
-const board = document.getElementById("board");
-const reiniciar = document.getElementById("reiniciar");
-const scoreDisplay = document.getElementById("score");
-const artifactMessage = document.getElementById("artifact-message");
-let tiles = [];
-let score = 0;
-const ARTIFACT_THRESHOLD = 2; // Cambiado de 4 a 2
+// ===============================
+// VARIABLES PRINCIPALES
+// ===============================
+const player = document.getElementById("player");
+const gameContainer = document.getElementById("gameContainer");
+const healthFill = document.getElementById("healthFill");
+const healthText = document.getElementById("healthText");
+const hudWave = document.getElementById("wave");
+const hudEnemies = document.getElementById("enemies");
+const hudAccuracy = document.getElementById("accuracy");
+const gameOverScreen = document.getElementById("gameOver");
+const finalScore = document.getElementById("finalScore");
+const restartBtn = document.getElementById("restartBtn");
 
-function generarTablero() {
-    do {
-        // Genera una permutación aleatoria de los números 1-8 y null
-        tiles = [1,2,3,4,5,6,7,8,null].sort(()=>Math.random()-0.5);
-    } while (!esSoluble(tiles) || estaResuelto(tiles)); // Asegura que el tablero sea soluble y no esté resuelto
-    dibujar();
-}
+let playerHealth = 100;
+let enemiesEliminated = 0;
+let shotsFired = 0;
+let shotsHit = 0;
+let wave = 1;
 
-// Función para verificar si un tablero 8-puzzle es soluble (requerido para un juego justo)
-function esSoluble(arr) {
-    let inversions = 0;
-    const puzzleArray = arr.filter(v => v !== null); // Solo números
+let isGameOver = false;
+let enemySpeed = 2;
 
-    for (let i = 0; i < puzzleArray.length; i++) {
-        for (let j = i + 1; j < puzzleArray.length; j++) {
-            if (puzzleArray[i] > puzzleArray[j]) {
-                inversions++;
-            }
-        }
-    }
-    // Para una cuadrícula de 3x3, el puzzle es soluble si el número de inversiones es par.
-    return inversions % 2 === 0;
-}
+const enemies = new Set();
+const waters = new Set();
 
-function dibujar() {
-    board.innerHTML = "";
-    tiles.forEach((v, i)=>{
-        const div = document.createElement("div");
-        div.dataset.index = i;
-        if(v === null) {
-            div.className = "tile empty";
-        } else {
-            div.className = "tile";
-            div.textContent = v;
-            // La clase para el fondo se añade en CSS usando nth-child o el valor si es necesario, 
-            // pero mantendremos el valor por simplicidad y estilo actual.
-            div.onclick = () => mover(i);
-        }
-        board.appendChild(div);
-    });
-}
+// NUEVAS VARIABLES PARA INTERVALOS Y SPAWN
+let spawnIntervalId = null;
+let waveIntervalId = null;
+const spawnRateMs = 1200; // ajustar para dificultad
 
-function mover(i) {
-    const empty = tiles.indexOf(null);
-    // Coordenadas válidas para mover: arriba/abajo (i-3, i+3) o izquierda/derecha (i-1, i+1)
-    const validMoves = [
-        i-3, i+3, // Arriba/Abajo
-        i-1, i+1  // Izquierda/Derecha
-    ].filter(n =>
-        n >= 0 && n < 9 &&
-        // Excluye movimientos a través del borde horizontal:
-        // No permite mover de la columna 0 a la 2 (i-1) o de la columna 2 a la 0 (i+1)
-        !(i % 3 === 0 && n === i-1) && // Columna izquierda no puede ir a la izquierda
-        !(i % 3 === 2 && n === i+1)    // Columna derecha no puede ir a la derecha
-    );
+// ===============================
+// MOVIMIENTO DEL JUGADOR
+// ===============================
+gameContainer.addEventListener("mousemove", (e) => {
+    if (isGameOver) return;
 
-    if(validMoves.includes(empty)) {
-        // Intercambia el valor de la celda seleccionada con el espacio vacío
-        [tiles[i], tiles[empty]] = [tiles[empty], tiles[i]];
-        dibujar();
-        
-        if(estaResuelto(tiles)) {
-            manejarVictoria();
-        }
-    }
-}
+    const rect = gameContainer.getBoundingClientRect();
+    const x = e.clientX - rect.left;
 
-function estaResuelto(arr){
-    // Comprueba si el array es igual al estado final: [1, 2, 3, 4, 5, 6, 7, 8, null]
-    return JSON.stringify(arr) === JSON.stringify([1,2,3,4,5,6,7,8,null]);
-}
-
-function manejarVictoria() {
-    score++;
-    scoreDisplay.textContent = score;
-    
-    let message = "¡Victoria! Tauro domina la paciencia.";
-    if (score >= ARTIFACT_THRESHOLD) {
-        message += " ¡Has ganado el Artefacto Tauro!";
-        artifactMessage.textContent = "¡Artefacto de Tauro Obtenido! 🎉";
-        // Persiste usando la misma estructura que usa Mundo/Aries
-        const gained = JSON.parse(localStorage.getItem('gainedArtefacts')) || {};
-        gained['tauro'] = true;
-        localStorage.setItem('gainedArtefacts', JSON.stringify(gained));
-    } else {
-        artifactMessage.textContent = "";
-    }
-
-    setTimeout(()=> {
-        alert(message);
-        // Genera automáticamente un nuevo tablero para seguir jugando
-        generarTablero(); 
-    }, 100);
-}
-
-reiniciar.onclick = generarTablero;
-
-/* Integración con almacenamiento compartido (usar exactamente lo que usa Aries/Mundo) */
-// Inicializar estado desde gainedArtefacts (si ya se obtuvo el artefacto)
-(function initFromStorage() {
-    const gained = JSON.parse(localStorage.getItem('gainedArtefacts')) || {};
-    if (gained['tauro']) {
-        score = ARTIFACT_THRESHOLD;
-        scoreDisplay.textContent = score;
-        artifactMessage.textContent = "¡Artefacto de Tauro Obtenido! 🎉";
-    }
-})();
-
-// Reinicio: además de regenerar tablero, quitar artefacto de gainedArtefacts
-reiniciar.addEventListener('click', () => {
-    const gained = JSON.parse(localStorage.getItem('gainedArtefacts')) || {};
-    if (gained['tauro']) {
-        delete gained['tauro'];
-        localStorage.setItem('gainedArtefacts', JSON.stringify(gained));
-    }
-    // limpiar mensaje y score local
-    score = 0;
-    scoreDisplay.textContent = score;
-    artifactMessage.textContent = "";
+    player.style.left = `${x - 40}px`;
 });
 
-// Generar primer tablero al cargar el script
-generarTablero();
+// ===============================
+// DISPAROS
+// ===============================
+gameContainer.addEventListener("click", (e) => {
+    if (isGameOver) return;
+
+    shotsFired++;
+
+    const rect = gameContainer.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+
+    const water = document.createElement("div");
+    water.classList.add("waterball");
+    water.style.left = `${x - 10}px`;
+    water.style.bottom = `100px`;
+
+    gameContainer.appendChild(water);
+    waters.add(water);
+});
+
+// ===============================
+// SPAWN DE ENEMIGOS
+// ===============================
+function spawnEnemy() {
+    if (isGameOver) return;
+
+    const enemy = document.createElement("div");
+    enemy.classList.add("enemy");
+    enemy.textContent = "👾";
+
+    enemy.style.top = "-60px";
+    enemy.style.left = Math.random() * 850 + "px";
+
+    gameContainer.appendChild(enemy);
+    enemies.add(enemy);
+}
+
+// ===============================
+// COLISIÓN
+// ===============================
+function isColliding(a, b) {
+    const r1 = a.getBoundingClientRect();
+    const r2 = b.getBoundingClientRect();
+
+    return !(
+        r1.right < r2.left ||
+        r1.left > r2.right ||
+        r1.bottom < r2.top ||
+        r1.top > r2.bottom
+    );
+}
+
+// ===============================
+// LOOP
+// ===============================
+function gameLoop() {
+    if (!isGameOver) {
+
+        enemies.forEach(enemy => {
+            let top = parseInt(enemy.style.top);
+            enemy.style.top = `${top + enemySpeed}px`;
+
+            if (top > 650) {
+                enemy.remove();
+                enemies.delete(enemy);
+                damagePlayer(10);
+            }
+        });
+
+        waters.forEach(water => {
+            let bottom = parseInt(water.style.bottom);
+            water.style.bottom = `${bottom + 12}px`;
+
+            if (bottom > 700) {
+                water.remove();
+                waters.delete(water);
+                return;
+            }
+
+            enemies.forEach(enemy => {
+                if (isColliding(water, enemy)) {
+                    shotsHit++;
+                    enemiesEliminated++;
+                    hudEnemies.textContent = enemiesEliminated;
+
+                    enemy.remove();
+                    water.remove();
+
+                    enemies.delete(enemy);
+                    waters.delete(water);
+                }
+            });
+        });
+    }
+
+    requestAnimationFrame(gameLoop);
+}
+
+requestAnimationFrame(gameLoop);
+
+// ===============================
+// DAÑO
+// ===============================
+function damagePlayer(amount) {
+    playerHealth -= amount;
+    if (playerHealth < 0) playerHealth = 0;
+
+    healthFill.style.width = `${playerHealth}%`;
+    healthText.textContent = `${playerHealth} / 100`;
+
+    if (playerHealth <= 0) endGame();
+}
+
+/* Función utilitaria para guardar/mostrar artefactos */
+function awardArtefact(key, name) {
+    const gained = JSON.parse(localStorage.getItem('gainedArtefacts')) || {};
+    if (!gained[key]) {
+        gained[key] = true;
+        localStorage.setItem('gainedArtefacts', JSON.stringify(gained));
+        alert(`🏆 Artefacto obtenido: ${name}`);
+    }
+}
+
+/* Oleadas: cuando llegue a la oleada 10, otorgar artefacto pero permitir seguir jugando */
+waveIntervalId = setInterval(() => {
+    if (!isGameOver) {
+        wave++;
+        hudWave.textContent = wave;
+        enemySpeed += 0.25;
+
+        if (wave === 10) {
+            awardArtefact('libra', 'Balanza Dorada');
+        }
+    }
+}, 6000);
+
+// INICIAR SPAWN DE ENEMIGOS
+spawnIntervalId = setInterval(() => {
+    if (!isGameOver) spawnEnemy();
+}, spawnRateMs);
+
+// ===============================
+// GAME OVER
+// ===============================
+function endGame() {
+    isGameOver = true;
+
+    // limpiar intervalos para detener spawn/oleadas
+    if (spawnIntervalId) clearInterval(spawnIntervalId);
+    if (waveIntervalId) clearInterval(waveIntervalId);
+
+    const accuracy = shotsFired === 0 ? 0 : Math.round((shotsHit / shotsFired) * 100);
+
+    finalScore.textContent = `Oleada: ${wave} | Eliminados: ${enemiesEliminated} | Precisión: ${accuracy}%`;
+
+    gameOverScreen.style.display = "block";
+}
+
+// ===============================
+// REINICIAR
+// ===============================
+restartBtn.addEventListener("click", () => {
+    location.reload();
+});

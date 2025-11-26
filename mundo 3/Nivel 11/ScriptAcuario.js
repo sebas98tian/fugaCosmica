@@ -1,131 +1,284 @@
-const board = document.getElementById("board");
-const reiniciar = document.getElementById("reiniciar");
-const scoreDisplay = document.getElementById("score");
-const artifactMessage = document.getElementById("artifact-message");
-let tiles = [];
-let score = 0;
-const ARTIFACT_THRESHOLD = 2; // Cambiado de 4 a 2
+// ==========================
+// CONFIGURACIÓN CANVAS
+// ==========================
+const canvas = document.getElementById("game");
+const ctx = canvas.getContext("2d");
 
-function generarTablero() {
-    do {
-        // Genera una permutación aleatoria de los números 1-8 y null
-        tiles = [1,2,3,4,5,6,7,8,null].sort(()=>Math.random()-0.5);
-    } while (!esSoluble(tiles) || estaResuelto(tiles)); // Asegura que el tablero sea soluble y no esté resuelto
-    dibujar();
+function resize(){
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 }
+resize();
+window.onresize = resize;
 
-// Función para verificar si un tablero 8-puzzle es soluble (requerido para un juego justo)
-function esSoluble(arr) {
-    let inversions = 0;
-    const puzzleArray = arr.filter(v => v !== null); // Solo números
+// ==========================
+// CONTROLES
+// ==========================
+let keys = {};
+document.onkeydown = e => keys[e.key] = true;
+document.onkeyup   = e => keys[e.key] = false;
 
-    for (let i = 0; i < puzzleArray.length; i++) {
-        for (let j = i + 1; j < puzzleArray.length; j++) {
-            if (puzzleArray[i] > puzzleArray[j]) {
-                inversions++;
-            }
-        }
-    }
-    // Para una cuadrícula de 3x3, el puzzle es soluble si el número de inversiones es par.
-    return inversions % 2 === 0;
-}
+// ==========================
+// VARIABLES
+// ==========================
+let gameEnded = false;
 
-function dibujar() {
-    board.innerHTML = "";
-    tiles.forEach((v, i)=>{
-        const div = document.createElement("div");
-        div.dataset.index = i;
-        if(v === null) {
-            div.className = "tile empty";
-        } else {
-            div.className = "tile";
-            div.textContent = v;
-            // La clase para el fondo se añade en CSS usando nth-child o el valor si es necesario, 
-            // pero mantendremos el valor por simplicidad y estilo actual.
-            div.onclick = () => mover(i);
-        }
-        board.appendChild(div);
+const WORLD_WIDTH = 2000;
+let cameraX = 0;
+
+const player = {
+    x: 50,
+    y: 350,
+    w: 40,
+    h: 50,
+    vy: 0,
+    speed: 4,
+    jumpPower: 14,
+    onGround: false,
+    collectedAll: false
+};
+
+const gravity = 0.7;
+
+// ==========================
+// PLATAFORMAS
+// ==========================
+let platforms = [
+    { x: 0,    y: 500, w: WORLD_WIDTH, h: 20 },
+    { x: 200,  y: 380, w: 1100, h: 20 }
+];
+
+// ==========================
+// PIEZAS
+// ==========================
+let pieces = [];
+for(let i=0;i<5;i++){
+    pieces.push({
+        x: 300 + i*300,
+        y: (i % 2 === 0 ? 330 : 470),
+        size: 40,
+        taken: false
     });
 }
 
-function mover(i) {
-    const empty = tiles.indexOf(null);
-    // Coordenadas válidas para mover: arriba/abajo (i-3, i+3) o izquierda/derecha (i-1, i+1)
-    const validMoves = [
-        i-3, i+3, // Arriba/Abajo
-        i-1, i+1  // Izquierda/Derecha
-    ].filter(n =>
-        n >= 0 && n < 9 &&
-        // Excluye movimientos a través del borde horizontal:
-        // No permite mover de la columna 0 a la 2 (i-1) o de la columna 2 a la 0 (i+1)
-        !(i % 3 === 0 && n === i-1) && // Columna izquierda no puede ir a la izquierda
-        !(i % 3 === 2 && n === i+1)    // Columna derecha no puede ir a la derecha
-    );
+// ==========================
+// DEMONIOS
+// ==========================
+let demons = [];
+for(let i=0;i<10;i++){
+    demons.push({
+        x: 100 + i*180,
+        y: 50,
+        dir: Math.random()<0.5 ? 1 : -1,
+        speed: 2 + Math.random()*2
+    });
+}
 
-    if(validMoves.includes(empty)) {
-        // Intercambia el valor de la celda seleccionada con el espacio vacío
-        [tiles[i], tiles[empty]] = [tiles[empty], tiles[i]];
-        dibujar();
-        
-        if(estaResuelto(tiles)) {
-            manejarVictoria();
+let fireballs = [];
+
+// ==========================
+// PUERTA FINAL
+// ==========================
+const door = {
+    x: 1800,
+    y: 420,
+    w: 60,
+    h: 80
+};
+
+// ==========================
+// PÉRDIDA / VICTORIA
+// ==========================
+function lose(){
+    if(gameEnded) return;
+    gameEnded = true;
+    setTimeout(()=>{
+        alert("🔥👹 ¡PERDISTE!");
+        location.reload();
+    }, 100);
+}
+
+function win(){
+    if(gameEnded) return;
+    gameEnded = true;
+    setTimeout(()=>{
+        alert("🏆 ¡GANASTE!");
+
+        // Guardar artefacto de Acuario en localStorage
+        const gained = JSON.parse(localStorage.getItem('gainedArtefacts')) || {};
+        if(!gained['acuario']){
+            gained['acuario'] = true;
+            localStorage.setItem('gainedArtefacts', JSON.stringify(gained));
+            alert('🏆 Artefacto obtenido: Jarra del Conocimiento (Acuario)');
+
+            // Intentar actualizar la UI del Mundo 3 si está abierta
+            try {
+                const docs = [window.opener?.document, window.parent?.document, document];
+                for (const d of docs) {
+                    if (!d) continue;
+                    const slot = d.getElementById('acuario-artefact');
+                    if (slot) {
+                        slot.classList.add('unlocked');
+                        slot.textContent = '🏺';
+                        slot.setAttribute('title', 'Artefacto Ganado: Jarra del Conocimiento');
+                        break;
+                    }
+                }
+            } catch (e) {
+                // silencioso si no se puede acceder a otra ventana
+            }
+        }
+
+        location.reload();
+    }, 100);
+}
+
+// ==========================
+// JUGADOR
+// ==========================
+function updatePlayer(){
+
+    if(keys["ArrowLeft"])  player.x -= player.speed;
+    if(keys["ArrowRight"]) player.x += player.speed;
+
+    if(keys[" "] && player.onGround){
+        player.vy = -player.jumpPower;
+        player.onGround = false;
+    }
+
+    player.vy += gravity;
+    player.y += player.vy;
+    player.onGround = false;
+
+    for(let p of platforms){
+        if(player.x + player.w > p.x &&
+           player.x < p.x + p.w &&
+           player.y + player.h > p.y &&
+           player.y + player.h < p.y + p.h &&
+           player.vy > 0){
+
+            player.y = p.y - player.h;
+            player.vy = 0;
+            player.onGround = true;
+        }
+    }
+
+    if(player.x < 0) player.x = 0;
+    if(player.x + player.w > WORLD_WIDTH) player.x = WORLD_WIDTH - player.w;
+
+    cameraX = player.x - canvas.width/2;
+    if(cameraX < 0) cameraX = 0;
+    if(cameraX > WORLD_WIDTH - canvas.width)
+        cameraX = WORLD_WIDTH - canvas.width;
+}
+
+// ==========================
+// DEMONIOS
+// ==========================
+function updateDemons(){
+    for(let d of demons){
+        d.x += d.dir * d.speed;
+        if(d.x < 0 || d.x > WORLD_WIDTH) d.dir *= -1;
+
+        if(Math.random() < 0.02){
+            fireballs.push({
+                x: d.x,
+                y: d.y + 30,
+                speed: 6
+            });
         }
     }
 }
 
-function estaResuelto(arr){
-    // Comprueba si el array es igual al estado final: [1, 2, 3, 4, 5, 6, 7, 8, null]
-    return JSON.stringify(arr) === JSON.stringify([1,2,3,4,5,6,7,8,null]);
+// ==========================
+// FUEGO
+// ==========================
+function updateFireballs(){
+    for(let f of fireballs){
+        f.y += f.speed;
+
+        if(f.x > player.x && f.x < player.x + player.w &&
+           f.y > player.y && f.y < player.y + player.h){
+            lose();
+        }
+    }
 }
 
-function manejarVictoria() {
-    score++;
-    scoreDisplay.textContent = score;
-    
-    let message = "¡Victoria! Tauro domina la paciencia.";
-    if (score >= ARTIFACT_THRESHOLD) {
-        message += " ¡Has ganado el Artefacto Tauro!";
-        artifactMessage.textContent = "¡Artefacto de Tauro Obtenido! 🎉";
-        // Persiste usando la misma estructura que usa Mundo/Aries
-        const gained = JSON.parse(localStorage.getItem('gainedArtefacts')) || {};
-        gained['tauro'] = true;
-        localStorage.setItem('gainedArtefacts', JSON.stringify(gained));
-    } else {
-        artifactMessage.textContent = "";
+// ==========================
+// PIEZAS
+// ==========================
+function checkPieces(){
+    let total = 0;
+
+    for(let p of pieces){
+        if(!p.taken &&
+           player.x < p.x + p.size &&
+           player.x + player.w > p.x &&
+           player.y < p.y + p.size &&
+           player.y + player.h > p.y){
+            p.taken = true;
+        }
+
+        if(p.taken) total++;
     }
 
-    setTimeout(()=> {
-        alert(message);
-        // Genera automáticamente un nuevo tablero para seguir jugando
-        generarTablero(); 
-    }, 100);
+    if(total === pieces.length) player.collectedAll = true;
 }
 
-reiniciar.onclick = generarTablero;
+// ==========================
+// PUERTA FINAL
+// ==========================
+function checkDoor(){
+    if(!player.collectedAll) return;
 
-/* Integración con almacenamiento compartido (usar exactamente lo que usa Aries/Mundo) */
-// Inicializar estado desde gainedArtefacts (si ya se obtuvo el artefacto)
-(function initFromStorage() {
-    const gained = JSON.parse(localStorage.getItem('gainedArtefacts')) || {};
-    if (gained['tauro']) {
-        score = ARTIFACT_THRESHOLD;
-        scoreDisplay.textContent = score;
-        artifactMessage.textContent = "¡Artefacto de Tauro Obtenido! 🎉";
+    if(player.x + player.w > door.x &&
+       player.x < door.x + door.w &&
+       player.y + player.h > door.y &&
+       player.y < door.y + door.h){
+        win();
     }
-})();
+}
 
-// Reinicio: además de regenerar tablero, quitar artefacto de gainedArtefacts
-reiniciar.addEventListener('click', () => {
-    const gained = JSON.parse(localStorage.getItem('gainedArtefacts')) || {};
-    if (gained['tauro']) {
-        delete gained['tauro'];
-        localStorage.setItem('gainedArtefacts', JSON.stringify(gained));
-    }
-    // limpiar mensaje y score local
-    score = 0;
-    scoreDisplay.textContent = score;
-    artifactMessage.textContent = "";
-});
+// ==========================
+// DIBUJO
+// ==========================
+function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
 
-// Generar primer tablero al cargar el script
-generarTablero();
+    ctx.font = "40px Arial";
+
+    ctx.fillStyle = "#555";
+    for(let p of platforms)
+        ctx.fillRect(p.x - cameraX, p.y, p.w, p.h);
+
+    for(let p of pieces)
+        if(!p.taken) ctx.fillText("🔷", p.x - cameraX, p.y);
+
+    for(let d of demons)
+        ctx.fillText("👹", d.x - cameraX, d.y);
+
+    for(let f of fireballs)
+        ctx.fillText("🔥", f.x - cameraX, f.y);
+
+    ctx.fillText("🧍", player.x - cameraX, player.y);
+
+    ctx.fillText("🚪", door.x - cameraX, door.y);
+}
+
+// ==========================
+// LOOP
+// ==========================
+function loop(){
+    if(gameEnded) return;
+
+    updatePlayer();
+    updateDemons();
+    updateFireballs();
+    checkPieces();
+    checkDoor();
+    draw();
+
+    requestAnimationFrame(loop);
+}
+
+loop();

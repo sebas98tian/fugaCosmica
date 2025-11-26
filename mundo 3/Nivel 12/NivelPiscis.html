@@ -1,41 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width,user-scalable=no" />
-    <script src="https://codepen.io/steveg3003/pen/zBVakw"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r83/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
-    <title>Geminis: Construye la Torre</title>
-    <link rel="icon" href="https://i.ibb.co/M6KTWnf/pic.jpg" />
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rompecabezas de los Dioses</title>
+    <link rel="stylesheet" href="StylesPiscis.css">
+</head>
+<body>
+    <a href="../MundoIndex3.html" class="back-button" aria-label="Volver al mundo">↩</a>
 
-    <link rel="stylesheet" href="StylesGeminis.css" />
-  </head>
-  <body>
-    <a href="../MundoIndex.html" class="back-button" aria-label="Volver al mundo" onclick="event.stopPropagation();">
-        ↩
-    </a>
+    <!-- Avatar del jugador -->
+    <img class="player-avatar" id="player-avatar" src="/assets/img/av1.png" alt="Avatar" style="position:absolute; top:3vh; right:3vw; width:4.5rem; height:4.5rem; border-radius:50%; border:2px solid #FFD700; box-shadow:0 0 8px rgba(0,0,0,0.6); z-index:300; background:#ffffff; object-fit:cover;">
 
-    <img class="player-avatar" src="/assets/img/av1.png" alt="Avatar" style="position:absolute; top:1rem; right:1rem; width:72px; height:72px; border-radius:50%; border:2px solid #FFD700; box-shadow:0 0 6px rgba(0,0,0,0.5); z-index:10; background:#ffffff; object-fit:cover;">
+    <div id="main">
+        <div id="titleContainer">
+            <h1>💀 Arma los rompecabezas de los dioses</h1>
+            <button id="restartBtn">Reiniciar</button>
+        </div>
 
-    <div id="container">
-      <div class="level-title">Torre De Geminis</div>
-      <div id="score">0</div>
-      <div id="game"></div>
-      <!-- Eliminado el duplicado de #score -->
-      <div class="game-over">
-        <h2>Game Over</h2>
-        <p>¡Lo hiciste genial, eres el mejor!</p>
-        <p>Haz clic o pulsa la barra espaciadora para volver a empezar</p>
-      </div>
-      <div class="game-ready">
-        <div id="start-button">Start</div>
-        <div></div>
-      </div>
+        <h2>Ubica cada parte en su lugar</h2>
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
     </div>
 
-    <script src="ScriptGeminis.js" async></script>
     <script src="../avatar.js"></script>
-  </body>
+    <script src="ScriptPiscis.js"></script>
+</body>
 </html>

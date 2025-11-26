@@ -1,160 +1,256 @@
-/* Importar fuentes del CSS de referencia para un estilo "Mundo" más futurista/temático */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap');
+/* --------------------------
+   RESET
+--------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-/* Estilos específicos de Tauro (no poner CSS en el HTML) */
 body {
-    /* Fondo y color de texto del CSS de referencia */
-    background-image: url(../assets/img/wireSettings.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    color: white; /* Texto principal blanco */
-    margin: 0; 
-    font-family: 'Orbitron', sans-serif; /* Tipografía principal */
-    
-    /* Centrado Flexbox para el body */
-    display: flex;
-    justify-content: center; /* Centra horizontalmente el contenido principal */
-    align-items: center;    /* Centra verticalmente el contenido principal */
-    min-height: 100vh;      /* Ocupa toda la altura de la vista */
-    padding: 20px; /* Padding general para evitar que el contenido toque los bordes */
-}
-
-/* Contenedor principal para centrar todos los elementos del juego */
-.main-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centra horizontalmente todos los hijos (título, score, board, botón) */
-    padding: 30px 40px;
-    background: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente para agrupar */
-    border-radius: 15px;
-    border: 2px solid #a47b4e; /* Borde con color de Tauro */
-}
-
-h1.level-title {
-    margin-bottom: 20px;
-    /* Estilo del título del CSS de referencia */
-    font-family: 'Cinzel Decorative', serif;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: #FFD700; /* Dorado brillante para el título */
-    text-shadow: 0 0 15px rgba(255, 215, 0, 0.5),
-                 0 0 40px rgba(255, 255, 255, 0.3);
-    font-size: 2.5rem; 
-    line-height: 1.1;
-    text-align: center;
-}
-/* Contenedor de score */
-.score-container {
-    background: rgba(0,0,0,0.6);
-    padding: 8px 12px;
-    border-radius: 8px;
-    display: inline-flex; /* Usar inline-flex para el contenedor interno */
-    margin-bottom: 12px;
-    border: 1px solid #a47b4e; /* Borde con color de Tauro */
-}
-
-/* Estilo para la caja de puntuación */
-#score-container {
-    margin-bottom: 15px;
-    font-size: 20px;
-    font-weight: bold;
-    color: #e6e6e6; /* Blanco suave */
-    display: flex;
-    gap: 15px;
-    align-items: center;
-}
-
-#artifact-message {
-    color: #f5d782; /* Un color de "recompensa" (dorado) */
-    font-style: italic;
-    font-size: 18px;
-}
-
-.artifact-message {
-    margin-left: 12px;
-    font-weight: 600;
-    color: #f5d782; /* Dorado/recompensa */
-}
-
-/* Tablero y piezas */
-.board {
-    width: 360px; /* Tamaño más grande para el tablero */
-    height: 360px;
-    border-radius: 12px;
-    /* Fondo del tablero ajustado para el tema oscuro */
-    border: 2px solid #a47b4e;
-    background: rgba(0,0,0,0.7);
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3x3 para 8-puzzle */
-    gap: 6px;
-    padding: 8px;
-}
-
-.tile {
-    /* Color de losa: Un tono de marrón o púrpura terroso (Tauro) */
-    background: #6b584d; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 32px;
-    cursor: pointer;
-    border-radius: 8px;
-    transition: transform .15s, background-color .15s;
-    color: #fff;
-    font-weight: 700;
-}
-
-.tile:hover {
-    transform: scale(1.08);
-    background: #7d6b5e;
-}
-
-.empty {
-    background: transparent;
-    border: 2px dashed #6b584d;
-    cursor: default;
-    transform: none; /* Desactiva el hover en el espacio vacío */
-}
-
-/* Estilo general de botón (para Reiniciar) */
-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    /* Color de botón: Dorado/Tauro */
-    background: #a47b4e; 
-    border: none;
-    font-size: 18px;
-    cursor: pointer;
-    border-radius: 6px;
-    color: #000;
-    font-weight: bold;
     font-family: 'Orbitron', sans-serif;
-    transition: background-color 0.1s;
+    background: radial-gradient(circle at center, #1a0033, #090012, #000000);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
 
-button:hover {
-    background: #8e6c43;
+/* --------------------------
+   FONDO NEBULOSO ESTILO MUNDO
+--------------------------- */
+body::before {
+    content: "";
+    position: fixed;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    opacity: 0.5;
+
+    background:
+        radial-gradient(circle at 20% 30%, rgba(157, 78, 255, 0.4), transparent 60%),
+        radial-gradient(circle at 80% 70%, rgba(255, 215, 0, 0.25), transparent 60%),
+        radial-gradient(circle at 50% 50%, rgba(100, 50, 200, 0.3), transparent 70%);
+
+    animation: nebulaMove 18s ease-in-out infinite;
 }
 
+@keyframes nebulaMove {
+    50% { transform: scale(1.05) translate(4%, -4%); }
+}
+
+/* --------------------------
+   BOTÓN DE REGRESO
+--------------------------- */
 .back-button {
     position: absolute;
-    top: 3vh;
-    left: 3vw;
-    font-size: 3vw; 
-    color: var(--text-color);
+    top: 20px;
+    left: 20px;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 2.2rem;
+    color: #FFD700;
     text-decoration: none;
-    z-index: 20;
-    cursor: pointer;
-    background-color: #6b4f3f; /* Fondo café */
-    padding: 8px 20px;
-    border-radius: 8px;
-    transition: transform 0.2s ease, color 0.3s ease, background-color 0.3s ease;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    z-index: 200;
+    transition: 0.3s;
+    text-shadow: 0 0 10px #FFD700;
+}
+.back-button:hover {
+    transform: scale(1.15);
 }
 
-.back-button:hover {
-    transform: scale(1.1);
-    color: var(--hover-color); /* Color violeta en hover */
-    background-color: #8d6b5b; /* Fondo café más claro en hover */
+/* --------------------------
+   CONTENEDOR DEL JUEGO
+--------------------------- */
+#gameContainer {
+    position: relative;
+    width: 900px;
+    height: 700px;
+    border-radius: 18px;
+    overflow: hidden;
+
+    background: rgba(20, 0, 40, 0.55);
+    border: 3px solid #9d6bff;
+
+    box-shadow:
+        0 0 25px rgba(157, 107, 255, 0.6),
+        inset 0 0 45px rgba(80, 0, 120, 0.4);
+}
+
+/* --------------------------
+   HUD
+--------------------------- */
+#hud {
+    position: absolute;
+    top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    z-index: 50;
+}
+
+.hud-item {
+    background: rgba(30, 0, 60, 0.7);
+    border: 3px solid #9d6bff;
+    color: #e5d4ff;
+    padding: 10px 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(157, 107, 255, 0.5);
+    font-weight: bold;
+}
+
+/* --------------------------
+   JUGADOR
+--------------------------- */
+#player {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 80px;
+    text-shadow: 0 0 15px #9d6bff;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    50% { transform: translateX(-50%) translateY(-14px); }
+}
+
+/* --------------------------
+   BARRA DE VIDA
+--------------------------- */
+#playerHealth {
+    position: absolute;
+    bottom: 110px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 360px;
+    height: 32px;
+    background: rgba(0,0,0,0.5);
+    border: 3px solid #9d6bff;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+#healthFill {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, #ff0000, #ffa200, #2bff2b);
+}
+
+#healthText {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 4px;
+    color: white;
+    font-weight: bold;
+    text-shadow: 0 0 10px black;
+}
+
+/* --------------------------
+   ENEMIGOS
+--------------------------- */
+.enemy {
+    position: absolute;
+    font-size: 55px;
+    text-shadow: 0 0 10px #ff66ff;
+    animation: enemyFloat 1.9s ease-in-out infinite;
+}
+@keyframes enemyFloat { 50% { transform: translateY(-10px); } }
+
+/* --------------------------
+   AGUA (DISPARO)
+--------------------------- */
+.waterball {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #ffffff, #9d6bff);
+    box-shadow: 0 0 10px #c59dff;
+}
+
+/* --------------------------
+   INSTRUCCIONES
+--------------------------- */
+#instructions {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    font-size: 17px;
+    color: #e5d4ff;
+    text-shadow: 0 0 10px #9d6bff;
+}
+
+/* --------------------------
+   GAME OVER
+--------------------------- */
+#gameOver {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background: rgba(20, 0, 40, 0.92);
+    padding: 45px;
+    border-radius: 18px;
+    border: 3px solid #FFD700;
+    text-align: center;
+
+    box-shadow: 0 0 20px #FFD700;
+}
+
+#gameOver h1 {
+    font-family: 'Cinzel Decorative', serif;
+    color: #FFD700;
+    font-size: 46px;
+    margin-bottom: 20px;
+}
+
+#gameOver button {
+    padding: 14px 28px;
+    background: linear-gradient(to bottom, #9d6bff, #5a2ea6);
+    color: white;
+    font-weight: bold;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    box-shadow: 0 0 20px #9d6bff;
+}
+
+#gameOver button:hover {
+    transform: scale(1.08);
+}
+
+/* --------------------------
+   AVATAR DEL JUGADOR
+--------------------------- */
+.player-avatar {
+    position: fixed;
+    top: 18px;
+    right: 18px;
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+    border: 2px solid #FFD700;
+    box-shadow: 0 0 10px rgba(157, 107, 255, 0.6);
+    z-index: 300;
+    background: #ffffff;
+    object-fit: cover;
+    display: block;
+}
+
+/* Ajuste para pantallas pequeñas */
+@media (max-width: 600px) {
+    .player-avatar {
+        width: 3.4rem;
+        height: 3.4rem;
+        top: 12px;
+        right: 12px;
+    }
 }

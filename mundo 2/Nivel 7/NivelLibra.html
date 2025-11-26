@@ -1,33 +1,57 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Tauro: Rompecabezas</title>
-<link rel="stylesheet" href="StylesTauro.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nivel 7 - Libra</title>
+
+    <!-- Fuentes globales del Mundo -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="stylesLibra.css">
 </head>
 
 <body>
 
-<a href="../MundoIndex.html" class="back-button" aria-label="Volver al mundo">
-    ↩
-</a>
+    <!-- Botón de regreso -->
+     <a href="../MundoIndex2.html" class="back-button">↩</a>
 
-<img class="player-avatar" src="/assets/img/av1.png" alt="Avatar" style="position:absolute; top:1rem; right:1rem; width:72px; height:72px; border-radius:50%; border:2px solid #FFD700; box-shadow:0 0 6px rgba(0,0,0,0.5); z-index:25; background:#ffffff; object-fit:cover; display:block;">
+    <!-- Avatar del jugador (fijo, separado del gameContainer para no interferir) -->
+    <img id="player-avatar" class="player-avatar" src="../assets/img/av1.png" alt="Avatar">
 
-<div class="main-content">
+    <div id="gameContainer">
 
-    <h1 class="level-title">Tauro: Ordena el Rompecabezas</h1>
+        <!-- HUD superior -->
+        <div id="hud">
+            <div class="hud-item">⚖ Oleada: <span id="wave">1</span></div>
+            <div class="hud-item">👾 Eliminados: <span id="enemies">0</span></div>
+            <div class="hud-item">🎯 Precisión: <span id="accuracy">100</span>%</div>
+        </div>
 
-    <div id="score-container" class="score-container">
-        Puntos: <span id="score">0</span>
-        <span id="artifact-message" class="artifact-message" aria-live="polite"></span>
+        <!-- Jugador -->
+        <div id="player">🧍‍♂️</div>
+
+        <!-- Barra de vida -->
+        <div id="playerHealth">
+            <div id="healthFill"></div>
+            <div id="healthText">100 / 100</div>
+        </div>
+
+        <!-- Instrucciones -->
+        <div id="instructions">
+            CLICK para disparar | Evita que los enemigos toquen el fondo
+        </div>
+
+        <!-- Game Over -->
+        <div id="gameOver">
+            <h1>⚖ ¡EL EQUILIBRIO SE ROMPIÓ! ⚖</h1>
+            <p id="finalScore">Oleada: 1 | Eliminados: 0 | Precisión: 0%</p>
+            <button id="restartBtn">Intentar Otra Vez</button>
+        </div>
     </div>
 
-    <div id="board" class="board" role="application" aria-label="Tablero del rompecabezas"></div>
-    <button id="reiniciar" class="btn-primary">REINICIAR</button>
-
-</div>
-<script src="../avatar.js"></script>
-<script src="ScriptTauro.js"></script>
+    <!-- Cargar script de avatar antes del script del nivel -->
+    <script src="../avatar.js"></script>
+    <script src="scriptLibra.js"></script>
 </body>
 </html>

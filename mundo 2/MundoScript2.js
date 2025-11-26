@@ -126,10 +126,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 slot.classList.remove('unlocked');
                 slot.textContent = '';
                 slot.setAttribute('title', `Bloqueado: ${slot.dataset.artefact}`);
+                // Ocultar elemento mundo si existe
+                const artefactWorldElement = document.getElementById(`${artefactKey}-artefact-world`);
+                if (artefactWorldElement) {
+                    artefactWorldElement.classList.add('hidden');
+                }
             }
         });
     }
 
+    // Nuevo: borrar artefactos guardados y refrescar UI
+    function clearArtefacts() {
+        if (!confirm('¿Seguro que quieres eliminar todos los artefactos guardados? Esto te obligará a volver a ganar cada uno.')) return;
+        localStorage.removeItem('gainedArtefacts');
+        // Alternativa: localStorage.setItem('gainedArtefacts', JSON.stringify({}));
+        loadArtefacts();
+        alert('Artefactos restablecidos. Debes volver a ganarlos.');
+    }
+
     // Inicializar
     loadArtefacts();
+
+    // Conectar el botón
+    const resetBtn = document.getElementById('reset-artefacts');
+    if (resetBtn) resetBtn.addEventListener('click', clearArtefacts);
 });

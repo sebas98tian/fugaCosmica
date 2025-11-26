@@ -1,154 +1,323 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Cinzel+Decorative:wght@700&display=swap');
+/* ==========================
+   ESTILO GLOBAL NIVEL VIRGO
+   ========================== */
 
-/* --- Estilos Globales y de Fondo (Basado en tu CSS) --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  /* Simulo el fondo si tuvieras la imagen en la ruta. Si no tienes la imagen, usa un color sólido. */
-  /* background: url('../assets/img/WireMainMenu.png') no-repeat center center/cover; */
-  background-color: #202020; /* Color de fallback si la imagen no existe */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Orbitron', sans-serif; /* Aplico la fuente futurista */
-  color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #000000;
+    font-family: 'Orbitron', sans-serif;
+    overflow: hidden;
 }
 
-#tetris {
-  width: 360px;
-  border: 4px solid #FFD700; /* Borde dorado/amarillo */
-  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5); /* Sombra de neón */
-  padding: 20px;
-  background-color: #000; /* Fondo oscuro para el contenedor principal */
-}
+/* --------------------------
+   Botón de regreso ↩
+-------------------------- */
 
-/* --- Estilos del Área de Juego (Canvas) --- */
-#canvas {
-  width: 200px;
-  height: 440px;
-  background-color: #101010; /* Un poco más claro que el fondo de tetris */
-  position: relative;
-  border: 1px solid #9d6bff; /* Borde de color hover */
-}
-#canvas h1 {
-  /* Estilo Cinzel Decorative para el "GAME OVER" */
-  font-family: 'Cinzel Decorative', serif;
-  font-weight: 700;
-  text-align: center;
-  font-size: 30px;
-  padding-top: 200px;
-  color: #FFD700;
-  text-shadow: 0 0 10px #f00; /* Color de GAME OVER en rojo */
-  margin: 0;
-  padding: 0;
-}
-
-/* --- Estilos de la Información Lateral (Score, Level, etc.) --- */
-#info {
-  background-color: #1a1a1a;
-  color: white;
-  float: right;
-  width: 110px;
-  height: 420px;
-  padding: 10px;
-  border: 1px solid #555;
-  font-family: 'Orbitron', sans-serif;
-  font-size: 14px;
-}
-#info p {
-    margin: 5px 0;
-}
-#info span {
-    font-weight: 700;
-    color: #00f0f0; /* Color para los valores */
-}
-
-/* --- Estilo del Siguiente Bloque --- */
-#next_shape {
-  position: relative;
-  background-color: #000;
-  border: 1px solid #FFD700;
-  width: 110px;
-  height: 110px;
-  margin-bottom: 15px;
-}
-
-/* --- Estilo del Botón de Inicio (Start) --- */
-#start {
-  animation: none; /* Desactivo la animación de blink original */
-  font-family: 'Orbitron', sans-serif;
-  font-size: 1.2rem;
-  letter-spacing: 2px;
-  background: #9d6bff; /* Color de hover que enviaste */
-  border: 2px solid #FFD700;
-  border-radius: 4px;
-  color: white;
-  cursor: pointer;
-  padding: 5px 10px;
-  margin-top: 15px;
-  transition: all 0.3s ease;
-}
-#start:hover {
-  background: #FFD700;
-  color: #202020;
-  box-shadow: 0 0 10px #FFD700;
-}
-
-.red {
-  color: #f00000;
-  font-size: 10px; /* Hago más pequeño el texto de pausa */
-  margin-top: 10px;
-}
-
-/* --- Estilos de los Cuadrados de Tetris (Mismos colores) --- */
-.square {
-  position: absolute;
-  width: 19px;
-  height: 19px;
-  border: 1px solid #444; /* Borde más sutil */
-}
-.type0 {
-  background-color: #a000f0;
-}
-.type1 {
-  background-color: #00f0f0;
-}
-.type2 {
-  background-color: #f0a000;
-}
-.type3 {
-  background-color: #0000f0;
-}
-.type4 {
-  background-color: #00f000;
-}
-.type5 {
-  background-color: #f00000;
-}
-.type6 {
-  background-color: #f0f000;
-}
 .back-button {
-    position: absolute;
+    position: fixed;
     top: 3vh;
     left: 3vw;
-    font-size: 3vw; 
+    font-size: 3rem;
     color: white;
     text-decoration: none;
-    z-index: 20;
     cursor: pointer;
-    background-color: #000000; /* Fondo negro */
-    padding: 8px 20px;
-    border-radius: 8px;
-    transition: transform 0.2s ease, color 0.3s ease, background-color 0.3s ease;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    z-index: 999;
+    transition: 0.25s;
+    text-shadow: 0 0 10px #c77dff;
 }
 
 .back-button:hover {
-    transform: scale(1.1);
-    color: #FFD700; /* Color dorado en hover */
-    background-color: #5e00c9; /* Fondo violeta en hover */
+    transform: scale(1.15);
+    color: #ffb3ff;
+}
+
+/* --------------------------
+   Título del nivel
+-------------------------- */
+
+.level-title {
+    position: fixed;
+    top: 1vh;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: "Cinzel Decorative", cursive;
+    color: #c77dff;
+    font-size: 3rem;
+    text-shadow: 0 0 20px #c77dff;
+    z-index: 800;
+}
+
+/* --------------------------
+   Fondo de estrellas
+-------------------------- */
+
+body::before {
+    content: '';
+    position: fixed;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    background-image: 
+        radial-gradient(3px 3px at 20% 30%, white, transparent),
+        radial-gradient(2px 2px at 60% 70%, cyan, transparent),
+        radial-gradient(2px 2px at 50% 50%, white, transparent),
+        radial-gradient(1px 1px at 80% 10%, white, transparent),
+        radial-gradient(3px 3px at 90% 60%, magenta, transparent),
+        radial-gradient(2px 2px at 33% 85%, white, transparent),
+        radial-gradient(1px 1px at 75% 25%, white, transparent),
+        radial-gradient(2px 2px at 15% 60%, yellow, transparent),
+        radial-gradient(3px 3px at 45% 15%, white, transparent);
+    background-size: 300% 300%;
+    animation: starsMove 20s linear infinite;
+    opacity: 0.8;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    background: 
+        radial-gradient(ellipse at 30% 40%, rgba(138, 43, 226, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 60%, rgba(255, 0, 255, 0.3) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 80%, rgba(0, 100, 255, 0.3) 0%, transparent 50%);
+    background-size: 200% 200%;
+    animation: nebulaMove 30s ease-in-out infinite;
+}
+
+@keyframes starsMove {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes nebulaMove {
+    0%, 100% { transform: translate(0, 0) scale(1); background-position: 0% 0%; }
+    33% { transform: translate(-10%, -10%) scale(1.1); background-position: 100% 0%; }
+    66% { transform: translate(10%, 10%) scale(0.9); background-position: 0% 100%; }
+}
+
+/* --------------------------
+   Contenedor del juego
+-------------------------- */
+
+#gameContainer {
+    position: relative;
+    width: 800px;
+    height: 600px;
+    background: radial-gradient(ellipse at center, rgba(75, 0, 130, 0.3) 0%, rgba(25, 0, 51, 0.6) 50%, rgba(0, 0, 20, 0.9) 100%);
+    border: 4px solid #9d4edd;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(157, 78, 221, 0.5), 0 0 60px rgba(157, 78, 221, 0.3);
+    animation: containerPulse 4s ease-in-out infinite;
+}
+
+@keyframes containerPulse {
+    0%, 100% { box-shadow: 0 0 30px rgba(157, 78, 221, 0.5); }
+    50% { box-shadow: 0 0 60px rgba(157, 78, 221, 0.8); }
+}
+
+/* --------------------------
+   Zeus en movimiento
+-------------------------- */
+
+#zeus {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    width: 100px;
+    height: 100px;
+    font-size: 70px;
+    transition: left 0.1s linear;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.red-eyes {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: red;
+    border-radius: 50%;
+    box-shadow: 0 0 10px red, 0 0 20px red;
+    animation: glow 0.5s infinite alternate;
+}
+
+.eye-left { left: 28px; top: 32px; }
+.eye-right { right: 28px; top: 32px; }
+
+@keyframes glow {
+    from { box-shadow: 0 0 10px red; }
+    to { box-shadow: 0 0 40px red; }
+}
+
+/* --------------------------
+   Lásers
+-------------------------- */
+
+.laser {
+    position: absolute;
+    width: 6px;
+    border-radius: 3px;
+    z-index: 5;
+}
+
+.laser-green {
+    background: linear-gradient(to bottom, #00ff00, #00cc00);
+    box-shadow: 0 0 20px #00ff00;
+}
+
+.laser-red {
+    background: linear-gradient(to bottom, #ff0000, #cc0000);
+    box-shadow: 0 0 20px #ff0000;
+}
+
+/* --------------------------
+   Astronauta
+-------------------------- */
+
+#astronaut {
+    position: absolute;
+    bottom: 30px;
+    left: 360px;
+    width: 60px;
+    height: 60px;
+    font-size: 50px;
+    transition: left 0.15s ease-out;
+    z-index: 10;
+}
+
+/* --------------------------
+   HUD
+-------------------------- */
+
+#score {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #c77dff;
+    font-size: 24px;
+    font-weight: bold;
+    text-shadow: 0 0 10px #c77dff;
+    z-index: 100;
+}
+
+/* --------------------------
+   Game Over
+-------------------------- */
+
+#gameOver {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(10, 0, 25, 0.95);
+    padding: 40px;
+    border-radius: 15px;
+    display: none;
+    z-index: 200;
+    border: 3px solid #9d4edd;
+    box-shadow: 0 0 30px #9d4edd;
+    text-align: center;
+}
+
+#gameOver h1 {
+    color: #ff4444;
+    font-size: 48px;
+}
+
+#gameOver p {
+    color: #c77dff;
+    font-size: 24px;
+}
+
+#restartBtn {
+    background: linear-gradient(to bottom, #9d4edd, #7b2cbf);
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    font-size: 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: 0 0 20px #9d4edd;
+}
+
+#restartBtn:hover { transform: scale(1.1); }
+
+/* --------------------------
+   Botones de control
+-------------------------- */
+
+#controls {
+    position: absolute;
+    bottom: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
+    z-index: 100;
+}
+
+.controlBtn {
+    background: rgba(157, 78, 221, 0.3);
+    color: #c77dff;
+    border: 2px solid #9d4edd;
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.controlBtn:active {
+    background: rgba(157, 78, 221, 0.6);
+    transform: scale(0.95);
+}
+
+#instructions {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #c77dff;
+    font-size: 14px;
+    text-shadow: 0 0 10px #c77dff;
+}
+
+/* Estrellas */
+.stars {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 3s infinite, float 8s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.5); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    25% { transform: translateY(-20px) translateX(10px); }
+    50% { transform: translateY(-10px) translateX(-10px); }
+    75% { transform: translateY(-30px) translateX(5px); }
 }
