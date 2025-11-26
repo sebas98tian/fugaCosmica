@@ -1,7 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // ===========================================
-    // *** SELECTORES DOM (Mundo 2: niveles 5-8) ***
-    // ===========================================
     const leoButton = document.querySelector('.level-emoji.leo');
     const leoModal = document.getElementById('modal-container-leo');
     const leoExitButton = document.getElementById('modal-exit-leo');
@@ -22,21 +19,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const escorpioExitButton = document.getElementById('modal-exit-escorpio');
     const escorpioContinue = document.getElementById('modal-continue-escorpio');
 
-    // ===========================================
-    // *** CONFIGURACIÓN DEL JUEGO Y ARTEFACTOS ***
-    // ===========================================
-
-    // Mapa de emojis para los artefactos de Mundo 2.
     const ARTEFACT_EMOJI_MAP = {
-        'leo': '🦁',        // Usando un emoji más representativo para Leo
-        'virgo': '🌾',      // Usando un emoji más representativo para Virgo
-        'libra': '⚖️',      // Usando un emoji más representativo para Libra
-        'escorpio': '🦂'    // Usando un emoji más representativo para Escorpio
+        'leo': '🦁',       
+        'virgo': '🌾',     
+        'libra': '⚖️',    
+        'escorpio': '🦂'   
     };
-
-    // ===========================================
-    // *** UTILIDADES DE MODALES ***
-    // ===========================================
 
     function openModal(modalEl) {
         if (!modalEl) return;
@@ -48,51 +36,33 @@ document.addEventListener('DOMContentLoaded', () => {
         modalEl.classList.add('hidden');
     }
 
-    /**
-     * Configura los eventos de click para abrir, cerrar y continuar un modal.
-     * @param {HTMLElement} button - Botón de nivel que abre el modal.
-     * @param {HTMLElement} modal - Elemento contenedor del modal.
-     * @param {HTMLElement} exitButton - Botón de 'Salir' o 'Cerrar' dentro del modal.
-     * @param {HTMLElement} continueButton - Botón de 'Seguir' o 'Continuar' (navegación).
-     */
     function setupModal(button, modal, exitButton, continueButton) {
-        // 1. Abrir el modal
         if (button && modal) {
             button.addEventListener('click', (event) => {
                 event.preventDefault();
                 openModal(modal);
             });
         }
-        // 2. Cerrar con el botón de Salir
         if (exitButton && modal) {
             exitButton.addEventListener('click', () => {
                 closeModal(modal);
             });
         }
-        // 3. Cerrar al hacer click fuera
         if (modal) {
             modal.addEventListener('click', (event) => {
                 if (event.target === modal) closeModal(modal);
             });
         }
-        // 4. Cerrar con el botón de Continuar (antes de navegar)
         if (continueButton && modal) {
             continueButton.addEventListener('click', () => closeModal(modal));
         }
     }
 
-    // ===========================================
-    // *** LÓGICA DE VENTANA MODAL (Aplicación) ***
-    // ===========================================
-
-    // Aplicar la lógica modular a cada nivel
     setupModal(leoButton, leoModal, leoExitButton, leoContinue);
     setupModal(virgoButton, virgoModal, virgoExitButton, virgoContinue);
     setupModal(libraButton, libraModal, libraExitButton, libraContinue);
     setupModal(escorpioButton, escorpioModal, escorpioExitButton, escorpioContinue);
 
-
-    // Cerrar todos con Escape
     window.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             [leoModal, virgoModal, libraModal, escorpioModal].forEach(m => {
@@ -100,10 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     });
-
-    // ===========================================
-    // *** LÓGICA DEL INVENTARIO Y ARTEFACTOS ***
-    // ===========================================
 
     function loadArtefacts() {
         const gainedArtefacts = JSON.parse(localStorage.getItem('gainedArtefacts')) || {};
@@ -117,7 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 slot.textContent = ARTEFACT_EMOJI_MAP[artefactKey] || '✨';
                 slot.setAttribute('title', `Artefacto Ganado: ${slot.dataset.artefact}`);
 
-                // Mostrar el artefacto en el mundo si ya ha sido ganado
                 const artefactWorldElement = document.getElementById(`${artefactKey}-artefact-world`);
                 if (artefactWorldElement) {
                     artefactWorldElement.classList.remove('hidden');
@@ -126,7 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 slot.classList.remove('unlocked');
                 slot.textContent = '';
                 slot.setAttribute('title', `Bloqueado: ${slot.dataset.artefact}`);
-                // Ocultar elemento mundo si existe
                 const artefactWorldElement = document.getElementById(`${artefactKey}-artefact-world`);
                 if (artefactWorldElement) {
                     artefactWorldElement.classList.add('hidden');
@@ -135,19 +99,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Nuevo: borrar artefactos guardados y refrescar UI
     function clearArtefacts() {
         if (!confirm('¿Seguro que quieres eliminar todos los artefactos guardados? Esto te obligará a volver a ganar cada uno.')) return;
         localStorage.removeItem('gainedArtefacts');
-        // Alternativa: localStorage.setItem('gainedArtefacts', JSON.stringify({}));
         loadArtefacts();
         alert('Artefactos restablecidos. Debes volver a ganarlos.');
     }
 
-    // Inicializar
     loadArtefacts();
-
-    // Conectar el botón
     const resetBtn = document.getElementById('reset-artefacts');
     if (resetBtn) resetBtn.addEventListener('click', clearArtefacts);
 });

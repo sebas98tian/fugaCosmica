@@ -1,7 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // ===========================================
-    // *** SELECTORES DOM (Mundo 3: niveles 9-12) ***
-    // ===========================================
     const sagitarioButton = document.querySelector('.level-emoji.sagitario');
     const sagitarioModal = document.getElementById('modal-container-sagitario');
     const sagitarioExitButton = document.getElementById('modal-exit-sagitario');
@@ -22,21 +19,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const piscisExitButton = document.getElementById('modal-exit-piscis');
     const piscisContinue = document.getElementById('modal-continue-piscis');
 
-    // ===========================================
-    // *** CONFIGURACIÓN DEL JUEGO Y ARTEFACTOS ***
-    // ===========================================
-
-    // Mapa de emojis para los artefactos de Mundo 3.
     const ARTEFACT_EMOJI_MAP = {
-        'sagitario': '🏹',    // Arco de Sagitario
-        'capricornio': '🔱',  // Tridente de Capricornio
-        'acuario': '🏺',      // Jarra de Acuario
-        'piscis': '🐟'        // Peces de Piscis
+        'sagitario': '🏹',   
+        'capricornio': '🔱',  
+        'acuario': '🏺',     
+        'piscis': '🐟'        
     };
-
-    // ===========================================
-    // *** UTILIDADES DE MODALES (Mismas que Mundo 2) ***
-    // ===========================================
 
     function openModal(modalEl) {
         if (!modalEl) return;
@@ -48,47 +36,33 @@ document.addEventListener('DOMContentLoaded', () => {
         modalEl.classList.add('hidden');
     }
 
-    /**
-     * Configura los eventos de click para abrir, cerrar y continuar un modal.
-     */
+
     function setupModal(button, modal, exitButton, continueButton) {
-        // 1. Abrir el modal
         if (button && modal) {
             button.addEventListener('click', (event) => {
                 event.preventDefault();
                 openModal(modal);
             });
         }
-        // 2. Cerrar con el botón de Salir
         if (exitButton && modal) {
             exitButton.addEventListener('click', () => {
                 closeModal(modal);
             });
         }
-        // 3. Cerrar al hacer click fuera
         if (modal) {
             modal.addEventListener('click', (event) => {
                 if (event.target === modal) closeModal(modal);
             });
         }
-        // 4. Cerrar con el botón de Continuar (antes de navegar)
         if (continueButton && modal) {
             continueButton.addEventListener('click', () => closeModal(modal));
         }
     }
-
-    // ===========================================
-    // *** LÓGICA DE VENTANA MODAL (Aplicación) ***
-    // ===========================================
-
-    // Aplicar la lógica modular a cada nivel (9, 10, 11, 12)
     setupModal(sagitarioButton, sagitarioModal, sagitarioExitButton, sagitarioContinue);
     setupModal(capricornioButton, capricornioModal, capricornioExitButton, capricornioContinue);
     setupModal(acuarioButton, acuarioModal, acuarioExitButton, acuarioContinue);
     setupModal(piscisButton, piscisModal, piscisExitButton, piscisContinue);
 
-
-    // Cerrar todos con Escape
     window.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             [sagitarioModal, capricornioModal, acuarioModal, piscisModal].forEach(m => {
@@ -96,10 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     });
-
-    // ===========================================
-    // *** LÓGICA DEL INVENTARIO Y ARTEFACTOS ***
-    // ===========================================
 
     function loadArtefacts() {
         const gainedArtefacts = JSON.parse(localStorage.getItem('gainedArtefacts')) || {};
@@ -112,8 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 slot.classList.add('unlocked');
                 slot.textContent = ARTEFACT_EMOJI_MAP[artefactKey] || '✨';
                 slot.setAttribute('title', `Artefacto Ganado: ${slot.dataset.artefact}`);
-
-                // Mostrar el artefacto en el mundo si ya ha sido ganado
                 const artefactWorldElement = document.getElementById(`${artefactKey}-artefact-world`);
                 if (artefactWorldElement) {
                     artefactWorldElement.classList.remove('hidden');
@@ -125,8 +93,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-
-    // Nuevo: borrar artefactos guardados y refrescar UI (igual que en Mundo 2)
     function clearArtefacts() {
         if (!confirm('¿Seguro que quieres eliminar todos los artefactos guardados? Esto te obligará a volver a ganar cada uno.')) return;
         localStorage.removeItem('gainedArtefacts');
@@ -134,10 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
         alert('Artefactos restablecidos. Debes volver a ganarlos.');
     }
 
-    // Inicializar
     loadArtefacts();
-
-    // Conectar el botón
     const resetBtn = document.getElementById('reset-artefacts');
     if (resetBtn) resetBtn.addEventListener('click', clearArtefacts);
 });

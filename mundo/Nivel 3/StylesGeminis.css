@@ -17,22 +17,21 @@ body {
   --text-dark: rgba(12,14,35,0.9);
 }
 
-/* contenedor principal */
 #container {
   width: 100%;
   height: 100%;
   position: relative;
-  z-index: 5; /* Asegura que el contenedor esté por encima de elementos de fondo */
+  z-index: 5; 
 }
 #container #score {
-  position: relative; /* Mantener relativo para respetar el flujo del documento */
-  margin-top: 1.5rem; /* Incrementado para mover el puntaje más abajo */
+  position: relative; 
+  margin-top: 1.5rem; 
   font-size: clamp(2rem, 5vw, 4rem);
   color: var(--accent-blue);
   text-shadow: 0 6px 20px rgba(138,43,226,0.25), 0 2px 6px rgba(43,79,255,0.15);
-  text-align: center; /* Centrado debajo del título */
-  z-index: 90; /* Asegura que esté debajo del título */
-  display: block; /* Asegura que no esté oculto */
+  text-align: center;
+  z-index: 90; 
+  display: block; 
 }
 #container #game {
   position: absolute;
@@ -66,8 +65,8 @@ body {
   text-shadow: 0 0 18px rgba(138,43,226,0.35);
 }
 #container .game-over p {
-  color: #0011ff; /* Cambiado a un color naranja (#FF4500) */
-  font-size: 1.2rem; /* Ajusta el tamaño si es necesario */
+  color: #0011ff; 
+  font-size: 1.2rem; 
 }
 #container .game-ready {
   position: absolute;
@@ -91,7 +90,7 @@ body {
   font-size: 30px;
   cursor: pointer;
   box-shadow: 0 8px 30px rgba(43,79,255,0.15), inset 0 -4px 10px rgba(0,0,0,0.12);
-  margin-top: 2rem; /* Añadido para bajar el botón */
+  margin-top: 2rem; 
 }
 #container #instructions {
   position: absolute;
@@ -118,7 +117,7 @@ body {
   transform: translatey(0);
 }
 #container.ended #score {
-  transform: translatey(6vh); /* Eliminada la escala */
+  transform: translatey(6vh); 
 }
 #container.ended .game-over * {
   opacity: 1;
@@ -128,10 +127,9 @@ body {
   transition-delay: 0.3s;
 }
 
-/* Estilos de la interfaz de Mundo (Título, Botón, Mensaje de Artefacto) */
 .level-title {
-  position: relative; /* Cambiado a relativo para respetar el flujo del documento */
-  top: 5vh; /* Mantener el título en la parte superior */
+  position: relative; 
+  top: 5vh; 
   width: 100%;
   text-align: center;
   z-index: 100;
@@ -141,10 +139,9 @@ body {
   color: #FFD700;
   text-shadow: 0 0 15px rgba(255, 215, 0, 0.5), 0 0 40px rgba(255, 255, 255, 0.3);
   font-size: 2.5rem;
-  margin-bottom: 1rem; /* Espaciado para que el puntaje quede debajo */
+  margin-bottom: 1rem; 
 }
 
-/* Si quieres aplicar la fuente Cinzel solo a la letra 't' envuélvela en .letter-t */
 .letter-t {
   font-family: 'Cinzel Decorative', serif;
   font-weight: 700;
@@ -152,18 +149,17 @@ body {
   text-shadow: 0 0 10px rgba(138,43,226,0.3);
 }
 
-/* Estilos para el botón de regreso al mundo */
 .back-button {
   position: absolute;
-  top: 2vh; /* Ajustado para mayor precisión */
-  left: 2vw; /* Ajustado para mayor precisión */
+  top: 2vh; 
+  left: 2vw;
   font-size: 3vw;
   color: #ffffff;
   text-decoration: none;
-  z-index: 200; /* Asegura que esté por encima de otros elementos */
+  z-index: 200; 
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0.5);
-  padding: 10px 20px; /* Aumentado para hacer el área de clic más grande */
+  padding: 10px 20px;
   border-radius: 8px;
   transition: transform 0.2s ease, color 0.3s ease, background-color 0.3s ease;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
@@ -175,7 +171,6 @@ body {
   background-color: rgba(0, 0, 0, 0.7);
 }
 
-/* Ajustar el avatar para que no interfiera */
 .player-avatar {
   position: absolute;
   top: 1rem;
@@ -185,7 +180,7 @@ body {
   border-radius: 50%;
   border: 2px solid #FFD700;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
-  z-index: 10; /* Asegura que el avatar esté por encima de otros elementos */
+  z-index: 10; 
   background: #ffffff;
   object-fit: cover;
 }

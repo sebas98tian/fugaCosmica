@@ -3,13 +3,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap');
 
 :root {
-    --font-title: 'Cinzel Decorative', serif; /* Título principal */
-    --font-body: 'Orbitron', sans-serif; /* Texto de interfaz */
+    --font-title: 'Cinzel Decorative', serif; 
+    --font-body: 'Orbitron', sans-serif; 
     --text-color: #ffffff;
-    --title-word-color: #FFD700; /* Dorado para destacar */
+    --title-word-color: #FFD700; 
     --icon-color: #ffffff;
-    --icon-shadow-color: #ffdd57; /* Sombra de oro suave */
-    --hover-color: #9d6bff; /* Tono violeta para hover/interacción */
+    --icon-shadow-color: #ffdd57; 
+    --hover-color: #9d6bff; 
 }
 
 body, html {
@@ -17,13 +17,11 @@ body, html {
     padding: 0;
     height: 100%;
     overflow: hidden;
-    font-family: var(--font-body); /* Usar Orbitron */
+    font-family: var(--font-body);
 }
 
-/* --- CONTENEDOR PRINCIPAL (#mundo-container) --- */
 #mundo-container {
     background-color: black; 
-    /* ruta relativa desde carpeta /mundo 2/ a /assets/ es ../assets/ */
     background-image: url('../assets/img/Mundo2.PNG');
     background-size: contain; 
     background-position: center;
@@ -42,9 +40,6 @@ body, html {
     padding-top: 5vh; 
     padding-bottom: 5vh;
 }
-/* ---------------------------------------------------------------- */
-
-/* --- Título "Choose World II" --- */
 
 .header-content {
     display: flex;
@@ -53,27 +48,25 @@ body, html {
 }
 
 .title-choose {
-    font-family: var(--font-title); /* Usar Cinzel Decorative */
+    font-family: var(--font-title); 
     font-size: 5vw;
     font-weight: 700;
-    color: var(--title-word-color); /* Dorado */
+    color: var(--title-word-color);
     margin: 0;
     letter-spacing: 0.1em;
     text-shadow: 0 0 15px rgba(255, 215, 0, 0.5), 0 0 40px rgba(255, 255, 255, 0.3);
 }
 
 .title-world {
-    font-family: var(--font-title); /* Usar Cinzel Decorative */
+    font-family: var(--font-title);
     font-size: 5vw;
     font-weight: 700;
-    color: var(--text-color); /* Blanco */
+    color: var(--text-color); 
     margin: 0;
     margin-left: 1.5vw;
     letter-spacing: 0.1em;
     text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
 }
-
-/* --- Botón de Regreso (Flecha) --- */
 
 .back-button {
     position: absolute;
@@ -90,10 +83,8 @@ body, html {
 
 .back-button:hover {
     transform: scale(1.1);
-    color: var(--hover-color); /* Color violeta en hover */
+    color: var(--hover-color);
 }
-
-/* --- Contenedor de Selección (Signos) --- */
 
 .planet-selection {
     position: absolute;
@@ -105,7 +96,6 @@ body, html {
     display: block;
 }
 
-/* --- ESTILOS DE LOS SÍMBOLOS (EMOJIS) --- */
 a.level-emoji {
     display: flex;
     justify-content: center;
@@ -122,13 +112,11 @@ a.level-emoji {
     transition: text-shadow 0.3s ease, transform 0.3s ease;
 }
 
-/* Mantener hover con escala pero sin mover los botones */
 a.level-emoji:hover {
     text-shadow: 0 0 15px var(--icon-shadow-color), 0 0 30px var(--icon-shadow-color), 0 0 40px var(--icon-shadow-color);
     transform: scale(1.1);
 }
 
-/* --- POSICIONES IGUAL QUE MUNDO 1 --- */
 a.leo {
     top: 30%;
     left: 45%;
@@ -151,7 +139,6 @@ a.escorpio {
     top: auto;
 }
 
-/* --- NUEVAS POSICIONES DE BOTONES DE MUNDO --- */
 a.world-3 { 
     top: 46%;
     right: -9vw; 
@@ -171,24 +158,22 @@ a.world-1 {
     display: none !important;
 }
 
-/* --- MODAL CONTENEDOR (FIX: APLICAR ESTILOS A TODOS LOS IDs DE MUNDO 2) --- */
-
 #modal-container-leo, 
 #modal-container-virgo, 
 #modal-container-libra, 
-#modal-container-escorpio { /* IDs de Mundo 2 */
+#modal-container-escorpio { 
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro */
-    display: flex; /* Centrado */
+    background-color: rgba(0, 0, 0, 0.7); 
+    display: flex; 
     justify-content: center;
     align-items: center;
     z-index: 100; 
 }
-/* Mantenemos los selectores de Mundo 1 por si se usan en el mismo archivo */
+
 #modal-container, 
 #modal-container-tauro, 
 #modal-container-geminis, 
@@ -204,29 +189,27 @@ a.world-1 {
     align-items: center;
     z-index: 100; 
 }
-/* --- FIN DE ARREGLO PARA CONTENEDORES MODALES --- */
 
 
-/* Estilos para el contenido del modal (unificado para evitar repetición) */
 #modal-content {
-    background-color: #1a0f3d; /* Fondo oscuro morado */
+    background-color: #1a0f3d; 
     color: var(--text-color);
     padding: 25px 35px;
     border-radius: 12px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
     width: 350px;
     text-align: left;
-    border: 2px solid var(--hover-color); /* Borde violeta */
+    border: 2px solid var(--hover-color);
     font-family: var(--font-body);
 }
 
 .modal-title {
-    font-family: var(--font-title); /* Cinzel Decorative */
+    font-family: var(--font-title); 
     font-size: 1.8em;
     font-weight: 700;
     margin-top: 0;
     margin-bottom: 10px;
-    color: var(--title-word-color); /* Dorado */
+    color: var(--title-word-color); 
     text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
 }
 
@@ -277,7 +260,7 @@ a.world-1 {
 }
 
 .modal-button.continue {
-    background-color: var(--title-word-color); /* Dorado */
+    background-color: var(--title-word-color); 
     color: #000;
     border: 2px solid var(--title-word-color);
 }
@@ -287,7 +270,6 @@ a.world-1 {
     transform: scale(1.05);
 }
 
-/* --- ESTILOS PARA EL RECTÁNGULO DE ARTEFACTOS --- */
 #artefact-inventory {
     position: absolute;
     bottom: 5vh; 
@@ -296,10 +278,10 @@ a.world-1 {
     width: 80%; 
     max-width: 900px;
     background-color: rgba(30, 30, 50, 0.85); 
-    border: 3px solid var(--hover-color); /* Borde violeta */
+    border: 3px solid var(--hover-color); 
     border-radius: 15px;
     padding: 15px 20px;
-    box-shadow: 0 0 20px rgba(157, 107, 255, 0.5); /* Sombra violeta */
+    box-shadow: 0 0 20px rgba(157, 107, 255, 0.5);
     z-index: 5;
     color: white;
     font-family: var(--font-body);
@@ -310,7 +292,7 @@ a.world-1 {
     font-size: 1.3em;
     margin-top: 0;
     margin-bottom: 10px;
-    color: var(--title-word-color); /* Título en dorado */
+    color: var(--title-word-color); 
 }
 
 #artefact-slots {
@@ -336,13 +318,11 @@ a.world-1 {
 }
 
 .artefact-slot.unlocked {
-    border: 2px solid var(--title-word-color); /* Borde de oro cuando está desbloqueado */
+    border: 2px solid var(--title-word-color); 
     opacity: 1;
     box-shadow: 0 0 10px var(--title-word-color);
 }
 
-/* --- ESTILOS PARA EL BOTÓN DE REINICIO DE ARTEFACTOS --- */
-/* Reemplazo: normalizar #reset-artefacts para que luzca como en mundo/MundoStyle.css */
 #reset-artefacts {
     display: inline-flex;
     align-items: center;
@@ -350,8 +330,8 @@ a.world-1 {
     padding: 0.45rem 0.75rem;
     font-size: 0.9rem;
     border-radius: 50px;
-    background-color: transparent;        /* igual que .modal-button.exit */
-    border: 2px solid var(--text-color);  /* borde claro como en Mundo */
+    background-color: transparent;       
+    border: 2px solid var(--text-color);  
     color: var(--text-color);
     cursor: pointer;
     box-shadow: none;
@@ -360,11 +340,10 @@ a.world-1 {
 }
 
 #reset-artefacts:hover {
-    background-color: #4a3455; /* mismo hover que .modal-button.exit */
+    background-color: #4a3455; 
     transform: scale(1.05);
 }
 
-/* Mantener comportamiento para icon-only si existe */
 #reset-artefacts.icon-only {
     padding: 0.35rem;
     width: 36px;

@@ -1,7 +1,7 @@
 console.clear();
 var Stage = /** @class */ (function () {
   function Stage() {
-    // container
+
     var _this = this;
     this.render = function () {
       this.renderer.render(this.scene, this.camera);
@@ -13,7 +13,6 @@ var Stage = /** @class */ (function () {
       this.scene.remove(elem);
     };
     this.container = document.getElementById("game");
-    // renderer
     this.renderer = new THREE.WebGLRenderer({
       antialias: true,
       alpha: false,
@@ -21,9 +20,7 @@ var Stage = /** @class */ (function () {
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.renderer.setClearColor("#1C1C1C", 1);
     this.container.appendChild(this.renderer.domElement);
-    // scene
     this.scene = new THREE.Scene();
-    // camera
     var aspect = window.innerWidth / window.innerHeight;
     var d = 20;
     this.camera = new THREE.OrthographicCamera(
@@ -38,7 +35,6 @@ var Stage = /** @class */ (function () {
     this.camera.position.y = 2;
     this.camera.position.z = 2;
     this.camera.lookAt(new THREE.Vector3(0, 0, 0));
-    //light
     this.light = new THREE.DirectionalLight(0xffffff, 0.5);
     this.light.position.set(0, 499, 0);
     this.scene.add(this.light);
@@ -72,7 +68,6 @@ var Stage = /** @class */ (function () {
 })();
 var Block = /** @class */ (function () {
   function Block(block) {
-    // set size and position
     this.STATES = { ACTIVE: "active", STOPPED: "stopped", MISSED: "missed" };
     this.MOVE_AMOUNT = 12;
     this.dimension = { width: 0, height: 0, depth: 0 };
@@ -81,7 +76,6 @@ var Block = /** @class */ (function () {
     this.index = (this.targetBlock ? this.targetBlock.index : 0) + 1;
     this.workingPlane = this.index % 2 ? "x" : "z";
     this.workingDimension = this.index % 2 ? "width" : "depth";
-    // set the dimensions from the target block, or defaults.
     this.dimension.width = this.targetBlock
       ? this.targetBlock.dimension.width
       : 10;
@@ -97,7 +91,6 @@ var Block = /** @class */ (function () {
     this.colorOffset = this.targetBlock
       ? this.targetBlock.colorOffset
       : Math.round(Math.random() * 100);
-    // set color
     if (!this.targetBlock) {
       this.color = 0x333344;
     } else {
@@ -107,13 +100,10 @@ var Block = /** @class */ (function () {
       var b = Math.sin(0.3 * offset + 4) * 55 + 200;
       this.color = new THREE.Color(r / 255, g / 255, b / 255);
     }
-    // state
     this.state = this.index > 1 ? this.STATES.ACTIVE : this.STATES.STOPPED;
-    // set direction
     this.speed = -0.1 - this.index * 0.005;
     if (this.speed < -4) this.speed = -4;
     this.direction = this.speed;
-    // create block
     var geometry = new THREE.BoxGeometry(
       this.dimension.width,
       this.dimension.height,
@@ -272,14 +262,11 @@ var Game = /** @class */ (function () {
       if (e.keyCode == 32) _this.onAction();
     });
     document.addEventListener("click", function (e) {
-      if (e.target.closest(".back-button")) return; // Ignorar clics en el botón de regreso
+      if (e.target.closest(".back-button")) return; 
       _this.onAction();
     });
     document.addEventListener("touchstart", function (e) {
       e.preventDefault();
-      // this.onAction();
-      // ☝️ this triggers after click on android so you
-      // insta-lose, will figure it out later.
     });
   }
   Game.prototype.updateState = function (newState) {
@@ -398,8 +385,7 @@ var Game = /** @class */ (function () {
     }
     this.scoreContainer.innerHTML = String(this.blocks.length);
 
-    // Manejo del artefacto de Géminis
-    if (this.blocks.length === 10) { // Aquí se define el puntaje para ganar el artefacto
+    if (this.blocks.length === 10) { 
       const gained = JSON.parse(localStorage.getItem('gainedArtefacts')) || {};
       if (!gained['geminis']) {
         alert("¡Felicidades! Has ganado el Artefacto de Géminis: Lira Gemela 🎉");

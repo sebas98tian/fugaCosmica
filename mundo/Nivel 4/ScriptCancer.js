@@ -16,43 +16,43 @@
           [-1, 1],
           [0, 1],
           [1, 1],
-          [0, 0], //TEE
+          [0, 0], 
         ],
         [
           [-1, 0],
           [0, 0],
           [1, 0],
-          [2, 0], //line
+          [2, 0], 
         ],
         [
           [-1, -1],
           [-1, 0],
           [0, 0],
-          [1, 0], //L EL
+          [1, 0], 
         ],
         [
           [1, -1],
           [-1, 0],
           [0, 0],
-          [1, 0], //R EL
+          [1, 0], 
         ],
         [
           [0, -1],
           [1, -1],
           [-1, 0],
-          [0, 0], // R ess
+          [0, 0], 
         ],
         [
           [-1, -1],
           [0, -1],
           [0, 0],
-          [1, 0], //L ess
+          [1, 0], 
         ],
         [
           [0, -1],
           [1, -1],
           [0, 0],
-          [1, 0], //square
+          [1, 0], 
         ],
       ],
       tempShapes: null,
@@ -97,7 +97,6 @@
         for (var i = 0; i < s; i++) {
           this.board.push(0);
         }
-        //this.boardDiv = document.getElementById('board); //for debugging
       },
       initInfo: function () {
         this.nextShapeDisplay = document.getElementById("next_shape");
@@ -147,7 +146,6 @@
         }
         var k = this.tempShapes.length;
         while (--k) {
-          //Fisher Yates Shuffle
           var j = Math.floor(Math.random() * (k + 1));
           var tempk = this.tempShapes[k];
           var tempj = this.tempShapes[j];
@@ -181,11 +179,10 @@
         var c = 1;
         for (var i = 1; i <= this.numLevels; i++) {
           var scoreThreshold = c * 1000;
-          // 👇🏻 MODIFICACIÓN: Primer nivel se supera con 200 puntos.
           if (i === 1) {
               scoreThreshold = 200;
           }
-          this["level" + i] = [scoreThreshold, 40 * i, 5 * i]; //for nxt level, row score, p sore,
+          this["level" + i] = [scoreThreshold, 40 * i, 5 * i]; 
           c = c + c;
         }
       },
@@ -292,8 +289,6 @@
       incLevel: function () {
         if (this.level === 1) {
             alert("¡FELICIDADES! Has ganado el Artefacto de Cáncer. 🐐");
-
-            // Guardar el artefacto en localStorage
             const gained = JSON.parse(localStorage.getItem('gainedArtefacts')) || {};
             gained['cancer'] = true;
             localStorage.setItem('gainedArtefacts', JSON.stringify(gained));
@@ -320,7 +315,6 @@
         if (shape === true) {
           score += shape * this["level" + this.level][2];
         }
-        /*if (speed > 0){ score += speed * this["level" +this .level[3]];}*/
         this.incScore(score);
       },
       checkScore: function () {

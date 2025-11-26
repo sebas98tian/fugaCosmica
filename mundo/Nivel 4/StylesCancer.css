@@ -1,52 +1,45 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Cinzel+Decorative:wght@700&display=swap');
-
-/* --- Estilos Globales y de Fondo (Basado en tu CSS) --- */
 body {
   margin: 0;
   padding: 0;
   height: 100vh;
-  /* Simulo el fondo si tuvieras la imagen en la ruta. Si no tienes la imagen, usa un color sólido. */
-  /* background: url('../assets/img/WireMainMenu.png') no-repeat center center/cover; */
-  background-color: #202020; /* Color de fallback si la imagen no existe */
+  background-color: #202020; 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-family: 'Orbitron', sans-serif; /* Aplico la fuente futurista */
+  font-family: 'Orbitron', sans-serif; 
   color: white;
 }
 
 #tetris {
   width: 360px;
-  border: 4px solid #FFD700; /* Borde dorado/amarillo */
-  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5); /* Sombra de neón */
+  border: 4px solid #FFD700;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
   padding: 20px;
-  background-color: #000; /* Fondo oscuro para el contenedor principal */
+  background-color: #000;
 }
 
-/* --- Estilos del Área de Juego (Canvas) --- */
 #canvas {
   width: 200px;
   height: 440px;
-  background-color: #101010; /* Un poco más claro que el fondo de tetris */
+  background-color: #101010; 
   position: relative;
-  border: 1px solid #9d6bff; /* Borde de color hover */
+  border: 1px solid #9d6bff; 
 }
 #canvas h1 {
-  /* Estilo Cinzel Decorative para el "GAME OVER" */
   font-family: 'Cinzel Decorative', serif;
   font-weight: 700;
   text-align: center;
   font-size: 30px;
   padding-top: 200px;
   color: #FFD700;
-  text-shadow: 0 0 10px #f00; /* Color de GAME OVER en rojo */
+  text-shadow: 0 0 10px #f00;
   margin: 0;
   padding: 0;
 }
 
-/* --- Estilos de la Información Lateral (Score, Level, etc.) --- */
 #info {
   background-color: #1a1a1a;
   color: white;
@@ -63,10 +56,9 @@ body {
 }
 #info span {
     font-weight: 700;
-    color: #00f0f0; /* Color para los valores */
+    color: #00f0f0; 
 }
 
-/* --- Estilo del Siguiente Bloque --- */
 #next_shape {
   position: relative;
   background-color: #000;
@@ -76,13 +68,12 @@ body {
   margin-bottom: 15px;
 }
 
-/* --- Estilo del Botón de Inicio (Start) --- */
 #start {
-  animation: none; /* Desactivo la animación de blink original */
+  animation: none; 
   font-family: 'Orbitron', sans-serif;
   font-size: 1.2rem;
   letter-spacing: 2px;
-  background: #9d6bff; /* Color de hover que enviaste */
+  background: #9d6bff; 
   border: 2px solid #FFD700;
   border-radius: 4px;
   color: white;
@@ -99,16 +90,15 @@ body {
 
 .red {
   color: #f00000;
-  font-size: 10px; /* Hago más pequeño el texto de pausa */
+  font-size: 10px;
   margin-top: 10px;
 }
 
-/* --- Estilos de los Cuadrados de Tetris (Mismos colores) --- */
 .square {
   position: absolute;
   width: 19px;
   height: 19px;
-  border: 1px solid #444; /* Borde más sutil */
+  border: 1px solid #444; 
 }
 .type0 {
   background-color: #a000f0;
@@ -140,7 +130,7 @@ body {
     text-decoration: none;
     z-index: 20;
     cursor: pointer;
-    background-color: #000000; /* Fondo negro */
+    background-color: #000000; 
     padding: 8px 20px;
     border-radius: 8px;
     transition: transform 0.2s ease, color 0.3s ease, background-color 0.3s ease;
@@ -149,6 +139,6 @@ body {
 
 .back-button:hover {
     transform: scale(1.1);
-    color: #FFD700; /* Color dorado en hover */
-    background-color: #5e00c9; /* Fondo violeta en hover */
+    color: #FFD700; 
+    background-color: #5e00c9; 
 }

@@ -1,11 +1,8 @@
-// =============================
-// JUEGO NIVEL LEO (MISMA LÓGICA)
-// =============================
+
 
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
 
-// Referencias a los nuevos elementos HTML
 const gameOverScreen = document.getElementById("gameOverScreen");
 const finalMessage = document.getElementById("finalMessage");
 const restartBtn = document.getElementById("restartBtn");
@@ -14,7 +11,6 @@ let keys = {};
 document.onkeydown = e => keys[e.key] = true;
 document.onkeyup   = e => keys[e.key] = false;
 
-// Ajustar canvas
 function resizeCanvas(){
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -22,20 +18,13 @@ function resizeCanvas(){
 window.addEventListener("resize", resizeCanvas);
 resizeCanvas();
 
-// =======================
-// CARGAR IMÁGENES LOCALES
-// =======================
 const playerImg = new Image();
 const hadesImg  = new Image();
 playerImg.src = "caraJugador.png";
 hadesImg.src  = "caraHades.png";
 
 
-// =======================
-// GENERAR POSICIÓN ALEATORIA PARA EL ITEM (NUEVA FUNCIÓN)
-// =======================
 function getRandomItemPosition() {
-    // Definimos un margen para que no aparezca muy cerca de los bordes o del inicio
     const MARGIN = 150; 
     const MIN_DISTANCE_FROM_START = 250;
     
@@ -55,11 +44,8 @@ function getRandomItemPosition() {
 }
 
 
-// =======================
-// ESTADO INICIAL
-// =======================
 const START = { x: 100, y: 100 };
-const initialItemPos = getRandomItemPosition(); // Posición aleatoria inicial
+const initialItemPos = getRandomItemPosition(); 
 
 let player = {
     x: START.x,

@@ -1,12 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
     const storedName = localStorage.getItem('name_img') || 'av1';
-
-    // Rutas candidatas (intenta varias rutas relativas/absolutas)
     const candidates = [
-        `/assets/img/${storedName}.png`,   // raíz del servidor
-        `../assets/img/${storedName}.png`, // una carpeta arriba
+        `/assets/img/${storedName}.png`,   
+        `../assets/img/${storedName}.png`, 
         `../../assets/img/${storedName}.png`,
-        `assets/img/${storedName}.png`      // relativa sin slash
+        `assets/img/${storedName}.png`    
     ];
 
     const avatars = document.querySelectorAll('.player-avatar');
@@ -16,17 +14,14 @@ document.addEventListener('DOMContentLoaded', () => {
         let idx = 0;
         const tryLoad = () => {
             if (idx >= candidates.length) {
-                // último recurso: colocar el primer candidato aunque falle
                 img.src = candidates[0];
                 return;
             }
             img.src = candidates[idx];
-            // Si falla la carga, intenta la siguiente ruta
             img.onerror = () => {
                 idx++;
                 tryLoad();
             };
-            // Si carga bien, remover el handler de error
             img.onload = () => {
                 img.onerror = null;
             };

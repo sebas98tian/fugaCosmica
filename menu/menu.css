@@ -78,8 +78,8 @@ div p{
 }
 a{
     font-family: 'Orbitron', sans-serif;
-    font-size: 2rem; /* aumenta tamaño */
-    letter-spacing: 4px; /* separa las letras horizontalmente */
+    font-size: 2rem;
+    letter-spacing: 4px; 
     text-transform: uppercase;
     color: white;
     text-decoration: none;
@@ -88,7 +88,7 @@ a{
     transition: color 0.3s ease;
 }
 a:hover {
-  color: #9d6bff; /* tono violeta para hover */
+  color: #9d6bff; 
 }
 
 
