@@ -1,41 +1,37 @@
 document.addEventListener('DOMContentLoaded', () => {
     // ===========================================
-    // *** SELECTORES DOM (Mundo 1: niveles 1-4) ***
+    // *** SELECTORES DOM (Mundo 2: niveles 5-8) ***
     // ===========================================
-    // Nivel 1: Aries (Usando ID consistente)
-    const ariesButton = document.querySelector('.level-emoji.aries');
-    const ariesModal = document.getElementById('modal-container-aries'); 
-    const ariesExitButton = document.getElementById('modal-exit-aries');
-    const ariesContinue = document.getElementById('modal-continue-aries');
-    
-    // Nivel 2: Tauro
-    const taurusButton = document.querySelector('.level-emoji.taurus');
-    const taurusModal = document.getElementById('modal-container-tauro');
-    const taurusExitButton = document.getElementById('modal-exit-tauro');
-    const taurusContinue = document.getElementById('modal-continue-tauro');
+    const leoButton = document.querySelector('.level-emoji.leo');
+    const leoModal = document.getElementById('modal-container-leo');
+    const leoExitButton = document.getElementById('modal-exit-leo');
+    const leoContinue = document.getElementById('modal-continue-leo');
 
-    // Nivel 3: Géminis
-    const geminisButton = document.querySelector('.level-emoji.gemini');
-    const geminisModal = document.getElementById('modal-container-geminis');
-    const geminisExitButton = document.getElementById('modal-exit-geminis');
-    const geminisContinue = document.getElementById('modal-continue-geminis');
-    
-    // Nivel 4: Cáncer
-    const cancerButton = document.querySelector('.level-emoji.cancer');
-    const cancerModal = document.getElementById('modal-container-cancer');
-    const cancerExitButton = document.getElementById('modal-exit-cancer');
-    const cancerContinue = document.getElementById('modal-continue-cancer');
+    const virgoButton = document.querySelector('.level-emoji.virgo');
+    const virgoModal = document.getElementById('modal-container-virgo');
+    const virgoExitButton = document.getElementById('modal-exit-virgo');
+    const virgoContinue = document.getElementById('modal-continue-virgo');
+
+    const libraButton = document.querySelector('.level-emoji.libra');
+    const libraModal = document.getElementById('modal-container-libra');
+    const libraExitButton = document.getElementById('modal-exit-libra');
+    const libraContinue = document.getElementById('modal-continue-libra');
+
+    const escorpioButton = document.querySelector('.level-emoji.escorpio');
+    const escorpioModal = document.getElementById('modal-container-escorpio');
+    const escorpioExitButton = document.getElementById('modal-exit-escorpio');
+    const escorpioContinue = document.getElementById('modal-continue-escorpio');
 
     // ===========================================
     // *** CONFIGURACIÓN DEL JUEGO Y ARTEFACTOS ***
     // ===========================================
-    
-    // Mapa de emojis para los artefactos.
+
+    // Mapa de emojis para los artefactos de Mundo 2.
     const ARTEFACT_EMOJI_MAP = {
-        'aries': '🔱',      // Yelmo de Bronce
-        'tauro': '🐮',      // Toro Dorado
-        'geminis': '🎻',    // Lira de los Gemelos
-        'cancer': '🐐'     // Caparazón Lunar
+        'leo': '🦁',        // Usando un emoji más representativo para Leo
+        'virgo': '🌾',      // Usando un emoji más representativo para Virgo
+        'libra': '⚖️',      // Usando un emoji más representativo para Libra
+        'escorpio': '🦂'    // Usando un emoji más representativo para Escorpio
     };
 
     // ===========================================
@@ -54,6 +50,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /**
      * Configura los eventos de click para abrir, cerrar y continuar un modal.
+     * @param {HTMLElement} button - Botón de nivel que abre el modal.
+     * @param {HTMLElement} modal - Elemento contenedor del modal.
+     * @param {HTMLElement} exitButton - Botón de 'Salir' o 'Cerrar' dentro del modal.
+     * @param {HTMLElement} continueButton - Botón de 'Seguir' o 'Continuar' (navegación).
      */
     function setupModal(button, modal, exitButton, continueButton) {
         // 1. Abrir el modal
@@ -86,15 +86,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // ===========================================
 
     // Aplicar la lógica modular a cada nivel
-    setupModal(ariesButton, ariesModal, ariesExitButton, ariesContinue);
-    setupModal(taurusButton, taurusModal, taurusExitButton, taurusContinue);
-    setupModal(geminisButton, geminisModal, geminisExitButton, geminisContinue);
-    setupModal(cancerButton, cancerModal, cancerExitButton, cancerContinue);
+    setupModal(leoButton, leoModal, leoExitButton, leoContinue);
+    setupModal(virgoButton, virgoModal, virgoExitButton, virgoContinue);
+    setupModal(libraButton, libraModal, libraExitButton, libraContinue);
+    setupModal(escorpioButton, escorpioModal, escorpioExitButton, escorpioContinue);
+
 
     // Cerrar todos con Escape
     window.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
-            [ariesModal, taurusModal, geminisModal, cancerModal].forEach(m => {
+            [leoModal, virgoModal, libraModal, escorpioModal].forEach(m => {
                 if (m) closeModal(m);
             });
         }
@@ -116,6 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 slot.textContent = ARTEFACT_EMOJI_MAP[artefactKey] || '✨';
                 slot.setAttribute('title', `Artefacto Ganado: ${slot.dataset.artefact}`);
 
+                // Mostrar el artefacto en el mundo si ya ha sido ganado
                 const artefactWorldElement = document.getElementById(`${artefactKey}-artefact-world`);
                 if (artefactWorldElement) {
                     artefactWorldElement.classList.remove('hidden');
@@ -124,22 +126,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 slot.classList.remove('unlocked');
                 slot.textContent = '';
                 slot.setAttribute('title', `Bloqueado: ${slot.dataset.artefact}`);
+                // Ocultar elemento mundo si existe
+                const artefactWorldElement = document.getElementById(`${artefactKey}-artefact-world`);
+                if (artefactWorldElement) {
+                    artefactWorldElement.classList.add('hidden');
+                }
             }
         });
     }
 
-    // Nuevo: borrar artefactos guardados y refrescar UI (mismo comportamiento que Mundo 2)
+    // Nuevo: borrar artefactos guardados y refrescar UI
     function clearArtefacts() {
         if (!confirm('¿Seguro que quieres eliminar todos los artefactos guardados? Esto te obligará a volver a ganar cada uno.')) return;
         localStorage.removeItem('gainedArtefacts');
+        // Alternativa: localStorage.setItem('gainedArtefacts', JSON.stringify({}));
         loadArtefacts();
         alert('Artefactos restablecidos. Debes volver a ganarlos.');
     }
 
-    // Inicializar (ya estaba en el script — asegurarse que loadArtefacts se llame)
+    // Inicializar
     loadArtefacts();
 
-    // Conectar el botón de restablecer si existe
+    // Conectar el botón
     const resetBtn = document.getElementById('reset-artefacts');
     if (resetBtn) resetBtn.addEventListener('click', clearArtefacts);
 });

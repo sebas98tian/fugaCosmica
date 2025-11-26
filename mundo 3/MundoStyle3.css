@@ -23,7 +23,8 @@ body, html {
 /* --- CONTENEDOR PRINCIPAL (#mundo-container) --- */
 #mundo-container {
     background-color: black; 
-    background-image: url('../assets/img/Mundo.png');
+    /* ¡CAMBIO DE IMAGEN DE FONDO! */
+    background-image: url('../assets/img/Mundo3.png'); /* Corregido */
     background-size: contain; 
     background-position: center;
     background-repeat: no-repeat;
@@ -43,7 +44,7 @@ body, html {
 }
 /* ---------------------------------------------------------------- */
 
-/* --- Título "Choose World I" --- */
+/* --- Título "Choose World III" --- */
 
 .header-content {
     display: flex;
@@ -127,31 +128,32 @@ a.level-emoji:hover {
     transform: scale(1.1);
 }
 
-/* --- POSICIONES DE LOS SIGNOS --- */
-a.aries {
+/* --- POSICIONES (Ajustar según la imagen de fondo de Mundo 3) --- */
+/* Se usan las mismas posiciones relativas que antes para mantener consistencia. */
+a.sagitario {
     top: 30%;
     left: 45%;
 }
 
-a.taurus {
+a.capricornio {
     top: 45%;
     left: 30%;
 }
 
-a.gemini {
+a.acuario {
     top: 45%;
     right: 30%;
     left: auto;
 }
 
-a.cancer {
+a.piscis {
     bottom: 30%;
     left: 45%;
     top: auto;
 }
 
 /* --- NUEVAS POSICIONES DE BOTONES DE MUNDO --- */
-a.world-2 { 
+a.world-1 { 
     top: 46%;
     right: -8vw; 
     left: auto; 
@@ -159,9 +161,9 @@ a.world-2 {
     z-index: 1;
 }
 
-a.world-3 { 
-    top: 46%; 
-    left: -8vw;
+a.world-2 { 
+    top: 46.5%; 
+    left: -7.5vw;
     font-size: 4vw; 
     z-index: 1;
 }
@@ -170,12 +172,12 @@ a.world-3 {
     display: none !important;
 }
 
-/* --- MODAL CONTENEDOR (INCLUYE EL NUEVO ID PARA ARIES) --- */
+/* --- MODAL CONTENEDOR (INCLUIR IDs DE MUNDO 3) --- */
 
-#modal-container-aries, 
-#modal-container-tauro, 
-#modal-container-geminis, 
-#modal-container-cancer { 
+#modal-container-sagitario, 
+#modal-container-capricornio, 
+#modal-container-acuario, 
+#modal-container-piscis { 
     position: fixed;
     top: 0;
     left: 0;
@@ -187,7 +189,21 @@ a.world-3 {
     align-items: center;
     z-index: 100; 
 }
-/* --- FIN DE MODALES DEL MUNDO 1 --- */
+
+/* Los siguientes selectores mantienen la compatibilidad si otros mundos usan este CSS */
+#modal-container, #modal-container-tauro, #modal-container-geminis, #modal-container-cancer,
+#modal-container-leo, #modal-container-virgo, #modal-container-libra, #modal-container-escorpio { 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100; 
+}
 
 
 /* Estilos para el contenido del modal (unificado para evitar repetición) */

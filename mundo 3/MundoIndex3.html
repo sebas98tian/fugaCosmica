@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fuga Cósmica - Seleccionar Mundo III</title>
+    <link rel="stylesheet" href="MundoStyle3.css"> 
+</head>
+<body>
+
+    <div id="mundo-container">
+        <a href="../menu/menu.html" class="back-button">
+            ↩
+        </a>
+
+        <img class="player-avatar" id="player-avatar" src="/assets/img/av1.png" alt="Avatar" style="position:absolute; top:3vh; right:3vw; width:4.5rem; height:4.5rem; border-radius:50%; border:2px solid #FFD700; box-shadow:0 0 8px rgba(0,0,0,0.6); z-index:25; background:#ffffff; object-fit:cover; display:block;">
+
+        <div class="header-content">
+            <h1 class="title-choose">Choose</h1>
+            <h1 class="title-world">World III</h1> </div>
+
+        <div class="planet-selection">
+            <a class="level-emoji sagitario" href="Nivel 9/NivelSagitario.html">
+                ♐
+            </a>
+            <a class="level-emoji capricornio" href="Nivel 10/NivelCapricornio.html">
+                ♑
+            </a>
+            <a class="level-emoji acuario" href="Nivel 11/NivelAcuario.html">
+                ♒
+            </a>
+            <a class="level-emoji piscis" href="Nivel 12/NivelPiscis.html">
+                ♓
+            </a>
+            
+            <a class="level-emoji world-button world-2" href="../mundo 2/MundoIndex2.html">
+                ◎
+            </a>
+            <a class="level-emoji world-button world-1" href="../mundo/MundoIndex.html">
+                ◎
+            </a>
+
+        </div>
+
+        <div id="modal-container-sagitario" class="hidden">
+            <div id="modal-content">
+                <h3 class="modal-title">Nivel 9 (Sagitario)</h3>
+                <p class="modal-text">¡Prepárate para la aventura!</p>
+                <p class="modal-text">Enfrenta el laberinto de la galaxia y obtén el <strong>Arco Cósmico</strong> para continuar.</p>
+
+                <div class="modal-actions">
+                    <button id="modal-exit-sagitario" class="modal-button exit">
+                        <span class="icon">↩</span> Salir
+                    </button>
+                    <a href="Nivel 9/NivelSagitario.html" id="modal-continue-sagitario" class="modal-button continue">
+                        <span class="icon">★</span> Seguir
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="modal-container-capricornio" class="hidden">
+            <div id="modal-content">
+                <h3 class="modal-title">Nivel 10 (Capricornio)</h3>
+                <p class="modal-text">¡Sube la montaña estelar!</p>
+                <p class="modal-text">Resuelve los enigmas de la cabra marina y obtén el <strong>Tridente del Mar</strong> para continuar.</p>
+
+                <div class="modal-actions">
+                    <button id="modal-exit-capricornio" class="modal-button exit">
+                        <span class="icon">↩</span> Salir
+                    </button>
+                    <a href="Nivel 10/NivelCapricornio.html" id="modal-continue-capricornio" class="modal-button continue">
+                        <span class="icon">★</span> Seguir
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="modal-container-acuario" class="hidden">
+            <div id="modal-content">
+                <h3 class="modal-title">Nivel 11 (Acuario)</h3>
+                <p class="modal-text">¡El portador del agua espera!</p>
+                <p class="modal-text">Domina el flujo de datos y obtén la <strong>Jarra del Conocimiento</strong> para continuar.</p>
+
+                <div class="modal-actions">
+                    <button id="modal-exit-acuario" class="modal-button exit">
+                        <span class="icon">↩</span> Salir
+                    </button>
+                    <a href="Nivel 11/NivelAcuario.html" id="modal-continue-acuario" class="modal-button continue">
+                        <span class="icon">★</span> Seguir
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="modal-container-piscis" class="hidden">
+            <div id="modal-content">
+                <h3 class="modal-title">Nivel 12 (Piscis)</h3>
+                <p class="modal-text">¡Sueños y realidades se mezclan!</p>
+                <p class="modal-text">Navega el océano astral y obtén el <strong>Par de Peces</strong> para completar tu viaje.</p>
+
+                <div class="modal-actions">
+                    <button id="modal-exit-piscis" class="modal-button exit">
+                        <span class="icon">↩</span> Salir
+                    </button>
+                    <a href="Nivel 12/NivelPiscis.html" id="modal-continue-piscis" class="modal-button continue">
+                        <span class="icon">★</span> Seguir
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div id="artefact-inventory">
+            <h3 class="inventory-title">Artefactos Obtenidos</h3>
+            
+            <button id="reset-artefacts" class="modal-button exit" title="Eliminar artefactos guardados">↻ Restablecer artefactos</button>
+
+            <div id="artefact-slots">
+                <div id="sagitario-artefact" class="artefact-slot" data-artefact="Arco Cósmico"></div>
+                <div id="capricornio-artefact" class="artefact-slot" data-artefact="Tridente del Mar"></div>
+                <div id="acuario-artefact" class="artefact-slot" data-artefact="Jarra del Conocimiento"></div>
+                <div id="piscis-artefact" class="artefact-slot" data-artefact="Par de Peces"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="MundoScript3.js"></script> 
+    <script src="avatar.js"></script>
+</body>
+</html>

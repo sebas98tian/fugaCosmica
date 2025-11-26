@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Nivel 8 — Escorpio</title>
+
+<link rel="stylesheet" href="stylesEscorpio.css">
+
+<!-- Tipografías del sistema -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<a href="../MundoIndex2.html" class="back-button" aria-label="Volver al mundo">
+    ↩
+</a>
+
+<!-- Agregar el avatar -->
+<img class="player-avatar" id="player-avatar" src="/assets/img/av1.png" alt="Avatar" style="position:absolute; top:3vh; right:3vw; width:4.5rem; height:4.5rem; border-radius:50%; border:2px solid #FFD700; box-shadow:0 0 8px rgba(0,0,0,0.6); z-index:25; background:#ffffff; object-fit:cover; display:block;">
+
+<div class="main-content">
+<!-- Título del nivel -->
+<h1 class="level-title">Nivel 8 — Escorpio</h1>
+
+<!-- Contenedor del juego -->
+<div id="game"></div>
+<div id="msg">Objetivo: consigue el 🦂 Aguijón Escarlata y vuelve a la entrada.</div>
+
+<!-- Modal de Game Over (HTML en su lugar) -->
+<div id="gameOverModal" class="modal hidden" role="dialog" aria-labelledby="goTitle" aria-hidden="true">
+    <div class="modal-content">
+        <h2 id="goTitle">💀 GAME OVER 💀</h2>
+        <p>Fuiste devorado por los demonios. El laberinto ha reclamado otra víctima.</p>
+        <button id="restartButton" class="btn">Intentarlo Otra Vez</button>
+    </div>
+</div>
+</div>
+
+<!-- Cargar avatar.js antes del script del nivel -->
+<script src="../avatar.js"></script>
+<script src="scriptEscorpio.js"></script>
+</body>
+</html>

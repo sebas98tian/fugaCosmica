@@ -1,0 +1,107 @@
+body{
+    margin:0;
+    overflow:hidden;
+    background: #000033;
+    font-family: Arial, sans-serif;
+    color: white;
+}
+
+canvas{
+    display:block;
+}
+
+#backButton {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 100;
+    font-size: 1.5rem;
+    padding: 5px 10px;
+    background: rgba(0,0,0,0.5);
+    color: #00ffff;
+    border-radius: 5px;
+    text-decoration: none;
+    border: 2px solid #00ffff;
+}
+
+#backButton:hover {
+    background: rgba(0,255,255,0.2);
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+    background: #000033;
+    font-family: Arial, sans-serif;
+    color: white;
+}
+
+canvas {
+    display: block;
+}
+
+/* Botón de regresar modificado */
+.back-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 100;
+    font-size: 3rem;       /* tamaño más grande */
+    padding: 15px 20px;    /* más espacio alrededor */
+    background: rgba(0,0,0,0.5);
+    color: #00ffff;
+    border-radius: 10px;
+    text-decoration: none;
+    border: 3px solid #00ffff;
+    cursor: pointer;        /* cursor tipo mano */
+}
+
+.back-button:hover {
+    background: rgba(0,255,255,0.2);
+}
+
+.back-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 3rem;           /* tamaño grande */
+    padding: 10px 15px;        /* espacio alrededor */
+    background: rgba(0,0,0,0.5); /* fondo semitransparente para resaltar */
+    color: #ffcc00;            /* color del texto */
+    text-decoration: none;
+    border-radius: 10px;
+    border: 2px solid #ffcc00; /* borde visible */
+    cursor: pointer;           /* cursor tipo mano */
+    z-index: 100;              /* que esté sobre todo */
+    transition: all 0.2s ease; /* efecto suave al pasar el mouse */
+}
+
+.back-button:hover {
+    background: rgba(255,204,0,0.2); /* cambio de fondo al pasar el mouse */
+}
+
+/* Avatar fijo, encima del juego pero sin bloquear clicks/entradas */
+.player-avatar {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+    border: 2px solid #FFD700;
+    box-shadow: 0 0 8px rgba(0,0,0,0.6);
+    background: #ffffff;
+    object-fit: cover;
+    z-index: 1000;
+    pointer-events: none; /* NO bloquear interacciones del juego */
+}
+
+/* Ajuste para pantallas pequeñas */
+@media (max-width: 600px) {
+    .player-avatar {
+        width: 3.2rem;
+        height: 3.2rem;
+        top: 8px;
+        right: 8px;
+    }
+}

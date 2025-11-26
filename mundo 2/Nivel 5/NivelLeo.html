@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Nivel Leo — Escape del Reino Solar</title>
+<link rel="stylesheet" href="stylesLeo.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<a href="../MundoIndex2.html" class="back-button" aria-label="Volver al mundo">
+    ↩
+</a>
+
+<!-- Agregar el avatar (posicionar con CSS existente .player-avatar en StylesLeo.css o en MundoStyle2.css) -->
+<img class="player-avatar" id="player-avatar" src="/assets/img/av1.png" alt="Avatar" style="position:absolute; top:3vh; right:3vw; width:4.5rem; height:4.5rem; border-radius:50%; border:2px solid #FFD700; box-shadow:0 0 8px rgba(0,0,0,0.6); z-index:25; background:#ffffff; object-fit:cover; display:block;">
+
+<div class="main-content">
+    <h1 class="level-title">Nivel 5 — Leo</h1>
+
+    <canvas id="game"></canvas>
+
+    <div id="gameOverScreen" style="display: none;">
+        <div id="gameOverContent">
+            <h2 id="finalMessage"></h2>
+            <button id="restartBtn">VOLVER A JUGAR</button>
+        </div>
+    </div>
+</div>
+
+<!-- Cargar avatar.js (ruta relativa desde el nivel hacia la carpeta 'mundo 2') -->
+<script src="../avatar.js"></script>
+<script src="scriptLeo.js"></script>
+</body>
+</html>

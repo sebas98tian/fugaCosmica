@@ -1,0 +1,181 @@
+/* ==========================
+   ESTILOS NIVEL ESCORPIO
+   ========================== */
+
+body {
+    background: radial-gradient(circle at center, #1a0022, #000);
+    font-family: "Orbitron", sans-serif;
+    margin: 0;
+    
+    /* MODIFICACIÓN CLAVE: Usar flexbox para centrar y apilar */
+    display: flex;
+    flex-direction: column; /* Apila Título, Mensaje y Juego verticalmente */
+    align-items: center; /* Centra horizontalmente */
+    min-height: 100vh; /* Ocupa toda la altura de la ventana */
+    /* margin-top: 20px; se elimina al usar flexbox */
+    
+    color: white;
+    user-select: none;
+}
+
+/* --------------------------
+   BOTÓN DE REGRESO ↩
+-------------------------- */
+.back-button {
+    /* Mantiene position: fixed para que quede anclado a la esquina */
+    position: fixed; 
+    top: 3vh;
+    left: 3vw;
+    font-size: 3rem;
+    color: white;
+    text-decoration: none;
+    z-index: 999;
+    cursor: pointer;
+    transition: 0.25s ease;
+    text-shadow: 0 0 12px rgba(255, 0, 120, 0.9);
+}
+
+.back-button:hover {
+    transform: scale(1.15);
+    color: #d600ff;
+}
+
+/* --------------------------
+   TÍTULO DEL NIVEL
+-------------------------- */
+.level-title {
+    /* MODIFICADO: Se elimina position: fixed para que siga el flujo */
+    font-family: "Cinzel Decorative", cursive;
+    color: #d600ff;
+    font-size: 3rem;
+    text-shadow: 0 0 20px rgba(255, 0, 255, .9);
+    z-index: 900;
+    margin-top: 20px; /* Espacio superior para que no se pegue al borde */
+    margin-bottom: 10px; /* Espacio para separarse del mensaje */
+}
+
+/* --------------------------
+   LABERINTO
+-------------------------- */
+
+#game {
+    position: relative;
+    /* El laberinto se centrará automáticamente gracias al `align-items: center` del body */
+}
+
+.cell {
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+    position: absolute;
+}
+
+.wall {
+    background: #2b0033;
+}
+
+.path {
+    background: #120015;
+}
+
+.hide {
+    background: #2a0030;
+}
+
+/* --------------------------
+   JUGADOR / DEMONIOS / ITEM
+-------------------------- */
+
+#player, .demon, #artifact {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    font-size: 28px;
+    text-align: center;
+}
+
+#artifact {
+    font-size: 26px;
+}
+
+/* --------------------------
+   MENSAJES
+-------------------------- */
+
+#msg {
+    /* MODIFICADO: Se elimina position: fixed para que siga el flujo */
+    background: rgba(0,0,0,0.6);
+    padding: 12px 18px;
+    border-radius: 8px;
+    max-width: 360px;
+    text-align: center;
+    font-size: 1.1rem;
+    text-shadow: 0 0 8px rgba(255,255,255,0.5);
+    margin-bottom: 15px; /* Espacio para separarse del laberinto */
+}
+
+/* ===========================
+   MODAL GAME OVER — Estilos
+   =========================== */
+#gameOverModal.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    color: white;
+    text-align: center;
+    font-family: "Orbitron", sans-serif;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#gameOverModal.hidden {
+    display: none;
+}
+
+#gameOverModal .modal-content {
+    max-width: 720px;
+    width: 100%;
+    background: linear-gradient(180deg, rgba(30,0,40,0.75), rgba(10,0,20,0.6));
+    border-radius: 12px;
+    padding: 32px;
+    box-shadow: 0 0 40px rgba(214,0,255,0.14);
+    backdrop-filter: blur(4px);
+}
+
+#gameOverModal h2 {
+    font-size: 4rem;
+    color: #ff0077;
+    margin-bottom: 20px;
+}
+
+#gameOverModal p {
+    font-size: 1.25rem;
+    margin-bottom: 30px;
+    color: #fff;
+    opacity: 0.95;
+}
+
+#gameOverModal .btn {
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    background-color: #ff0077;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    box-shadow: 0 0 15px rgba(255, 0, 119, 0.7);
+    transition: transform 0.12s ease, background-color 0.12s ease;
+}
+
+#gameOverModal .btn:hover {
+    background-color: #d60066;
+    transform: scale(1.05);
+}

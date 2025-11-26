@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rompecabezas de los Dioses</title>
+    <link rel="stylesheet" href="StylesPiscis.css">
+</head>
+<body>
+    <a href="../MundoIndex3.html" class="back-button" aria-label="Volver al mundo">↩</a>
+
+    <!-- Avatar del jugador -->
+    <img class="player-avatar" id="player-avatar" src="/assets/img/av1.png" alt="Avatar" style="position:absolute; top:3vh; right:3vw; width:4.5rem; height:4.5rem; border-radius:50%; border:2px solid #FFD700; box-shadow:0 0 8px rgba(0,0,0,0.6); z-index:300; background:#ffffff; object-fit:cover;">
+
+    <div id="main">
+        <div id="titleContainer">
+            <h1>💀 Arma los rompecabezas de los dioses</h1>
+            <button id="restartBtn">Reiniciar</button>
+        </div>
+
+        <h2>Ubica cada parte en su lugar</h2>
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+    </div>
+
+    <script src="../avatar.js"></script>
+    <script src="ScriptPiscis.js"></script>
+</body>
+</html>

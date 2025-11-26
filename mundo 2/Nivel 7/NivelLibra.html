@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nivel 7 - Libra</title>
+
+    <!-- Fuentes globales del Mundo -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="stylesLibra.css">
+</head>
+
+<body>
+
+    <!-- Botón de regreso -->
+     <a href="../MundoIndex2.html" class="back-button">↩</a>
+
+    <!-- Avatar del jugador (fijo, separado del gameContainer para no interferir) -->
+    <img id="player-avatar" class="player-avatar" src="../assets/img/av1.png" alt="Avatar">
+
+    <div id="gameContainer">
+
+        <!-- HUD superior -->
+        <div id="hud">
+            <div class="hud-item">⚖ Oleada: <span id="wave">1</span></div>
+            <div class="hud-item">👾 Eliminados: <span id="enemies">0</span></div>
+            <div class="hud-item">🎯 Precisión: <span id="accuracy">100</span>%</div>
+        </div>
+
+        <!-- Jugador -->
+        <div id="player">🧍‍♂️</div>
+
+        <!-- Barra de vida -->
+        <div id="playerHealth">
+            <div id="healthFill"></div>
+            <div id="healthText">100 / 100</div>
+        </div>
+
+        <!-- Instrucciones -->
+        <div id="instructions">
+            CLICK para disparar | Evita que los enemigos toquen el fondo
+        </div>
+
+        <!-- Game Over -->
+        <div id="gameOver">
+            <h1>⚖ ¡EL EQUILIBRIO SE ROMPIÓ! ⚖</h1>
+            <p id="finalScore">Oleada: 1 | Eliminados: 0 | Precisión: 0%</p>
+            <button id="restartBtn">Intentar Otra Vez</button>
+        </div>
+    </div>
+
+    <!-- Cargar script de avatar antes del script del nivel -->
+    <script src="../avatar.js"></script>
+    <script src="scriptLibra.js"></script>
+</body>
+</html>

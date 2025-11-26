@@ -1,0 +1,256 @@
+/* --------------------------
+   RESET
+--------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Orbitron', sans-serif;
+    background: radial-gradient(circle at center, #1a0033, #090012, #000000);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* --------------------------
+   FONDO NEBULOSO ESTILO MUNDO
+--------------------------- */
+body::before {
+    content: "";
+    position: fixed;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    opacity: 0.5;
+
+    background:
+        radial-gradient(circle at 20% 30%, rgba(157, 78, 255, 0.4), transparent 60%),
+        radial-gradient(circle at 80% 70%, rgba(255, 215, 0, 0.25), transparent 60%),
+        radial-gradient(circle at 50% 50%, rgba(100, 50, 200, 0.3), transparent 70%);
+
+    animation: nebulaMove 18s ease-in-out infinite;
+}
+
+@keyframes nebulaMove {
+    50% { transform: scale(1.05) translate(4%, -4%); }
+}
+
+/* --------------------------
+   BOTÓN DE REGRESO
+--------------------------- */
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 2.2rem;
+    color: #FFD700;
+    text-decoration: none;
+    z-index: 200;
+    transition: 0.3s;
+    text-shadow: 0 0 10px #FFD700;
+}
+.back-button:hover {
+    transform: scale(1.15);
+}
+
+/* --------------------------
+   CONTENEDOR DEL JUEGO
+--------------------------- */
+#gameContainer {
+    position: relative;
+    width: 900px;
+    height: 700px;
+    border-radius: 18px;
+    overflow: hidden;
+
+    background: rgba(20, 0, 40, 0.55);
+    border: 3px solid #9d6bff;
+
+    box-shadow:
+        0 0 25px rgba(157, 107, 255, 0.6),
+        inset 0 0 45px rgba(80, 0, 120, 0.4);
+}
+
+/* --------------------------
+   HUD
+--------------------------- */
+#hud {
+    position: absolute;
+    top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    z-index: 50;
+}
+
+.hud-item {
+    background: rgba(30, 0, 60, 0.7);
+    border: 3px solid #9d6bff;
+    color: #e5d4ff;
+    padding: 10px 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(157, 107, 255, 0.5);
+    font-weight: bold;
+}
+
+/* --------------------------
+   JUGADOR
+--------------------------- */
+#player {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 80px;
+    text-shadow: 0 0 15px #9d6bff;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    50% { transform: translateX(-50%) translateY(-14px); }
+}
+
+/* --------------------------
+   BARRA DE VIDA
+--------------------------- */
+#playerHealth {
+    position: absolute;
+    bottom: 110px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 360px;
+    height: 32px;
+    background: rgba(0,0,0,0.5);
+    border: 3px solid #9d6bff;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+#healthFill {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, #ff0000, #ffa200, #2bff2b);
+}
+
+#healthText {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 4px;
+    color: white;
+    font-weight: bold;
+    text-shadow: 0 0 10px black;
+}
+
+/* --------------------------
+   ENEMIGOS
+--------------------------- */
+.enemy {
+    position: absolute;
+    font-size: 55px;
+    text-shadow: 0 0 10px #ff66ff;
+    animation: enemyFloat 1.9s ease-in-out infinite;
+}
+@keyframes enemyFloat { 50% { transform: translateY(-10px); } }
+
+/* --------------------------
+   AGUA (DISPARO)
+--------------------------- */
+.waterball {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #ffffff, #9d6bff);
+    box-shadow: 0 0 10px #c59dff;
+}
+
+/* --------------------------
+   INSTRUCCIONES
+--------------------------- */
+#instructions {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    font-size: 17px;
+    color: #e5d4ff;
+    text-shadow: 0 0 10px #9d6bff;
+}
+
+/* --------------------------
+   GAME OVER
+--------------------------- */
+#gameOver {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background: rgba(20, 0, 40, 0.92);
+    padding: 45px;
+    border-radius: 18px;
+    border: 3px solid #FFD700;
+    text-align: center;
+
+    box-shadow: 0 0 20px #FFD700;
+}
+
+#gameOver h1 {
+    font-family: 'Cinzel Decorative', serif;
+    color: #FFD700;
+    font-size: 46px;
+    margin-bottom: 20px;
+}
+
+#gameOver button {
+    padding: 14px 28px;
+    background: linear-gradient(to bottom, #9d6bff, #5a2ea6);
+    color: white;
+    font-weight: bold;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    box-shadow: 0 0 20px #9d6bff;
+}
+
+#gameOver button:hover {
+    transform: scale(1.08);
+}
+
+/* --------------------------
+   AVATAR DEL JUGADOR
+--------------------------- */
+.player-avatar {
+    position: fixed;
+    top: 18px;
+    right: 18px;
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+    border: 2px solid #FFD700;
+    box-shadow: 0 0 10px rgba(157, 107, 255, 0.6);
+    z-index: 300;
+    background: #ffffff;
+    object-fit: cover;
+    display: block;
+}
+
+/* Ajuste para pantallas pequeñas */
+@media (max-width: 600px) {
+    .player-avatar {
+        width: 3.4rem;
+        height: 3.4rem;
+        top: 12px;
+        right: 12px;
+    }
+}

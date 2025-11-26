@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fuga Cósmica - Seleccionar Mundo</title>
+    <link rel="stylesheet" href="MundoStyle2.css">
+</head>
+<body>
+
+    <div id="mundo-container">
+        <a href="../menu/menu.html" class="back-button">
+            ↩
+        </a>
+
+        <img class="player-avatar" id="player-avatar" src="/assets/img/av1.png" alt="Avatar" style="position:absolute; top:3vh; right:3vw; width:4.5rem; height:4.5rem; border-radius:50%; border:2px solid #FFD700; box-shadow:0 0 8px rgba(0,0,0,0.6); z-index:25; background:#ffffff; object-fit:cover; display:block;">
+
+        <div class="header-content">
+            <h1 class="title-choose">Choose</h1>
+            <h1 class="title-world">World II</h1>
+        </div>
+
+        <div class="planet-selection">
+            <a class="level-emoji leo" href="Nivel 5/NivelLeo.html">
+                ♌
+            </a>
+            <a class="level-emoji virgo" href="Nivel 6/NivelVirgo.html">
+                ♍
+            </a>
+            <a class="level-emoji libra" href="Nivel 7/NivelLibra.html">
+                ♎
+            </a>
+            <a class="level-emoji escorpio" href="Nivel 8/NivelEscorpio.html">
+                ♏
+            </a>
+
+            <a class="level-emoji world-button world-3" href="../mundo 3/MundoIndex3.html">
+                ◎
+            </a>
+            <a class="level-emoji world-button world-1" href="../mundo/MundoIndex.html">
+                ◎
+            </a>
+
+        </div>
+    </div>
+
+<div id="modal-container-leo" class="hidden">
+    <div id="modal-content">
+        <h3 class="modal-title">Nivel 5 (Leo)</h3>
+        <p class="modal-text">¡Arde con orgullo!</p>
+        <p class="modal-text">Adéntrate en el Reino Solar y encuentra la <strong>Corona de León</strong> para avanzar.</p>
+
+        <div class="modal-actions">
+            <button id="modal-exit-leo" class="modal-button exit">
+                <span class="icon">↩</span> Salir
+            </button>
+            <a href="Nivel 5/NivelLeo.html" id="modal-continue-leo" class="modal-button continue">
+                <span class="icon">★</span> Seguir
+            </a>
+        </div>
+    </div>
+</div>
+
+<div id="modal-container-virgo" class="hidden">
+    <div id="modal-content">
+        <h3 class="modal-title">Nivel 6 (Virgo)</h3>
+        <p class="modal-text">¡Claridad y orden!</p>
+        <p class="modal-text">Explora los Campos Ordenados y recupera el <strong>Cetro de Virgo</strong> para proseguir.</p>
+
+        <div class="modal-actions">
+            <button id="modal-exit-virgo" class="modal-button exit">
+                <span class="icon">↩</span> Salir
+            </button>
+            <a href="Nivel 6/NivelVirgo.html" id="modal-continue-virgo" class="modal-button continue">
+                <span class="icon">★</span> Seguir
+            </a>
+        </div>
+    </div>
+</div>
+
+<div id="modal-container-libra" class="hidden">
+    <div id="modal-content">
+        <h3 class="modal-title">Nivel 7 (Libra)</h3>
+        <p class="modal-text">¡Busca el equilibrio!</p>
+        <p class="modal-text">Resuelve los juicios y obtén la <strong>Balanza Dorada</strong> para avanzar.</p>
+
+        <div class="modal-actions">
+            <button id="modal-exit-libra" class="modal-button exit">
+                <span class="icon">↩</span> Salir
+            </button>
+            <a href="Nivel 7/NivelLibra.html" id="modal-continue-libra" class="modal-button continue">
+                <span class="icon">★</span> Seguir
+            </a>
+        </div>
+    </div>
+</div>
+
+<div id="modal-container-escorpio" class="hidden">
+    <div id="modal-content">
+        <h3 class="modal-title">Nivel 8 (Escorpio)</h3>
+        <p class="modal-text">¡Misterio y peligro!</p>
+        <p class="modal-text">Adéntrate en las Sombras y obtén el <strong>Aguijón Escarlata</strong> para continuar.</p>
+
+        <div class="modal-actions">
+            <button id="modal-exit-escorpio" class="modal-button exit">
+                <span class="icon">↩</span> Salir
+            </button>
+            <a href="Nivel 8/NivelEscorpio.html" id="modal-continue-escorpio" class="modal-button continue">
+                <span class="icon">★</span> Seguir
+            </a>
+        </div>
+    </div>
+</div>
+
+<div id="artefact-inventory">
+    <h3 class="inventory-title">Artefactos Obtenidos</h3>
+
+    <button id="reset-artefacts" class="modal-button exit" title="Eliminar artefactos guardados">↻ Restablecer artefactos</button>
+
+    <div id="artefact-slots">
+        <div id="leo-artefact" class="artefact-slot" data-artefact="Corona de León"></div>
+        <div id="virgo-artefact" class="artefact-slot" data-artefact="Cetro de Virgo"></div>
+        <div id="libra-artefact" class="artefact-slot" data-artefact="Balanza Dorada"></div>
+        <div id="escorpio-artefact" class="artefact-slot" data-artefact="Aguijón Escarlata"></div>
+    </div>
+</div>
+
+<script src="MundoScript2.js"></script>
+<script src="avatar.js"></script>
+</body>
+</html>

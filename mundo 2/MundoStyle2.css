@@ -23,7 +23,8 @@ body, html {
 /* --- CONTENEDOR PRINCIPAL (#mundo-container) --- */
 #mundo-container {
     background-color: black; 
-    background-image: url('../assets/img/Mundo.png');
+    /* ruta relativa desde carpeta /mundo 2/ a /assets/ es ../assets/ */
+    background-image: url('../assets/img/Mundo2.PNG');
     background-size: contain; 
     background-position: center;
     background-repeat: no-repeat;
@@ -43,7 +44,7 @@ body, html {
 }
 /* ---------------------------------------------------------------- */
 
-/* --- Título "Choose World I" --- */
+/* --- Título "Choose World II" --- */
 
 .header-content {
     display: flex;
@@ -127,41 +128,41 @@ a.level-emoji:hover {
     transform: scale(1.1);
 }
 
-/* --- POSICIONES DE LOS SIGNOS --- */
-a.aries {
+/* --- POSICIONES IGUAL QUE MUNDO 1 --- */
+a.leo {
     top: 30%;
     left: 45%;
 }
 
-a.taurus {
+a.virgo {
     top: 45%;
     left: 30%;
 }
 
-a.gemini {
+a.libra {
     top: 45%;
     right: 30%;
     left: auto;
 }
 
-a.cancer {
+a.escorpio {
     bottom: 30%;
     left: 45%;
     top: auto;
 }
 
 /* --- NUEVAS POSICIONES DE BOTONES DE MUNDO --- */
-a.world-2 { 
+a.world-3 { 
     top: 46%;
-    right: -8vw; 
+    right: -9vw; 
     left: auto; 
     font-size: 4vw; 
     z-index: 1;
 }
 
-a.world-3 { 
-    top: 46%; 
-    left: -8vw;
+a.world-1 { 
+    top: 45%; 
+    left: -9vw;
     font-size: 4vw; 
     z-index: 1;
 }
@@ -170,12 +171,12 @@ a.world-3 {
     display: none !important;
 }
 
-/* --- MODAL CONTENEDOR (INCLUYE EL NUEVO ID PARA ARIES) --- */
+/* --- MODAL CONTENEDOR (FIX: APLICAR ESTILOS A TODOS LOS IDs DE MUNDO 2) --- */
 
-#modal-container-aries, 
-#modal-container-tauro, 
-#modal-container-geminis, 
-#modal-container-cancer { 
+#modal-container-leo, 
+#modal-container-virgo, 
+#modal-container-libra, 
+#modal-container-escorpio { /* IDs de Mundo 2 */
     position: fixed;
     top: 0;
     left: 0;
@@ -187,7 +188,23 @@ a.world-3 {
     align-items: center;
     z-index: 100; 
 }
-/* --- FIN DE MODALES DEL MUNDO 1 --- */
+/* Mantenemos los selectores de Mundo 1 por si se usan en el mismo archivo */
+#modal-container, 
+#modal-container-tauro, 
+#modal-container-geminis, 
+#modal-container-cancer { 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100; 
+}
+/* --- FIN DE ARREGLO PARA CONTENEDORES MODALES --- */
 
 
 /* Estilos para el contenido del modal (unificado para evitar repetición) */
@@ -322,4 +339,35 @@ a.world-3 {
     border: 2px solid var(--title-word-color); /* Borde de oro cuando está desbloqueado */
     opacity: 1;
     box-shadow: 0 0 10px var(--title-word-color);
+}
+
+/* --- ESTILOS PARA EL BOTÓN DE REINICIO DE ARTEFACTOS --- */
+/* Reemplazo: normalizar #reset-artefacts para que luzca como en mundo/MundoStyle.css */
+#reset-artefacts {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.45rem 0.75rem;
+    font-size: 0.9rem;
+    border-radius: 50px;
+    background-color: transparent;        /* igual que .modal-button.exit */
+    border: 2px solid var(--text-color);  /* borde claro como en Mundo */
+    color: var(--text-color);
+    cursor: pointer;
+    box-shadow: none;
+    transition: background-color 0.2s, transform 0.2s;
+    font-family: var(--font-body);
+}
+
+#reset-artefacts:hover {
+    background-color: #4a3455; /* mismo hover que .modal-button.exit */
+    transform: scale(1.05);
+}
+
+/* Mantener comportamiento para icon-only si existe */
+#reset-artefacts.icon-only {
+    padding: 0.35rem;
+    width: 36px;
+    height: 36px;
+    justify-content: center;
 }

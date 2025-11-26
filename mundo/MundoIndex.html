@@ -13,7 +13,7 @@
             ↩
         </a>
 
-        <img class="player-avatar" id="player-avatar" src="/assets/img/av1.png" alt="Avatar" style="position:absolute; top:3vh; right:3vw; width:4.5rem; height:4.5rem; border-radius:50%; border:2px solid #FFD700; box-shadow:0 0 8px rgba(0,0,0,0.6); z-index:25; background:#ffffff; object-fit:cover; display:block;">
+        <img class="player-avatar" id="player-avatar" src="../assets/img/av1.png" alt="Avatar" style="position:absolute; top:3vh; right:3vw; width:4.5rem; height:4.5rem; border-radius:50%; border:2px solid #FFD700; box-shadow:0 0 8px rgba(0,0,0,0.6); z-index:25; background:#ffffff; object-fit:cover; display:block;">
 
         <div class="header-content">
             <h1 class="title-choose">Choose</h1>
@@ -33,71 +33,98 @@
             <a class="level-emoji cancer" href="Nivel 4/NivelCancer.html">
                 ♋
             </a>
+            
+            <a class="level-emoji world-button world-2" href="../mundo 2/MundoIndex2.html">
+                ◎
+            </a>
+            <a class="level-emoji world-button world-3" href="../mundo 3/MundoIndex3.html">
+                ◎
+            </a>
+            
+        </div>
+
+        <div id="modal-container-aries" class="hidden"> <div id="modal-content">
+                <h3 class="modal-title">Nivel 1 (Aries)</h3>
+                <p class="modal-text">¡Enciende la llama!</p>
+                <p class="modal-text">Adéntrate en El Núcleo Elemental y comienza tu búsqueda. Debes recuperar el <strong>Yelmo de Bronce de Aries</strong> para avanzar.</p>
+
+                <div class="modal-actions">
+                    <button id="modal-exit-aries" class="modal-button exit"> <span class="icon">↩</span> Salir
+                    </button>
+                    <a href="Nivel 1/NivelAries.html" id="modal-continue-aries" class="modal-button continue"> <span class="icon">★</span> Seguir
+                    </a>
+                </div>
             </div>
-    </div>
+        </div>
 
-<div id="modal-container" class="hidden">
-    <div id="modal-content">
-        <h3 class="modal-title">Nivel 1 (Aries)</h3>
-        <p class="modal-text">¡Enciende la llama!</p>
-        <p class="modal-text">Adéntrate en El Núcleo Elemental y comienza tu búsqueda. Debes recuperar el **Yelmo de Bronce de Aries** para avanzar.</p>
+        <div id="modal-container-tauro" class="hidden">
+            <div id="modal-content">
+                <h3 class="modal-title">Nivel 2 (Tauro)</h3>
+                <p class="modal-text">¡Enfrenta al Minotauro Cósmico!</p>
+                <p class="modal-text">Demuestra tu fuerza para obtener el artefacto <strong>Toro Dorado</strong> y continuar tu aventura.</p>
 
-        <div class="modal-actions">
-            <button id="modal-exit" class="modal-button exit">
-                <span class="icon">↩</span> Salir
-            </button>
-            <a href="Nivel 1/NivelAries.html" id="modal-continue" class="modal-button continue">
-                <span class="icon">★</span> Seguir
-            </a>
+                <div class="modal-actions">
+                    <button id="modal-exit-tauro" class="modal-button exit">
+                        <span class="icon">↩</span> Salir
+                    </button>
+                    <a href="Nivel 2/NivelTauro.html" id="modal-continue-tauro" class="modal-button continue">
+                        <span class="icon">★</span> Seguir
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="modal-container-geminis" class="hidden">
+            <div id="modal-content">
+                <h3 class="modal-title">Nivel 3 (Géminis)</h3>
+                <p class="modal-text">¡El dilema de los Gemelos!</p>
+                <p class="modal-text">Resuelve el enigma de la dualidad para obtener la <strong>Lira de los Gemelos</strong> y continuar tu aventura.</p>
+
+                <div class="modal-actions">
+                    <button id="modal-exit-geminis" class="modal-button exit">
+                        <span class="icon">↩</span> Salir
+                    </button>
+                    <a href="Nivel 3/NivelGeminis.html" id="modal-continue-geminis" class="modal-button continue">
+                        <span class="icon">★</span> Seguir
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="modal-container-cancer" class="hidden">
+            <div id="modal-content">
+                <h3 class="modal-title">Nivel 4 (Cáncer)</h3>
+                <p class="modal-text">¡El caparazón lunar te espera!</p>
+                <p class="modal-text">Juega al Tetris Cósmico y demuestra tu habilidad para obtener el artefacto <strong>Caparazón Lunar</strong> y continuar tu aventura.</p>
+
+                <div class="modal-actions">
+                    <button id="modal-exit-cancer" class="modal-button exit">
+                        <span class="icon">↩</span> Salir
+                    </button>
+                    <a href="Nivel 4/NivelCancer.html" id="modal-continue-cancer" class="modal-button continue">
+                        <span class="icon">★</span> Seguir
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="artefact-inventory">
+            <h3 class="inventory-title">Artefactos Obtenidos</h3>
+
+            <!-- Botón para restablecer artefactos guardados -->
+            <button id="reset-artefacts" class="modal-button exit" title="Eliminar artefactos guardados">↻ Restablecer artefactos</button>
+
+            <div id="artefact-slots">
+                <div id="aries-artefact" class="artefact-slot" data-artefact="Yelmo de Bronce"></div>
+                <div id="tauro-artefact" class="artefact-slot" data-artefact="Toro Dorado"></div>
+                <div id="geminis-artefact" class="artefact-slot" data-artefact="Lira de los Gemelos"></div>
+                <div id="cancer-artefact" class="artefact-slot" data-artefact="Caparazón Lunar"></div>
+                <!-- ...otros slots si hay... -->
+            </div>
         </div>
     </div>
-</div>
-
-<div id="modal-container-tauro" class="hidden">
-    <div id="modal-content">
-        <h3 class="modal-title">Nivel 2 (Tauro)</h3>
-        <p class="modal-text">¡Tu destino te espera!</p>
-        <p class="modal-text">Recorre las Profundidades Terrenales y reúne el poderoso artefacto de Tauro el **Toro Dorado** para continuar.</p>
-
-        <div class="modal-actions">
-            <button id="modal-exit-tauro" class="modal-button exit">
-                <span class="icon">↩</span> Salir
-            </button>
-            <a href="Nivel 2/NivelTauro.html" id="modal-continue-tauro" class="modal-button continue">
-                <span class="icon">★</span> Seguir
-            </a>
-        </div>
-    </div>
-</div>
-
-<div id="modal-container-geminis" class="hidden">
-    <div id="modal-content">
-        <h3 class="modal-title">Nivel 3 (Géminis)</h3>
-        <p class="modal-text">¡La dualidad te llama!</p>
-        <p class="modal-text">Construye la Torre de Géminis. Debes apilar bloque tras bloque hasta ganarte el artefacto **Lira Gemela** para poder continuar.</p>
-
-        <div class="modal-actions">
-            <button id="modal-exit-geminis" class="modal-button exit">
-                <span class="icon">↩</span> Salir
-            </button>
-            <a href="Nivel 3/NivelGeminis.html" id="modal-continue-geminis" class="modal-button continue">
-                <span class="icon">★</span> Seguir
-            </a>
-        </div>
-    </div>
-</div>
-
-<div id="artefact-inventory">
-    <h3 class="inventory-title">Artefactos Obtenidos</h3>
-    <div id="artefact-slots">
-        <div id="aries-artefact" class="artefact-slot" data-artefact="Yelmo de Bronce"></div>
-        <div id="tauro-artefact" class="artefact-slot" data-artefact="Toro Dorado"></div>
-        <div id="geminis-artefact" class="artefact-slot" data-artefact="Lira Gemela"></div>
-        <div id="cancer-artefact" class="artefact-slot" data-artefact="Caparazón Lunar"></div>
-    </div>
-</div>
-
-<script src="MundoScript.js"></script>
-<script src="avatar.js"></script>
+    
+    <script src="MundoScript.js"></script> 
+    <script src="avatar.js"></script>
 </body>
 </html>

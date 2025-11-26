@@ -1,0 +1,67 @@
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background: #222;
+    font-family: 'Cinzel Decorative', serif;
+    color: white;
+    height: 100vh;
+}
+
+#titleContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0 5px 0;
+    gap: 20px;
+}
+
+h1 {
+    font-size: 36px;
+    margin: 0;
+    text-align: center;
+}
+
+h2 {
+    font-size: 24px;
+    margin: 10px 0 5px 0;
+    text-align: center;
+}
+
+#timer, #lives {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+#gameCanvas {
+    border: 4px solid #fff;
+    background: #333;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background: #ffcc00;
+    color: #000;
+    font-weight: bold;
+}
+
+button:hover {
+    background: #ffaa00;
+}
+
+.back-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 2rem;
+    color: #ffcc00;
+    text-decoration: none;
+}
